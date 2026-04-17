@@ -8,6 +8,21 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── TYPOGRAPHY: widow/orphan prevention ── */
+h1, h2, h3, h4,
+.day-title, .cover-title, .cover-subtitle,
+.marathon-title, .backup-title,
+.event-title, .meal-name, .backup-name,
+.section-title, .decision-card-title {
+  text-wrap: balance;
+}
+p, .event-desc, .transport-text, .timeline-desc,
+.rendezvous-text, .backup-desc, .kids-rhythm-text,
+.nap-anchor-text, .decision-alert-row, .meal-info,
+.hotel-sub, .flight-note {
+  text-wrap: pretty;
+}
+
 :root {
   --cream: #F5F0E8;
   --paper: #EDE8DC;
@@ -78,7 +93,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 48px 28px 52px;
+  padding: 48px 20px 52px;
   position: relative;
   overflow: hidden;
 }
@@ -228,7 +243,7 @@ body {
 /* ── DAY SECTION ── */
 .day-header {
   background: var(--paper);
-  padding: 28px 24px 22px;
+  padding: 28px 20px 22px;
   position: relative;
   overflow: hidden;
   border-bottom: 2px solid var(--rust);
@@ -250,11 +265,11 @@ body {
 }
 .day-title {
   font-family: 'Fraunces', serif;
-  font-size: clamp(1.8rem, 7vw, 2.8rem);
+  font-size: clamp(1.6rem, 6.5vw, 2.6rem);
   font-weight: 900;
   font-style: italic;
   color: var(--ink);
-  line-height: 1;
+  line-height: 1.05;
 }
 .day-date {
   font-size: 0.72rem;
@@ -264,7 +279,7 @@ body {
 }
 
 .day-body {
-  padding: 20px 20px 32px;
+  padding: 20px 16px 32px;
   display: flex;
   flex-direction: column;
   gap: 10px;
