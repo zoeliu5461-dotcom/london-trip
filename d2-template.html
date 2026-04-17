@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>D2 模板预览 · 英超比赛日</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Noto+Sans+SC:wght@300;400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F5F0E8;
+  --paper: #EDE8DC;
+  --brown: #6B4226;
+  --rust: #B85C38;
+  --gold: #C9872A;
+  --ink: #1A1A1A;
+  --muted: #6B6B5A;
+  --border: rgba(107,66,38,0.15);
+  --green: #2E7D32;
+  --green-bg: #E8F5E9;
+}
+
+body {
+  font-family: 'Work Sans', 'Noto Sans SC', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+/* ── DAY HEADER ── */
+.day-header {
+  background: var(--paper);
+  padding: 32px 24px 24px;
+  border-bottom: 2px solid var(--rust);
+  position: relative;
+  overflow: hidden;
+}
+.day-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+}
+.day-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rust);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.day-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+/* ── 扫一眼 ── */
+.glance-card {
+  margin: 16px 16px 0;
+  background: var(--paper);
+  border-left: 3px solid var(--rust);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 16px;
+}
+.glance-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--rust);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.glance-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+.glance-step {
+  background: rgba(107,66,38,0.08);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.72rem;
+  color: var(--ink);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.glance-step.key {
+  background: var(--rust);
+  color: #fff;
+}
+.glance-step.rest {
+  background: rgba(201,135,42,0.15);
+  color: var(--brown);
+  border: 1px solid rgba(201,135,42,0.3);
+}
+.glance-arrow {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+.glance-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.glance-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.glance-note strong { color: var(--ink); }
+
+/* ── 时段容器 ── */
+.day-body {
+  padding: 16px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── 时段大卡 ── */
+.block-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.block-header {
+  background: var(--paper);
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.block-time-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+.block-time-value {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--rust);
+  margin-left: auto;
+}
+.block-body {
+  padding: 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── 主内容行 ── */
+.item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.item-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  line-height: 1.2;
+}
+.item-title-text { flex: 1; }
+.map-btn {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--cream);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-top: -2px;
+}
+.item-desc {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.item-desc strong { color: var(--ink); font-weight: 600; }
+
+/* ── 背书行 ── */
+.endorsement {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+}
+.endorse-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 8px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.65rem;
+}
+.endorse-booked {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.endorse-rating {
+  background: rgba(201,135,42,0.12);
+  color: var(--brown);
+}
+.endorse-dist {
+  background: var(--cream);
+  color: var(--muted);
+}
+.endorse-warn {
+  background: #FFF8E1;
+  color: #B45309;
+}
+.endorse-xhs {
+  background: #FFF0F0;
+  color: var(--rust);
+}
+
+/* ── 轻卡（次要信息）── */
+.light-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--cream);
+  border-radius: 10px;
+}
+.light-item-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.light-item-text {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.light-item-text strong { color: var(--ink); font-weight: 600; }
+
+/* ── 分隔线 ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── 备选折叠 ── */
+.alt-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background: var(--cream);
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.alt-toggle-label { display: flex; align-items: center; gap: 6px; }
+.alt-toggle-arrow {
+  font-size: 0.65rem;
+  color: var(--muted);
+  transition: transform 0.2s;
+}
+.alt-toggle.open .alt-toggle-arrow { transform: rotate(180deg); }
+.alt-content {
+  display: none;
+  padding: 10px 12px 12px;
+  background: var(--cream);
+  border-radius: 0 0 8px 8px;
+  margin-top: -4px;
+  border-top: 1px solid var(--border);
+}
+.alt-content.open { display: block; }
+.alt-name {
+  font-family: 'Fraunces', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.alt-desc {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── 主卡（比赛）── */
+.hero-card {
+  background: linear-gradient(160deg, #1A1A1A 0%, #2D1208 100%);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+}
+.hero-header {
+  padding: 14px 18px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+.hero-time {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+}
+.hero-body {
+  padding: 14px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.hero-title .map-btn {
+  background: rgba(255,255,255,0.1);
+}
+.hero-venue {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+}
+.hero-seat {
+  background: rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+}
+.hero-seat strong { color: #fff; font-weight: 700; }
+.hero-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.hero-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.45;
+}
+.hero-alert strong { color: #fff; }
+
+/* ── 糯糯节奏 ── */
+.kids-strip {
+  margin: 4px 16px 0;
+  background: linear-gradient(135deg, #FCE4EC, #F8BBD0);
+  border-radius: 12px;
+  padding: 13px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.kids-strip-icon { font-size: 1.3rem; flex-shrink: 0; }
+.kids-strip-text {
+  font-size: 0.75rem;
+  color: #880E4F;
+  line-height: 1.55;
+}
+.kids-strip-text strong { font-weight: 700; }
+
+/* ── XHS 链接 ── */
+.xhs-link {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--rust);
+  text-decoration: none;
+  line-height: 1.5;
+}
+.xhs-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- ── DAY HEADER ── -->
+<div class="day-header">
+  <div class="day-label">Day 2 · 4月25日 周六</div>
+  <div class="day-title">英超<br>比赛日</div>
+</div>
+
+<!-- ── 扫一眼 ── -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">🌿 上午 Fulham Palace</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🥞 10:40 Brunch</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">⚽ 12:30 开球</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🍣 17:45 晚饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🏨 19:00前回</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ 安检排队长，<strong>12:00前入场</strong></div>
+    <div class="glance-note">⚠️ 散场人多，<strong>等15分钟再走</strong></div>
+    <div class="glance-note">⚠️ Stroller 按当天要求寄存（免费）</div>
+  </div>
+</div>
+
+<!-- ── BODY ── -->
+<div class="day-body">
+
+  <!-- 时段：上午放电 + Brunch -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">赛前</div>
+      <div class="block-time-value">09:00 – 12:00</div>
+    </div>
+    <div class="block-body">
+
+      <!-- Fulham Palace 轻卡 -->
+      <div class="light-item">
+        <div class="light-item-icon">🌿</div>
+        <div class="light-item-text">
+          <strong>Fulham Palace</strong> · 上午散步放电，花园宽阔，不安排正式参观。<br>
+          球场步行 5 分钟，吃完 brunch 直接走过去。
+          <a class="map-btn" style="display:inline-flex;width:22px;height:22px;font-size:0.75rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Fulham+Palace+London" target="_blank">📍</a>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/681cbc5d000000002202506b" target="_blank">📖 Fulham Palace · 博物馆+植物园+Cafe ↗</a>
+
+      <div class="divider">早午餐</div>
+
+      <!-- Manuka Kitchen 主方案 -->
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Manuka Kitchen</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Manuka+Kitchen+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">Fulham 本地人气早午餐，松饼是招牌，就在球场附近。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预订 10:40</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.4</span>
+          <span class="endorse-tag endorse-xhs">📖 小红书有探店</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6366d4350000000009002e84" target="_blank">📖 Manuka Kitchen · 这家的松饼巨好吃！ ↗</a>
+
+      <!-- 备选：Pappa Ciccia -->
+      <button class="alt-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        <span class="alt-toggle-label">🍕 备选 · Pappa Ciccia · 11:30</span>
+        <span class="alt-toggle-arrow">▾</span>
+      </button>
+      <div class="alt-content">
+        <div class="alt-name">
+          Pappa Ciccia
+          <a class="map-btn" style="width:24px;height:24px;font-size:0.75rem;background:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;" href="https://maps.google.com/?q=Pappa+Ciccia+Munster+Road+London" target="_blank">📍</a>
+        </div>
+        <div class="alt-desc">意大利 Pizza · Munster Road · ⭐ Google 4.6</div>
+        <div style="margin-top:6px;">
+          <span class="endorse-tag endorse-booked" style="font-size:0.65rem;padding:3px 8px;border-radius:100px;font-weight:600;background:var(--green-bg);color:var(--green);">✅ 已预订 11:30</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 主卡：比赛 -->
+  <div class="hero-card">
+    <div class="hero-header">
+      <div class="hero-label">⚽ 英超 · Craven Cottage</div>
+      <div class="hero-time">12:30</div>
+    </div>
+    <div class="hero-body">
+      <div class="hero-title">
+        <div>Fulham<br><em style="font-style:italic;color:rgba(255,255,255,0.5);font-size:0.9rem;">vs</em><br>Aston Villa</div>
+        <a class="map-btn" href="https://maps.google.com/?q=Craven+Cottage+London" target="_blank">📍</a>
+      </div>
+      <div class="hero-venue">Craven Cottage · Block R23 · Row 40 · Seat 88 / 87 / 86</div>
+      <div class="hero-seat">
+        <strong>⏰ 12:00 前入场</strong> — 比赛日安检排队长，别踩点<br>
+        🚌 Stroller 大概率不能进看台，按当天要求免费寄存<br>
+        🚶 散场后等 15 分钟再走，避开人流高峰
+      </div>
+      <div class="hero-alerts">
+        <div class="hero-alert">📍 <span>最近地铁：<strong>Putney Bridge</strong>（District Line）· 步行约 10 分钟到球场</span></div>
+        <div class="hero-alert">🏁 <span>比赛约 14:00 结束，散场后打车回酒店或附近喝杯茶等一等</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 时段：晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">17:45</div>
+    </div>
+    <div class="block-body">
+
+      <!-- Chisou 主方案 -->
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Chisou Sushi & Izakaya</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Chisou+Sushi+Izakaya+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">日式寿司居酒屋，赛后吃清淡好消化，打车约 13 分钟。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预订 17:45 · Annie Ding</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.7</span>
+          <span class="endorse-tag endorse-xhs">📖 小红书有探店</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6424c3f4000000001203d2c1" target="_blank">📖 伦敦宝藏日料店 · Chisou ↗</a>
+
+      <!-- 备选：Murger Han -->
+      <button class="alt-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        <span class="alt-toggle-label">🍜 备选 · Murger Han · 17:30</span>
+        <span class="alt-toggle-arrow">▾</span>
+      </button>
+      <div class="alt-content">
+        <div class="alt-name">
+          Murger Han
+          <a class="map-btn" style="width:24px;height:24px;font-size:0.75rem;background:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;" href="https://maps.google.com/?q=Murger+Han+London" target="_blank">📍</a>
+        </div>
+        <div class="alt-desc">陕西面馆，步行约 12 分钟，想吃家乡味时选这个。⭐ Google 4.2</div>
+        <div style="margin-top:6px;">
+          <span class="endorse-tag endorse-booked" style="font-size:0.65rem;padding:3px 8px;border-radius:100px;font-weight:600;background:var(--green-bg);color:var(--green);">✅ 已预订 17:30</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/69ccf360000000001a02043e" target="_blank">📖 Murger Han · 伦敦西安面馆体验 ↗</a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ── 糯糯节奏 ── -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天：</strong>上午 Fulham Palace 花园跑跑，10:40 brunch，12:30 比赛（赛场氛围刺激，注意噪音）。比赛结束约 14:00，中间可以在附近咖啡馆待一待，<strong>17:45 晚饭，19:00 前回酒店</strong>节奏稳。
+  </div>
+</div>
+
+</body>
+</html>
