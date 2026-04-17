@@ -262,10 +262,32 @@ body {
 }
 
 .day-body {
-  padding: 20px 20px;
+  padding: 20px 20px 32px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
+}
+
+/* 时段分组：section-title 前加大间距，形成"换段"感 */
+.day-body .section-title {
+  margin-top: 24px;
+}
+/* 第一个 section-title 不加额外间距 */
+.day-body > :first-child.section-title,
+.day-body .decision-card + .section-title,
+.day-body > .decision-card:first-child ~ .section-title:first-of-type {
+  margin-top: 24px;
+}
+/* xhs-link 和上方卡片贴近，和下方留一点间距 */
+.day-body .xhs-link {
+  margin-top: -4px;
+  margin-bottom: 6px;
+}
+/* kids-rhythm 前加分隔感 */
+.day-body .kids-rhythm {
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
 }
 
 /* ── TRANSPORT BANNER ── */
@@ -453,21 +475,18 @@ body {
 /* ── SECTION TITLE ── */
 .section-title {
   font-family: 'Fraunces', serif;
-  font-size: 1.05rem;
-  font-weight: 900;
-  font-style: italic;
-  color: var(--ink);
-  padding: 4px 0 4px 14px;
-  border-left: 3px solid var(--rust);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rust);
+  padding: 0 0 8px 0;
+  border-bottom: 1px solid var(--border);
   position: relative;
 }
 .section-title::after {
-  content: '';
-  display: block;
-  width: 32px;
-  height: 1.5px;
-  background: var(--gold);
-  margin-top: 4px;
+  display: none;
 }
 
 /* ── MARATHON PAGE ── */
