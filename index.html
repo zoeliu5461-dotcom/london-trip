@@ -712,19 +712,20 @@ body {
 
 /* ── DECISION CARD ── */
 .decision-card {
-  background: linear-gradient(135deg, #1A1A1A 0%, #2D1A0A 100%);
-  border-radius: 14px;
-  padding: 16px 18px;
+  background: var(--paper);
+  border-left: 3px solid var(--rust);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 16px;
   margin: 0 0 4px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 .decision-card-title {
   font-size: 0.58rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--rust);
   font-weight: 700;
 }
 .decision-flow {
@@ -734,11 +735,11 @@ body {
   gap: 4px;
 }
 .decision-step {
-  background: rgba(255,255,255,0.08);
+  background: rgba(107,66,38,0.08);
   border-radius: 6px;
   padding: 5px 10px;
   font-size: 0.72rem;
-  color: #fff;
+  color: var(--ink);
   font-weight: 500;
   white-space: nowrap;
 }
@@ -747,12 +748,12 @@ body {
   color: #fff;
 }
 .decision-step.rest {
-  background: rgba(201,135,42,0.25);
-  color: var(--gold);
-  border: 1px solid rgba(201,135,42,0.4);
+  background: rgba(201,135,42,0.15);
+  color: var(--brown);
+  border: 1px solid rgba(201,135,42,0.35);
 }
 .decision-arrow {
-  color: rgba(255,255,255,0.3);
+  color: var(--muted);
   font-size: 0.75rem;
   font-weight: 300;
 }
@@ -766,10 +767,10 @@ body {
   align-items: flex-start;
   gap: 7px;
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.65);
+  color: var(--muted);
   line-height: 1.45;
 }
-.decision-alert-row strong { color: #fff; font-weight: 600; }
+.decision-alert-row strong { color: var(--ink); font-weight: 600; }
 .decision-key-times {
   display: flex;
   gap: 8px;
