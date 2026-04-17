@@ -125,10 +125,10 @@ body {
 
 /* ── 时段容器 ── */
 .day-body {
-  padding: 16px 16px 0;
+  padding: 12px 16px 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* ── 时段大卡 ── */
@@ -160,10 +160,10 @@ body {
   margin-left: auto;
 }
 .block-body {
-  padding: 16px 16px;
+  padding: 14px 16px 16px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 /* ── 主内容行 ── */
@@ -209,17 +209,18 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  font-size: 0.68rem;
+  gap: 5px;
+  font-size: 0.62rem;
 }
 .endorse-tag {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  padding: 3px 8px;
+  padding: 2px 7px;
   border-radius: 100px;
   font-weight: 600;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.01em;
 }
 .endorse-booked {
   background: var(--green-bg);
@@ -293,23 +294,35 @@ body {
   font-size: 0.75rem;
   color: var(--muted);
   font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
 }
 .alt-toggle-label { display: flex; align-items: center; gap: 6px; }
 .alt-toggle-arrow {
   font-size: 0.65rem;
   color: var(--muted);
-  transition: transform 0.2s;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
 }
 .alt-toggle.open .alt-toggle-arrow { transform: rotate(180deg); }
 .alt-content {
-  display: none;
-  padding: 10px 12px 12px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.28s ease,
+              padding 0.28s ease;
+  opacity: 0;
+  padding: 0 12px;
   background: var(--cream);
   border-radius: 0 0 8px 8px;
   margin-top: -4px;
-  border-top: 1px solid var(--border);
+  border-top: 0px solid var(--border);
 }
-.alt-content.open { display: block; }
+.alt-content.open {
+  max-height: 300px;
+  opacity: 1;
+  padding: 10px 12px 12px;
+  border-top-width: 1px;
+}
 .alt-name {
   font-family: 'Fraunces', serif;
   font-size: 0.95rem;
@@ -328,13 +341,21 @@ body {
 
 /* ── 主卡（比赛）── */
 .hero-card {
-  background: linear-gradient(160deg, #1A1A1A 0%, #2D1208 100%);
-  border-radius: 14px;
+  background: linear-gradient(155deg, #0F0F0F 0%, #1C0A00 55%, #2D1208 100%);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.32), 0 2px 8px rgba(0,0,0,0.2);
+  position: relative;
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, #E8A83A 50%, var(--gold) 100%);
 }
 .hero-header {
-  padding: 14px 18px 10px;
+  padding: 16px 18px 12px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   display: flex;
   align-items: center;
@@ -349,41 +370,53 @@ body {
 }
 .hero-time {
   font-family: 'Fraunces', serif;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 900;
   color: #fff;
+  letter-spacing: -0.02em;
 }
 .hero-body {
-  padding: 14px 18px 16px;
+  padding: 16px 18px 18px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 .hero-title {
   font-family: 'Fraunces', serif;
-  font-size: 1.3rem;
+  font-size: 1.65rem;
   font-weight: 900;
   color: #fff;
-  line-height: 1.1;
+  line-height: 1.05;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 8px;
 }
 .hero-title .map-btn {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.hero-vs {
+  display: block;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1rem;
+  opacity: 0.85;
+  margin: 2px 0;
 }
 .hero-venue {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
 }
 .hero-seat {
-  background: rgba(255,255,255,0.07);
-  border-radius: 8px;
-  padding: 9px 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 10px 14px;
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.85);
-  line-height: 1.6;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.65;
 }
 .hero-seat strong { color: #fff; font-weight: 700; }
 .hero-alerts {
@@ -396,14 +429,14 @@ body {
   align-items: flex-start;
   gap: 7px;
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.55);
   line-height: 1.45;
 }
 .hero-alert strong { color: #fff; }
 
 /* ── 糯糯节奏 ── */
 .kids-strip {
-  margin: 4px 16px 0;
+  margin: 10px 16px 0;
   background: linear-gradient(135deg, #FCE4EC, #F8BBD0);
   border-radius: 12px;
   padding: 13px 16px;
@@ -524,8 +557,8 @@ body {
       <div class="hero-time">12:30</div>
     </div>
     <div class="hero-body">
-      <div class="hero-title">
-        <div>Fulham<br><em style="font-style:italic;color:rgba(255,255,255,0.5);font-size:0.9rem;">vs</em><br>Aston Villa</div>
+        <div class="hero-title">
+        <div>Fulham<span class="hero-vs">vs</span>Aston Villa</div>
         <a class="map-btn" href="https://maps.google.com/?q=Craven+Cottage+London" target="_blank">📍</a>
       </div>
       <div class="hero-venue">Craven Cottage · Block R23 · Row 40 · Seat 88 / 87 / 86</div>
