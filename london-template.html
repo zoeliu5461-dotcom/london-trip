@@ -7,61 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Noto+Sans+SC:wght@300;400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-/* ── TAB BAR ── */
-.tabs-bar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: #1A1A1A;
-  display: flex;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  height: 48px;
-  border-bottom: 2px solid #B85C38;
-  max-width: 480px;
-  margin: 0 auto;
-}
-.tabs-bar::-webkit-scrollbar { display: none; }
-.tab-btn {
-  flex: 0 0 auto;
-  padding: 0 16px;
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.5);
-  font-family: 'Work Sans','Noto Sans SC',sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
-  white-space: nowrap;
-  transition: color 0.15s, border-color 0.15s;
-}
-.tab-btn.active, .tab-btn:hover {
-  color: #fff;
-  border-bottom-color: #B85C38;
-}
-
-/* ── SECTIONS ── */
-.tab-section { display: none; }
-.tab-section.active { display: block; }
-
-/* ── BODY ── */
-body {
-  font-family: 'Work Sans','Noto Sans SC',sans-serif;
-  background: #F5F0E8;
-  color: #1A1A1A;
-  min-height: 100vh;
-  max-width: 480px;
-  margin: 0 auto;
-  padding-top: 48px;
-  padding-bottom: 60px;
-}
-
-/* ── SHARED STYLES ── */
+.tabs-bar { position:fixed;top:0;left:0;right:0;z-index:1000;background:#1A1A1A;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;height:48px;border-bottom:2px solid #B85C38;max-width:480px;margin:0 auto; }
+.tabs-bar::-webkit-scrollbar { display:none; }
+.tab-btn { flex:0 0 auto;padding:0 16px;background:none;border:none;color:rgba(255,255,255,0.5);font-family:'Work Sans','Noto Sans SC',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.05em;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color 0.15s,border-color 0.15s; }
+.tab-btn.active,.tab-btn:hover { color:#fff;border-bottom-color:#B85C38; }
+.tab-section { display:none; }
+.tab-section.active { display:block; }
+body { font-family:'Work Sans','Noto Sans SC',sans-serif;background:#F5F0E8;color:#1A1A1A;min-height:100vh;max-width:480px;margin:0 auto;padding-top:48px;padding-bottom:60px; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -616,7 +568,6 @@ body {
 </style>
 </head>
 <body>
-
 <div class="tabs-bar">
 <button class="tab-btn active" onclick="showTab('cover')" id="btn-cover">封面</button>
 <button class="tab-btn" onclick="showTab('d0')" id="btn-d0">D0</button>
@@ -628,25 +579,12 @@ body {
 <button class="tab-btn" onclick="showTab('d6')" id="btn-d6">D6</button>
 <button class="tab-btn" onclick="showTab('d7')" id="btn-d7">D7</button>
 </div>
-
-<div class="tab-section active" id="tab-cover">
-<div style="padding: 40px 24px 60px; max-width:480px; margin:0 auto;">
+<div class="tab-section active" id="tab-cover"><div style="padding:40px 24px 60px;max-width:480px;margin:0 auto;">
   <div style="font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:#B85C38;font-weight:700;margin-bottom:12px;">London · Apr 2026</div>
   <div style="font-family:'Fraunces',serif;font-size:clamp(2.2rem,9vw,3.4rem);font-weight:900;font-style:italic;color:#1A1A1A;line-height:1;margin-bottom:8px;">柯南的<br>伦敦行程</div>
   <div style="font-size:0.78rem;color:#6B6B5A;margin-bottom:32px;">2026 London Marathon · 4月23日–4月30日</div>
-
-  <div style="display:flex;flex-direction:column;gap:8px;">
-<div onclick="showTab('d0')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D0</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">到达 + 领物</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月23日 周三</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
-<div onclick="showTab('d1')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D1</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">自然历史博物馆 + 儿童剧</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月24日 周四</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
-<div onclick="showTab('d2')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D2</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">英超 Fulham vs Aston Villa</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月25日 周五</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
-<div onclick="showTab('d3')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D3</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">马拉松比赛日 🏃</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月26日 周日</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
-<div onclick="showTab('d4')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D4</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">牛津一日游</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月27日 周一</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
-<div onclick="showTab('d5')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D5</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">Hampstead 漫步</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月28日 周二</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
-<div onclick="showTab('d6')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D6</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">海岸线 & 小镇</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月29日 周三</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
-<div onclick="showTab('d7')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D7</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">约朋友 & 返程</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月30日 周四</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
-  </div>
-</div>
-</div>
+  <div style="display:flex;flex-direction:column;gap:8px;"><div onclick="showTab('d0')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D0</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">到达 + 领物</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月23日 周四</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div><div onclick="showTab('d1')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D1</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">自然历史博物馆 + 儿童剧</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月24日 周五</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div><div onclick="showTab('d2')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D2</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">英超 Fulham vs Aston Villa</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月25日 周六</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div><div onclick="showTab('d3')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D3</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">马拉松比赛日 🏃</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月26日 周日</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div><div onclick="showTab('d4')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D4</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">牛津一日游</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月27日 周一</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div><div onclick="showTab('d5')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D5</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">Hampstead 漫步</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月28日 周二</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div><div onclick="showTab('d6')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D6</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">海岸线 & 小镇</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月29日 周三</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div><div onclick="showTab('d7')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D7</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">约朋友 & 返程</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月30日 周四</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div></div>
+</div></div>
 <div class="tab-section" id="tab-d0"><!-- DAY HEADER -->
 <div class="day-header">
   <div class="day-label">Day 0 · 4月23日 周四</div>
@@ -671,7 +609,7 @@ body {
   </div>
   <div class="glance-notes">
     <div class="glance-note">⚠️ 领物必带：<strong>护照 + 手机（App QR code）</strong></div>
-    <div class="glance-note">⚠️ 司机从盖特维克直送 ExCeL，行李打包好放车上，领完物再 check-in</div>
+    <div class="glance-note">⚠️ 司机从 Gatwick 直送 ExCeL，领完物后再去酒店 check-in</div>
     <div class="glance-note">⚠️ El Pirata 已预定 19:00，酒店步行1分钟，吃完直接回</div>
   </div>
 </div>
@@ -692,7 +630,7 @@ body {
           <a class="map-btn" href="https://maps.google.com/?q=Gatwick+Airport+London" target="_blank">📍</a>
         </div>
         <div class="item-desc">
-          09:40 上海浦东出发，<strong>15:00 抵达盖特维克</strong>。司机在出口等候，直接上车。
+          09:40 上海浦东出发，<strong>15:00 抵达盖特维克</strong>。司机在出口举牌"Annie 女士"等候。
         </div>
         <div class="endorsement">
           <span class="endorse-tag endorse-dist">✈️ MU213</span>
@@ -715,8 +653,7 @@ body {
           <a class="map-btn" href="https://maps.google.com/?q=ExCeL+London" target="_blank">📍</a>
         </div>
         <div class="item-desc">
-          司机直接送到 <strong>ExCeL London West Entrance</strong>，门口下车无需停车。进 West Entrance 后按指引找领物区。<br>
-          顺便逛马博会，可以买点补给品。
+          司机直接送到 <strong>ExCeL London West Entrance</strong>，门口下车无需停车。进 West Entrance 后按指引找领物区。
         </div>
         <div class="endorsement">
           <span class="endorse-tag endorse-warn">⚠️ 截止 4/25，今天是第一天</span>
@@ -724,8 +661,8 @@ body {
         </div>
       </div>
 
-      <div class="tip-card">
-        💡 <strong>领物后司机送去酒店 check-in</strong>，行李放好房间，再步行去 El Pirata 吃晚饭，步行1分钟，吃完走回来休息。
+      <div class="tip-card" style="font-size:0.7rem;">
+        💡 领物后司机送去酒店 check-in，行李放好房间，步行去 El Pirata 吃晚饭，吃完走回来休息。
       </div>
     </div>
   </div>
@@ -749,7 +686,7 @@ body {
         <div class="endorsement">
           <span class="endorse-tag endorse-booked">✅ 已预定 19:00 · Zoe Liu</span>
           <span class="endorse-tag endorse-rating">⭐ Google 4.3</span>
-          <span class="endorse-tag endorse-dist">🚶 步行1分钟</span>
+
           <span class="endorse-tag endorse-dist">人均 £25</span>
           <span class="endorse-tag" style="background:#e8f5e9;color:#2e7d32;">🏃 赛前补碳 · 轻口好消化</span>
         </div>
@@ -774,7 +711,7 @@ body {
   <div class="kids-strip-text">
     <strong>糯糯今天</strong><br><br>
     😵 <strong>今天是时差和飞行疲劳最明显的一天。</strong>飞了约12小时，落地时北京时间已经接近深夜，容易累、饿、情绪不稳。行程尽量从简，先以顺利落地、吃上饭、早点休息为目标就好。<br><br>
-    🍪 <strong>零食是续命工具。</strong>从飞机上开始到领物结束，全程备着他喜欢吃的零食。饿是他闹情绪最快的触发点，ExCeL 展馆大，等找到吃的东西可能已经迟了。<br><br>
+    🍪 <strong>建议随身备一点小零食，避免下飞机后太饿。</strong>ExCeL 展馆大，找到餐厅需要时间，落地到晚饭之间有一段空档。<br><br>
     🌙 <strong>今晚的目标只有一个：让他尽快睡着。</strong>进房间、洗漱、吃饭、哄睡，流程越短越好。不要试图"让他适应时差"或者"多玩一会儿"——越累越亢奋，越亢奋越难睡。困了就放下所有事情，先哄睡。
   </div>
 </div></div>
@@ -2013,7 +1950,6 @@ function switchPlan(p) {
   </div>
 </div></div>
 
-
 <script>
 function showTab(id) {
   document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
@@ -2021,9 +1957,8 @@ function showTab(id) {
   var section = document.getElementById('tab-' + id);
   var btn = document.getElementById('btn-' + id);
   if (section) { section.classList.add('active'); window.scrollTo(0,0); }
-  if (btn) { btn.classList.add('active'); btn.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'}); }
+  if (btn) { btn.classList.add('active'); btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
 }
 </script>
-
 </body>
 </html>
