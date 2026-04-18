@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>伦敦行程 · 柯南 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Noto+Sans+SC:wght@300;400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TAB BAR ── */
+.tabs-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: #1A1A1A;
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  height: 48px;
+  border-bottom: 2px solid #B85C38;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.tabs-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex: 0 0 auto;
+  padding: 0 16px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Work Sans','Noto Sans SC',sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn.active, .tab-btn:hover {
+  color: #fff;
+  border-bottom-color: #B85C38;
+}
+
+/* ── SECTIONS ── */
+.tab-section { display: none; }
+.tab-section.active { display: block; }
+
+/* ── BODY ── */
+body {
+  font-family: 'Work Sans','Noto Sans SC',sans-serif;
+  background: #F5F0E8;
+  color: #1A1A1A;
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding-top: 48px;
+  padding-bottom: 60px;
+}
+
+/* ── SHARED STYLES ── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F5F0E8;
+  --paper: #EDE8DC;
+  --brown: #6B4226;
+  --rust: #B85C38;
+  --gold: #C9872A;
+  --ink: #1A1A1A;
+  --muted: #6B6B5A;
+  --border: rgba(107,66,38,0.15);
+  --green: #2E7D32;
+  --green-bg: #E8F5E9;
+}
+
+body {
+  font-family: 'Work Sans', 'Noto Sans SC', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+/* ── DAY HEADER ── */
+.day-header {
+  background: var(--paper);
+  padding: 32px 24px 24px;
+  border-bottom: 2px solid var(--rust);
+  position: relative;
+  overflow: hidden;
+}
+.day-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+}
+.day-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rust);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.day-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+/* ── 扫一眼 ── */
+.glance-card {
+  margin: 16px 16px 0;
+  background: var(--paper);
+  border-left: 3px solid var(--rust);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 16px;
+}
+.glance-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--rust);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.glance-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+.glance-step {
+  background: rgba(107,66,38,0.08);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.72rem;
+  color: var(--ink);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.glance-step.key {
+  background: var(--rust);
+  color: #fff;
+}
+.glance-step.rest {
+  background: rgba(201,135,42,0.15);
+  color: var(--brown);
+  border: 1px solid rgba(201,135,42,0.3);
+}
+.glance-arrow {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+.glance-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.glance-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.glance-note strong { color: var(--ink); }
+
+/* ── 时段容器 ── */
+.day-body {
+  padding: 12px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── 时段大卡 ── */
+.block-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.block-header {
+  background: var(--paper);
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.block-time-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+.block-time-value {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--rust);
+  margin-left: auto;
+}
+.block-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── 主内容行 ── */
+.item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.item-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  line-height: 1.2;
+}
+.item-title-text { flex: 1; }
+.map-btn {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--cream);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-top: -2px;
+}
+.item-desc {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.item-desc strong { color: var(--ink); font-weight: 600; }
+
+/* ── 背书行 ── */
+.endorsement {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.62rem;
+}
+.endorse-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.01em;
+}
+.endorse-booked {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.endorse-rating {
+  background: rgba(201,135,42,0.12);
+  color: var(--brown);
+}
+.endorse-dist {
+  background: var(--cream);
+  color: var(--muted);
+}
+.endorse-warn {
+  background: #FFF8E1;
+  color: #B45309;
+}
+.endorse-xhs {
+  background: #FFF0F0;
+  color: var(--rust);
+}
+
+/* ── 轻卡（次要信息）── */
+.light-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--cream);
+  border-radius: 10px;
+}
+.light-item-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.light-item-text {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.light-item-text strong { color: var(--ink); font-weight: 600; }
+
+/* ── 分隔线 ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── 备选折叠 ── */
+.alt-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background: var(--cream);
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+}
+.alt-toggle-label { display: flex; align-items: center; gap: 6px; }
+.alt-toggle-arrow {
+  font-size: 0.65rem;
+  color: var(--muted);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+.alt-toggle.open .alt-toggle-arrow { transform: rotate(180deg); }
+.alt-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.28s ease,
+              padding 0.28s ease;
+  opacity: 0;
+  padding: 0 12px;
+  background: var(--cream);
+  border-radius: 0 0 8px 8px;
+  margin-top: -4px;
+  border-top: 0px solid var(--border);
+}
+.alt-content.open {
+  max-height: 300px;
+  opacity: 1;
+  padding: 10px 12px 12px;
+  border-top-width: 1px;
+}
+.alt-name {
+  font-family: 'Fraunces', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.alt-desc {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── 主卡（比赛）── */
+.hero-card {
+  background: linear-gradient(155deg, #0F0F0F 0%, #1C0A00 55%, #2D1208 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.32), 0 2px 8px rgba(0,0,0,0.2);
+  position: relative;
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, #E8A83A 50%, var(--gold) 100%);
+}
+.hero-header {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+.hero-time {
+  font-family: 'Fraunces', serif;
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.hero-body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.65rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.05;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.hero-title .map-btn {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.hero-vs {
+  display: block;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1rem;
+  opacity: 0.85;
+  margin: 2px 0;
+}
+.hero-venue {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
+}
+.hero-seat {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.65;
+}
+.hero-seat strong { color: #fff; font-weight: 700; }
+.hero-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.hero-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.45;
+}
+.hero-alert strong { color: #fff; }
+
+/* ── 糯糯节奏 ── */
+.kids-strip {
+  margin: 10px 16px 0;
+  background: linear-gradient(135deg, #FCE4EC, #F8BBD0);
+  border-radius: 12px;
+  padding: 13px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.kids-strip-icon { font-size: 1.3rem; flex-shrink: 0; }
+.kids-strip-text {
+  font-size: 0.75rem;
+  color: #880E4F;
+  line-height: 1.55;
+}
+.kids-strip-text strong { font-weight: 700; }
+
+/* ── XHS 链接 ── */
+.xhs-link {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--rust);
+  text-decoration: none;
+  line-height: 1.5;
+}
+.xhs-link:hover { text-decoration: underline; }
+
+
+/* 跑者主卡 */
+.hero-card {
+  background: linear-gradient(155deg, #0F0F0F 0%, #1C0A00 55%, #2D1208 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.32), 0 2px 8px rgba(0,0,0,0.2);
+  position: relative;
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, #E8A83A 50%, var(--gold) 100%);
+}
+.hero-header {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); font-weight:700; }
+.hero-time { font-family:'Fraunces',serif; font-size:1.7rem; font-weight:900; color:#fff; letter-spacing:-0.02em; }
+.hero-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:14px; }
+.hero-title { font-family:'Fraunces',serif; font-size:1.5rem; font-weight:900; color:#fff; line-height:1.1; }
+.hero-subtitle { font-style:italic; color:var(--gold); font-size:0.9rem; opacity:0.85; display:block; margin-top:2px; }
+.hero-seat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.65; }
+.hero-seat strong { color:#fff; font-weight:700; }
+.hero-alerts { display:flex; flex-direction:column; gap:5px; }
+.hero-alert { display:flex; align-items:flex-start; gap:7px; font-size:0.72rem; color:rgba(255,255,255,0.55); line-height:1.45; }
+.hero-alert strong { color:#fff; }
+
+/* 时间线 */
+.timeline-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.timeline-card-header { background:var(--paper); padding:9px 16px; border-bottom:1px solid var(--border); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.timeline-rows { padding:12px 16px 14px; display:flex; flex-direction:column; gap:0; }
+.timeline-row { display:flex; gap:14px; align-items:flex-start; padding:7px 0; border-bottom:1px solid var(--border); }
+.timeline-row:last-child { border-bottom:none; }
+.timeline-time { font-size:0.7rem; font-weight:700; color:var(--rust); min-width:48px; padding-top:1px; }
+.timeline-desc { font-size:0.75rem; color:var(--muted); line-height:1.5; }
+.timeline-desc strong { color:var(--ink); }
+
+.xhs-link { display:inline-block; font-size:0.75rem; color:var(--rust); text-decoration:none; line-height:1.5; }
+.xhs-link:hover { text-decoration:underline; }
+
+.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
+.kids-strip-icon { font-size:1.3rem; flex-shrink:0; }
+.kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
+.kids-strip-text strong { font-weight:700; }
+
+/* 航班主卡 */
+.flight-card {
+  background: linear-gradient(155deg, #0F0F0F 0%, #0A1A2E 55%, #0D2040 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+  position: relative;
+}
+.flight-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, #E8A83A 50%, var(--gold) 100%);
+}
+.flight-header {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flight-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); font-weight:700; }
+.flight-time { font-family:'Fraunces',serif; font-size:1.7rem; font-weight:900; color:#fff; letter-spacing:-0.02em; }
+.flight-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:12px; }
+.flight-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:900; color:#fff; line-height:1.1; }
+.flight-detail { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.75; }
+.flight-detail strong { color:#fff; font-weight:700; }
+
+.timeline-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.timeline-card-header { background:var(--paper); padding:9px 16px; border-bottom:1px solid var(--border); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.timeline-rows { padding:12px 16px 14px; display:flex; flex-direction:column; }
+.timeline-row { display:flex; gap:14px; align-items:flex-start; padding:7px 0; border-bottom:1px solid var(--border); }
+.timeline-row:last-child { border-bottom:none; }
+.timeline-time { font-size:0.7rem; font-weight:700; color:var(--rust); min-width:48px; padding-top:1px; }
+.timeline-desc { font-size:0.75rem; color:var(--muted); line-height:1.5; }
+.timeline-desc strong { color:var(--ink); }
+
+.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
+.kids-strip-icon { font-size:1.3rem; flex-shrink:0; }
+.kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
+.kids-strip-text strong { font-weight:700; }
+</style>
+</head>
+<body>
+
+<div class="tabs-bar">
+<button class="tab-btn active" onclick="showTab('cover')" id="btn-cover">封面</button>
+<button class="tab-btn" onclick="showTab('d0')" id="btn-d0">D0</button>
+<button class="tab-btn" onclick="showTab('d1')" id="btn-d1">D1</button>
+<button class="tab-btn" onclick="showTab('d2')" id="btn-d2">D2</button>
+<button class="tab-btn" onclick="showTab('d3')" id="btn-d3">D3</button>
+<button class="tab-btn" onclick="showTab('d4')" id="btn-d4">D4</button>
+<button class="tab-btn" onclick="showTab('d5')" id="btn-d5">D5</button>
+<button class="tab-btn" onclick="showTab('d6')" id="btn-d6">D6</button>
+<button class="tab-btn" onclick="showTab('d7')" id="btn-d7">D7</button>
+</div>
+
+<div class="tab-section active" id="tab-cover">
+<div style="padding: 40px 24px 60px; max-width:480px; margin:0 auto;">
+  <div style="font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:#B85C38;font-weight:700;margin-bottom:12px;">London · Apr 2026</div>
+  <div style="font-family:'Fraunces',serif;font-size:clamp(2.2rem,9vw,3.4rem);font-weight:900;font-style:italic;color:#1A1A1A;line-height:1;margin-bottom:8px;">柯南的<br>伦敦行程</div>
+  <div style="font-size:0.78rem;color:#6B6B5A;margin-bottom:32px;">2026 London Marathon · 4月23日–4月30日</div>
+
+  <div style="display:flex;flex-direction:column;gap:8px;">
+<div onclick="showTab('d0')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D0</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">到达 + 领物</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月23日 周三</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
+<div onclick="showTab('d1')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D1</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">自然历史博物馆 + 儿童剧</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月24日 周四</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
+<div onclick="showTab('d2')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D2</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">英超 Fulham vs Aston Villa</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月25日 周五</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
+<div onclick="showTab('d3')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D3</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">马拉松比赛日 🏃</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月26日 周日</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
+<div onclick="showTab('d4')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D4</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">牛津一日游</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月27日 周一</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
+<div onclick="showTab('d5')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D5</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">Hampstead 漫步</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月28日 周二</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
+<div onclick="showTab('d6')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D6</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">海岸线 & 小镇</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月29日 周三</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
+<div onclick="showTab('d7')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.15s;"><div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:#B85C38;min-width:28px;">D7</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">约朋友 & 返程</div><div style="font-size:0.68rem;color:#6B6B5A;margin-top:1px;">4月30日 周四</div></div><div style="color:#6B6B5A;font-size:0.8rem;">›</div></div>
+  </div>
+</div>
+</div>
+<div class="tab-section" id="tab-d0"><!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 0 · 4月23日 周四</div>
+  <div class="day-title">抵达 & 领物</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">✈️ 15:00 落地</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🚗 司机接机</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">📦 17:00 领物 ExCeL</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🏨 check-in</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🍽️ 19:00 步行去吃饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🏨 回酒店</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ 领物必带：<strong>护照 + 手机（App QR code）</strong></div>
+    <div class="glance-note">⚠️ 司机从盖特维克直送 ExCeL，行李打包好放车上，领完物再 check-in</div>
+    <div class="glance-note">⚠️ El Pirata 已预定 19:00，酒店步行1分钟，吃完直接回</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 时段：落地 & 接机 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">下午</div>
+      <div class="block-time-value">15:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">MU213 落地 · 伦敦盖特维克</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Gatwick+Airport+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          09:40 上海浦东出发，<strong>15:00 抵达盖特维克</strong>。司机在出口等候，直接上车。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">✈️ MU213</span>
+          <span class="endorse-tag endorse-dist">🚗 司机接机</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 时段：领物 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">领物</div>
+      <div class="block-time-value">17:00 – 17:45</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">ExCeL London 领物</div>
+          <a class="map-btn" href="https://maps.google.com/?q=ExCeL+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          司机直接送到 <strong>ExCeL London West Entrance</strong>，门口下车无需停车。进 West Entrance 后按指引找领物区。<br>
+          顺便逛马博会，可以买点补给品。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-warn">⚠️ 截止 4/25，今天是第一天</span>
+          <span class="endorse-tag endorse-dist">🚌 Stroller 可进，展馆大</span>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        💡 <strong>领物后司机送去酒店 check-in</strong>，行李放好房间，再步行去 El Pirata 吃晚饭，步行1分钟，吃完走回来休息。
+      </div>
+    </div>
+  </div>
+
+  <!-- 时段：晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">19:00</div>
+    </div>
+    <div class="block-body">
+
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">El Pirata</div>
+          <a class="map-btn" href="https://maps.google.com/?q=El+Pirata+Mayfair+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          西班牙 Tapas。主食类选面包、米饭类，配蔬菜小菜，<strong>好消化、易入睡</strong>——赛前3天的第一顿，不需要大鱼大肉，稳住肠胃比什么都重要。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 19:00 · Zoe Liu</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.3</span>
+          <span class="endorse-tag endorse-dist">🚶 步行1分钟</span>
+          <span class="endorse-tag endorse-dist">人均 £25</span>
+          <span class="endorse-tag" style="background:#e8f5e9;color:#2e7d32;">🏃 赛前补碳 · 轻口好消化</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/680aa31b000000001200e9b4" target="_blank">📖 不用营销 · 伦敦真正好吃的西班牙 Tapas ↗</a>
+
+      <div class="light-item">
+        <div class="light-item-icon">🏨</div>
+        <div class="light-item-text">
+          <strong>吃完直接步行回酒店</strong>，今晚早点休息。时差调整从今晚开始，早睡比什么都值。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    😵 <strong>今天是时差和飞行疲劳最明显的一天。</strong>飞了约12小时，落地时北京时间已经接近深夜，容易累、饿、情绪不稳。行程尽量从简，先以顺利落地、吃上饭、早点休息为目标就好。<br><br>
+    🍪 <strong>零食是续命工具。</strong>从飞机上开始到领物结束，全程备着他喜欢吃的零食。饿是他闹情绪最快的触发点，ExCeL 展馆大，等找到吃的东西可能已经迟了。<br><br>
+    🌙 <strong>今晚的目标只有一个：让他尽快睡着。</strong>进房间、洗漱、吃饭、哄睡，流程越短越好。不要试图"让他适应时差"或者"多玩一会儿"——越累越亢奋，越亢奋越难睡。困了就放下所有事情，先哄睡。
+  </div>
+</div></div>
+<div class="tab-section" id="tab-d1"><!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 1 · 4月24日 周五</div>
+  <div class="day-title">博物馆与儿童剧</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step key">🦕 10:30 讲解开始</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🍽️ 12:00 馆内午饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step rest">😴 13:00–15:00 回酒店午休</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🎭 17:00 儿童剧</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🍝 18:00 晚饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🏨 约19:30回</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ 讲解团 <strong>10:30 准时开始</strong>，10:15 前到侧门入场</div>
+    <div class="glance-note">⚠️ 恐龙馆 T-Rex 会突然动，<strong>提前告诉糯糯</strong></div>
+    <div class="glance-note">⚠️ Saponara 在 Islington，<strong>回酒店约 19:30</strong></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 时段：上午 · 博物馆 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">上午</div>
+      <div class="block-time-value">10:15 – 12:00</div>
+    </div>
+    <div class="block-body">
+
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">自然历史博物馆</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Natural+History+Museum+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          入口走 <strong>Exhibition Road 侧门</strong>（非正门），队伍少、推车友好、有电梯。进来后可以先去蓝鲸大厅再折回。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">🚇 打车约15分钟</span>
+          <span class="endorse-tag endorse-dist">🆓 免费入场</span>
+        </div>
+      </div>
+
+      <!-- 方案切换 -->
+      <div class="plan-tabs">
+        <button class="plan-tab active" id="tab-a" onclick="switchPlan('a')">方案 A · 讲解团<br><span style="font-size:0.62rem;font-weight:400;opacity:0.85;">🕐 拼团中，待确认</span></button>
+        <button class="plan-tab" id="tab-b" onclick="switchPlan('b')">方案 B · 自行游览<br><span style="font-size:0.62rem;font-weight:400;">拼团不成时备用</span></button>
+      </div>
+      <div class="plan-body plan-a active" id="plan-a">
+        <div style="font-size:0.72rem;background:#fff8e1;border-left:3px solid #e8a000;padding:7px 10px;border-radius:0 4px 4px 0;margin-bottom:10px;color:#7a5a00;line-height:1.6;">
+          🕐 <strong>拼团进行中</strong>，人数凑满后确认。若拼团不成功，切换方案 B 自行游览，行程不受影响。
+        </div>
+        <div class="plan-content">
+          🎫 <strong>10:15</strong> 侧门入场 · <strong>10:30 讲解开始</strong> · 中文 · 带娃互动友好<br>
+          💡 讲生物进化历史，有小朋友互动，边走边听，带娃刚好
+        </div>
+      </div>
+      <div class="plan-body" id="plan-b">
+        <div class="plan-content">
+          <strong>推荐动线（约1.5小时，只走蓝区）：</strong><br>
+          ① 侧门进 → Hintze Hall 仰头看蓝鲸骨架（必拍）<br>
+          ② 左转进蓝区 → 恐龙馆<br>
+          ③ 恐龙馆旁哺乳动物厅（大象、长颈鹿骨架）<br>
+          ④ coin press 压硬币机（恐龙主题，几便士一个，小纪念品）<br>
+          ⑤ 从正门出，门口拍照留念<br>
+          <em>跳过：绿区、红区、达尔文中心——对小朋友意义不大</em><br><br>
+          <a class="xhs-link" href="https://www.xiaohongshu.com/explore/686a6a8300000000230043b6" target="_blank">📖 中文讲解「遇见英国带你看世界」↗</a>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        💡 <strong>恐龙馆的 T-Rex 会突然动！</strong>进去前告诉糯糯"里面有个大恐龙会动，但不是真的"，预警一下。另外，恐龙主题 coin press 压硬币机，几便士一个，小纪念品。
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 时段：午餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">午餐</div>
+      <div class="block-time-value">12:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">T. rex Restaurant</div>
+          <a class="map-btn" href="https://maps.google.com/?q=T.rex+Restaurant+Natural+History+Museum+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">博物馆内，恐龙厅附近，看完恐龙顺路吃，方便为主。<strong>12:00 前去</strong>，周五人多排队快。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">馆内 · 无需预约</span>
+          <span class="endorse-tag endorse-warn">⚠️ 12:00前去，避开排队高峰</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午休 -->
+  <div class="nap-card">
+    <div class="nap-icon">😴</div>
+    <div class="nap-text">
+      <strong>13:00–15:00 · 回酒店午休</strong><br>
+      博物馆打车约15分钟回酒店。糯糯睡觉，大家休息。<br>
+      15:00 从酒店出发，预留路程 + 醒盹 + 小零食时间；到早了就在剧场附近轻松待一会儿，不再安排正式活动。
+    </div>
+  </div>
+
+  <!-- 时段：儿童剧 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">下午</div>
+      <div class="block-time-value">17:00 – 约17:45</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">I Want My Hat Back Trilogy 🎭</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Little+Angel+Studio+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          改编自绘本的儿童音乐剧，全场互动。Little Angel Studio · Islington<br>
+          <span style="font-size:0.72rem;color:var(--muted);">演完出来约 17:45，步行或打车去晚饭正好</span>
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 · £30</span>
+          <span class="endorse-tag endorse-dist">🚕 打车约30分钟</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/688df6c2000000000403f24e" target="_blank">📖 强烈推荐！儿童剧 I want my hat back ↗</a>
+    </div>
+  </div>
+
+  <!-- 时段：晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">18:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Saponara</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Saponara+London+Islington" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">意大利 Pizza，赛前两天碳水补给的好选择，Pizza 管饱不踩胃。就在 Islington，剧场附近。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 18:00｜到店报：Annie Ding（电话预订）</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.7</span>
+          <span class="endorse-tag" style="background:#e8f5e9;color:#2e7d32;">🏃 赛前碳水补给</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6649d8890000000014018d6e" target="_blank">📖 伦敦美食 · Saponara · 藏在 Islington 的意大利小馆 ↗</a>
+
+      <div class="light-item">
+        <div class="light-item-icon">🚕</div>
+        <div class="light-item-text">
+          <strong>回酒店约 19:30</strong> · 打车约25分钟 / 地铁约35分钟<br>
+          今天回酒店相对较晚，提前叫好车。
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    🦕 <strong>博物馆是高刺激环境。</strong>蓝鲸、恐龙、人多声音嘈杂。<strong>12:00 前必须去吃午饭</strong>，不要等他叫饿——博物馆人一多，找位子排队都会很急。<br><br>
+    ⚠️ <strong>恐龙馆的 T-Rex 会突然动。</strong>进去前告诉他"里面有个大恐龙会动，但不是真的"，提前说好，免得当场吓哭。<br><br>
+    😴 <strong>午睡必须保住。</strong>下午还有儿童剧，没睡够进了剧场很容易闹。13:00 吃完直接回酒店，给他睡够再出发。<br><br>
+    🎭 <strong>15:00 出发不要急。</strong>路上给他一点小零食缓一缓，到了 Little Angel Studio 慢慢进去就好。<br><br>
+    🍝 <strong>儿童剧结束约 17:45</strong>，出来去 Saponara 吃饭，<strong>18:00 准时开吃，约 19:30 回酒店</strong>哄睡。付阿姨全程陪同，三人同进同出。
+  </div>
+</div>
+
+<script>
+function switchPlan(p) {
+  document.getElementById('plan-a').classList.toggle('active', p==='a');
+  document.getElementById('plan-b').classList.toggle('active', p==='b');
+  document.getElementById('tab-a').classList.toggle('active', p==='a');
+  document.getElementById('tab-b').classList.toggle('active', p==='b');
+}
+</script></div>
+<div class="tab-section" id="tab-d2"><!-- ── DAY HEADER ── -->
+<div class="day-header">
+  <div class="day-label">Day 2 · 4月25日 周六</div>
+  <div class="day-title">英超比赛日</div>
+</div>
+
+<!-- ── 扫一眼 ── -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">🌿 上午 Fulham Palace</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🥞 10:40 Brunch</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">⚽ 12:30 开球</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🍣 17:45 晚饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🏨 19:00前回</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ 安检排队长，<strong>12:00前入场</strong></div>
+    <div class="glance-note">⚠️ 散场人多，<strong>等15分钟再走</strong></div>
+    <div class="glance-note">⚠️ Stroller 按当天要求寄存（免费）</div>
+  </div>
+</div>
+
+<!-- ── BODY ── -->
+<div class="day-body">
+
+  <!-- 时段：上午放电 + Brunch -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">赛前</div>
+      <div class="block-time-value">09:00 – 12:00</div>
+    </div>
+    <div class="block-body">
+
+      <!-- Fulham Palace 轻卡 -->
+      <div class="light-item">
+        <div class="light-item-icon">🌿</div>
+        <div class="light-item-text">
+          <strong>Fulham Palace</strong> · 上午散步放电，花园宽阔，不安排正式参观。<br>
+          球场步行 5 分钟，吃完 brunch 直接走过去。
+          <a class="map-btn" style="display:inline-flex;width:22px;height:22px;font-size:0.75rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Fulham+Palace+London" target="_blank">📍</a>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/681cbc5d000000002202506b" target="_blank">📖 Fulham Palace · 博物馆+植物园+Cafe ↗</a>
+
+      <div class="divider">早午餐</div>
+
+      <!-- Manuka Kitchen 主方案 -->
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Manuka Kitchen</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Manuka+Kitchen+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">Fulham 本地人气早午餐，松饼是招牌，就在球场附近。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预订 10:40</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.4</span>
+          <span class="endorse-tag endorse-xhs">📖 小红书有探店</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6366d4350000000009002e84" target="_blank">📖 Manuka Kitchen · 这家的松饼巨好吃！ ↗</a>
+
+      <!-- 备选：Pappa Ciccia -->
+      <button class="alt-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        <span class="alt-toggle-label">🍕 备选 · Pappa Ciccia · 11:30</span>
+        <span class="alt-toggle-arrow">▾</span>
+      </button>
+      <div class="alt-content">
+        <div class="alt-name">
+          Pappa Ciccia
+          <a class="map-btn" style="width:24px;height:24px;font-size:0.75rem;background:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;" href="https://maps.google.com/?q=Pappa+Ciccia+Munster+Road+London" target="_blank">📍</a>
+        </div>
+        <div class="alt-desc">意大利 Pizza · Munster Road · ⭐ Google 4.6</div>
+        <div style="margin-top:6px;">
+          <span class="endorse-tag endorse-booked" style="font-size:0.65rem;padding:3px 8px;border-radius:100px;font-weight:600;background:var(--green-bg);color:var(--green);">✅ 已预订 11:30</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 主卡：比赛 -->
+  <div class="hero-card">
+    <div class="hero-header">
+      <div class="hero-label">⚽ 英超 · Craven Cottage</div>
+      <div class="hero-time">12:30</div>
+    </div>
+    <div class="hero-body">
+        <div class="hero-title">
+        <div>Fulham<span class="hero-vs">vs</span>Aston Villa</div>
+        <a class="map-btn" href="https://maps.google.com/?q=Craven+Cottage+London" target="_blank">📍</a>
+      </div>
+      <div class="hero-venue">Craven Cottage · Block R23 · Row 40 · Seat 88 / 87 / 86</div>
+      <div class="hero-seat">
+        <strong>⏰ 12:00 前入场</strong> — 比赛日安检排队长，别踩点<br>
+        🚌 Stroller 大概率不能进看台，按当天要求免费寄存<br>
+        🚶 散场后等 15 分钟再走，避开人流高峰
+      </div>
+      <div class="hero-alerts">
+        <div class="hero-alert">📍 <span>最近地铁：<strong>Putney Bridge</strong>（District Line）· 步行约 10 分钟到球场</span></div>
+        <div class="hero-alert">🏁 <span>比赛约 14:00 结束，散场后等 15 分钟，再直接打车回酒店休息/午睡</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 时段：晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">17:45</div>
+    </div>
+    <div class="block-body">
+
+      <!-- Chisou 主方案 -->
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Chisou Sushi & Izakaya</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Chisou+Sushi+Izakaya+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">日式寿司居酒屋，马拉松前一晚以稳妥补碳为主，米饭、面、熟食都好点。打车约13分钟。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预订 17:45｜到店报：Annie Ding</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.7</span>
+          <span class="endorse-tag endorse-xhs">📖 小红书有探店</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6424c3f4000000001203d2c1" target="_blank">📖 伦敦宝藏日料店 · Chisou ↗</a>
+
+      <!-- 备选：Murger Han -->
+      <button class="alt-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        <span class="alt-toggle-label">🍜 备选 · Murger Han · 17:30</span>
+        <span class="alt-toggle-arrow">▾</span>
+      </button>
+      <div class="alt-content">
+        <div class="alt-name">
+          Murger Han
+          <a class="map-btn" style="width:24px;height:24px;font-size:0.75rem;background:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;" href="https://maps.google.com/?q=Murger+Han+London" target="_blank">📍</a>
+        </div>
+        <div class="alt-desc">陕西面馆，步行约 12 分钟，想吃家乡味时选这个。⭐ Google 4.2</div>
+        <div style="margin-top:6px;">
+          <span class="endorse-tag endorse-booked" style="font-size:0.65rem;padding:3px 8px;border-radius:100px;font-weight:600;background:var(--green-bg);color:var(--green);">✅ 已预订 17:30</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/69ccf360000000001a02043e" target="_blank">📖 Murger Han · 伦敦西安面馆体验 ↗</a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ── 糯糯今天 ── -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br>
+    <br>
+    🌿 <strong>上午放电要充分。</strong>Fulham Palace 花园够大，让他跑够——下午要在球场坐两小时，提前把电放掉。<br>
+    <br>
+    🍽️ <strong>10:40 是最晚吃饭时间。</strong>比赛 12:30 开球，吃完要走去球场、排安检，不能拖。他饿了会闹，brunch 必须准时。<br>
+    <br>
+    ⚽ <strong>球场提前说好规则。</strong>进场前告诉他：今天我们要去看大家踢球，会很吵、人很多，到了要好好坐着。Stroller 大概率要寄存（免费），他要自己走或让人抱。<br>
+    <br>
+    😴 <strong>14:00 散场是危险时段。</strong>比赛结束、午觉没睡、人流嘈杂——最容易崩。等人流散一散（15分钟），再直接打车回酒店休息/午睡，别在外面耗着。<br>
+    <br>
+    🏨 <strong>晚餐从酒店出发。</strong>下午回酒店休息，17:45 从酒店出发去 Chisou，19:00 前结束回来哄睡。
+  </div>
+</div></div>
+<div class="tab-section" id="tab-d3"><!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 3 · 4月26日 周日</div>
+  <div class="day-title">马拉松比赛日 🏃</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step key">🏃 06:20 柯南出发</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🦆 付阿姨+糯糯 St James's</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step rest">🍱 午饭+酒店等待</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🥟 17:00 陶陶居</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">💡 柯南冲线后<strong>走完终点流程再步行回酒店</strong>，不用去 The Mall 汇合；打车只在状态明显不好时备用</div>
+    <div class="glance-note">⚠️ 陶陶居<strong>有押金</strong>，不去要提前取消！</div>
+    <div class="glance-note">⚠️ 柯南预计 09:35 出发，<strong>13–14点冲线</strong></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 柯南：起跑时间线 -->
+  <div class="timeline-card">
+    <div class="timeline-card-header">🏃 柯南 · 比赛日时间表</div>
+    <div class="timeline-rows">
+      <div class="timeline-row">
+        <div class="timeline-time">06:20</div>
+        <div class="timeline-desc">从酒店出发，<strong>打车到 Charing Cross</strong>（不是 Victoria）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">06:50</div>
+        <div class="timeline-desc">乘火车去 <strong>Blackheath</strong>，任意一班均可</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">08:06</div>
+        <div class="timeline-desc">步行约10分钟到<strong>黄色起跑区</strong></div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">09:35</div>
+        <div class="timeline-desc"><strong>Wave 1 出发 🏃</strong> · Bib 3353</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">13–14点</div>
+        <div class="timeline-desc">预计冲线 → 跟着人流走完终点流程（领物资、取包）→ <strong>步行回酒店</strong>（经 Green Park，约10–15分钟）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    💡 <strong>为什么选 Charing Cross？</strong>当天基本都是参赛跑者，动线更清晰；Victoria 虽然更近酒店，但路线和人流更复杂，风险高一些。
+  </div>
+
+  <!-- 主卡：比赛 -->
+  <div class="hero-card">
+    <div class="hero-header">
+      <div class="hero-label">🏅 2026 伦敦马拉松</div>
+      <div class="hero-time">09:35</div>
+    </div>
+    <div class="hero-body">
+      <div class="hero-title">
+        Wave 1 · 黄色区
+        <span class="hero-subtitle">Bib 3353 · 起点 Blackheath · 终点 The Mall</span>
+      </div>
+      <div class="hero-seat">
+        <strong>存包：</strong>赛前存入指定行李车，完赛后在 Green Park 附近领取<br>
+        <strong>完赛T：</strong>XS 已选好<br>
+        <strong>完赛路线：</strong>冲线 → 跟人流领物资/取包，不着急 → 出终点核心区朝 Green Park → 步行回酒店（约10–15分钟）
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.75rem;color:rgba(255,255,255,0.82);line-height:1.75;">
+        跑完之后不用找人，也不用去 Whitehall 会合。冲线后先跟着人流把终点流程走完——拿水、补给、取包，不用着急。<br>
+        走出终点核心区后，主方向就是 <strong style="color:#fff;">Green Park</strong>。到了 Green Park 一带人会松很多，从这里再慢慢走回 Sheraton，约 <strong style="color:#fff;">10–15 分钟</strong>。<br>
+        累了就在公园里缓一缓，不用赶。<strong style="color:#fff;">打车只在状态明显不好时作为备选。</strong>
+      </div>
+      <div class="hero-alerts">
+        <div class="hero-alert">📍 <span><strong>不要</strong>去 The Mall 让家人接——Westminster 站当天只出不进，带糯糯去风险高</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 付阿姨 & 糯糯：上午 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">付阿姨 & 糯糯 · 上午</div>
+      <div class="block-time-value">柯南出发后</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">St James's Park 🦆</div>
+          <a class="map-btn" href="https://maps.google.com/?q=St+James%27s+Park+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          酒店步行 <strong>5分钟</strong>。湖边有鸭子、鹅、松鼠，糯糯可以喂、可以追，草地宽阔可以跑。<br>
+          上午时间宽松，不用赶任何事，付阿姨带着转悠就好。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">🚶 步行5分钟</span>
+          <span class="endorse-tag endorse-dist">🆓 免费</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午饭 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">午餐</div>
+      <div class="block-time-value">12:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">酒店餐厅 · 付阿姨 & 糯糯</div>
+        </div>
+        <div class="item-desc">
+          柯南还在跑步，付阿姨带糯糯在酒店吃午饭。吃完就地午睡，下午在酒店等柯南。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">🏨 酒店内 · 无需外出</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">17:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">陶陶居</div>
+          <a class="map-btn" href="https://maps.google.com/?q=陶陶居+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">粤式点心，赛后大吃一顿，犒劳自己。打车约13分钟。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 17:00 · Annie Ding</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.5</span>
+          <span class="endorse-tag" style="background:#fff8e1;color:#f57f17;">🏃 赛后犒劳首选</span>
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">⚠️</div>
+        <div class="light-item-text">
+          <strong>陶陶居有押金</strong>，如果临时改变计划，必须提前取消，否则押金不退。
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">🏨</div>
+        <div class="light-item-text">
+          <strong>19:00 前结束回酒店</strong>，打车约13分钟。
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    🌅 <strong>今天付阿姨和糯糯单独行动，唯一的任务是上午把体力用掉。</strong>St James's Park 步行5分钟，鸭子、草地，不用赶任何事。<br><br>
+    😴 <strong>午饭后就地午睡是今天的留白。</strong>下午在酒店等柯南回来，不需要再出门，这段保住了晚饭才有力气。<br><br>
+    🚫 <strong>不要带糯糯去 The Mall 接柯南。</strong>Westminster 站当天只出不进，赛道沿线人流极大，带孩子等候风险高。柯南冲线后步行回酒店。
+  </div>
+</div></div>
+<div class="tab-section" id="tab-d4"><!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 4 · 4月27日 周一</div>
+  <div class="day-title">牛津一日游</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">🚂 09:04 Paddington 出发</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🏛️ 11:00 讲解团</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🍺 12:00 Turf Tavern 午饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step rest">😴 13:00–14:30 咖啡馆午休</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🚣 15:00 撑船</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🚂 16:30 返程</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🍽️ 18:00 Kitty Fisher's</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ 13:00–14:30 午休就地，<strong>不回酒店</strong>——16:30 必须在车站</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 交通 -->
+  <div class="timeline-card">
+    <div class="timeline-card-header">🚂 今日时间表</div>
+    <div class="timeline-rows">
+      <div class="timeline-row">
+        <div class="timeline-time">08:45</div>
+        <div class="timeline-desc">打车去 <strong>Paddington 站</strong>（约15分钟）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">09:04</div>
+        <div class="timeline-desc">火车出发 → Oxford（约1小时）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">10:00</div>
+        <div class="timeline-desc">抵达牛津，步行至 16 Broad Street（约14分钟）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">11:00</div>
+        <div class="timeline-desc"><strong>Footprints Tours 讲解团</strong>（英文，免费）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">12:00</div>
+        <div class="timeline-desc">午餐 · <strong>Turf Tavern</strong>（已预定）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">13:00–14:30</div>
+        <div class="timeline-desc">☕ 糯糯午休 · 附近咖啡馆就地休息</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">15:00</div>
+        <div class="timeline-desc">🚣 <strong>Cherwell River 撑船</strong>（约1小时）<br><span style="font-size:0.7rem;color:var(--muted);">Magdalen Bridge Boathouse · £35/h · 无需预约</span></div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">16:00</div>
+        <div class="timeline-desc">撑船结束 → 打车去火车站（约10分钟）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">16:30</div>
+        <div class="timeline-desc">火车返程 → Paddington（约1小时）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">17:30</div>
+        <div class="timeline-desc">抵达 Paddington → 打车回酒店（约15分钟）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">18:00</div>
+        <div class="timeline-desc">🍖 <strong>Kitty Fisher's 晚餐</strong>（步行3分钟）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 讲解团 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">上午</div>
+      <div class="block-time-value">11:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Footprints Tours 讲解团</div>
+          <a class="map-btn" href="https://maps.google.com/?q=16+Broad+Street+Oxford" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          英文免费讲解团，集合点 16 Broad Street。带你走最经典的学院和街道，90分钟左右。<br>
+          也可以预约<strong>中文讲解</strong>（牛津在读学生接单），约 £60/h。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">🆓 免费（英文）</span>
+          <span class="endorse-tag endorse-dist">📍 16 Broad Street</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">午餐</div>
+      <div class="block-time-value">12:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Turf Tavern</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Turf+Tavern+Oxford" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">英式传统酒馆，藏在叹息桥附近小巷里。克林顿和霍金都是常客，石头地窖氛围好，必点炸鱼薯条。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 12:00 · Annie Ding</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.4</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6952aad2000000002202cb8b" target="_blank">📖 牛津必去 · Turf Tavern 隐藏小酒馆 ↗</a>
+    </div>
+  </div>
+
+  <!-- 午休 -->
+  <div class="nap-card">
+    <div class="nap-icon">😴</div>
+    <div class="nap-text">
+      <strong>13:00–14:30 · 糯糯午休（就地）</strong><br>
+      全天在外，不回酒店。Turf Tavern 吃完，找附近安静咖啡馆坐到 14:30。<br>
+      推荐：<strong>The Grand Café</strong>（High St，宽敞有沙发）或 Covered Market 内找角落坐下。
+    </div>
+  </div>
+
+  <!-- 撑船 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">下午</div>
+      <div class="block-time-value">15:00 – 16:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Cherwell River 撑船 🚣</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Magdalen+Bridge+Boathouse+Oxford" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          站在平底船尾用长杆撑河，穿过柳荫和石桥，是牛津最经典的体验。可以喂河边的鸭子。<strong>糯糯须穿救生衣</strong>（现场提供），出发前提前跟他说好。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">💷 £35/小时·最多5人</span>
+          <span class="endorse-tag endorse-dist">📍 Magdalen Bridge Boathouse</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/685d6edb000000000d01ae9f" target="_blank">📖 英国牛津 · 撑篙船 Punting ↗</a>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6848a006000000002100e786" target="_blank">📖 只有剑桥能撑船？牛津表示不服！↗</a>
+    </div>
+  </div>
+
+  <!-- 晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">18:15</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Kitty Fisher's Mayfair</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Kitty+Fisher%27s+Mayfair+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">英式烤肉，酒店步行3分钟。牛排和薯饼是招牌，提前一个月才能预订的小馆子。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 18:00 · Annie Ding · 3位</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.6</span>
+          <span class="endorse-tag endorse-dist">🚶 步行3分钟</span>
+          <span class="endorse-tag endorse-dist">人均 £65</span>
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">🏨</div>
+        <div class="light-item-text">
+          <strong>约 19:30 回酒店哄睡</strong>，步行3分钟直接走回来。
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    🕐 <strong>今天节点多、时间卡。</strong>讲解团走完是12:00，午饭之后紧接着午休，16:30 必须在火车站——中间没有松弛的余地，任何一段拖延都会压到下一段。<br><br>
+    😴 <strong>13:00–14:30 是唯一的留白。</strong>这段不回酒店，就地找咖啡馆坐够。午休保不住，撑船那一小时就很难过。<br><br>
+    🚣 <strong>撑船是今天最值得期待的体验。</strong>他在水上，鸭子就在旁边，只要睡够了基本不会出问题。
+  </div>
+</div></div>
+<div class="tab-section" id="tab-d5"><!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 5 · 4月28日 周二</div>
+  <div class="day-title">Hampstead 漫步</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">🌿 上午 Flask Walk</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🍳 11:30 Oak & Poppy 午饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step rest">😴 13:00–14:30 咖啡馆午休</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">⛰️ 14:30 Hampstead Heath</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🌶️ 18:00 晚饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🏨 19:00前回</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">💡 Heath 按体力走，<strong>A/B/C/D 选一两个就好</strong>，不必全走</div>
+    <div class="glance-note">⚠️ 晚餐 Chengdu Chengdu 在唐人街，<strong>Heath 结束后直接打车过去</strong>，别绕回 Hampstead</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 交通 -->
+  <div class="light-item">
+    <div class="light-item-icon">🚇</div>
+    <div class="light-item-text">
+      <strong>酒店 → Hampstead High Street：Northern Line 约30分钟</strong>
+    </div>
+  </div>
+
+  <!-- 上午：Flask Walk -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">上午</div>
+      <div class="block-time-value">到了就开始</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Flask Walk 漫步</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Flask+Walk+Hampstead+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          CNN 评选的<strong>世界最美步行巷道</strong>，就在 Hampstead High Street 旁边。地铁站出来步行直达，独立书店、咖啡馆、小杂货，慢慢逛。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">🚇 地铁站步行即到</span>
+          <span class="endorse-tag endorse-dist">🆓 免费闲逛</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 午餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">午餐</div>
+      <div class="block-time-value">11:30</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Oak & Poppy</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Oak+and+Poppy+Hampstead+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">英式早午餐，Hampstead 本地人气小馆。按预订时间到店。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 11:30 · Annie Ding</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.5</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/66390509000000001e039c8e" target="_blank">📖 探店 Hampstead · 住北伦敦的幸福 ↗</a>
+    </div>
+  </div>
+
+  <!-- 午休 -->
+  <div class="nap-card">
+    <div class="nap-icon">😴</div>
+    <div class="nap-text">
+      <strong>13:00–14:30 · 糯糯午休（就地）</strong><br>
+      全天在外，不回酒店。Oak & Poppy 吃完，步行去 <strong>Ginger & White</strong>（Flask Walk 旁，宽敞有椅子），买杯咖啡坐到 14:30。
+    </div>
+  </div>
+
+  <!-- 下午：Heath -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">下午</div>
+      <div class="block-time-value">14:30 – 约17:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Hampstead Heath 漫步 ⛰️</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Hampstead+Heath+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          以下为<strong>可选散步点位</strong>，按体力和天气择其一二即可，不必全走。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">🆓 免费</span>
+          <span class="endorse-tag endorse-dist">📍 Heath 入口多，从 Hampstead High Street 步行约10分钟</span>
+        </div>
+      </div>
+
+      <div class="light-item">
+        <div class="light-item-icon">🏛️</div>
+        <div class="light-item-text">
+          <strong>A · Kenwood House</strong>
+          <a style="display:inline-flex;width:20px;height:20px;font-size:0.7rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Kenwood+House+London" target="_blank">📍</a><br>
+          诺丁山取景地，大庄园+博物馆，藏有大量名画，草地宽阔可以跑。
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">🏊</div>
+        <div class="light-item-text">
+          <strong>B · Highgate Men's Bathing Pond</strong>
+          <a style="display:inline-flex;width:20px;height:20px;font-size:0.7rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Highgate+Men%27s+Bathing+Pond+London" target="_blank">📍</a><br>
+          Heath 里的天然游泳塘，伦敦独特的野趣，不游泳也值得看看。
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">🌆</div>
+        <div class="light-item-text">
+          <strong>C · Parliament Hill Viewpoint</strong>
+          <a style="display:inline-flex;width:20px;height:20px;font-size:0.7rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Parliament+Hill+Viewpoint+Hampstead+Heath" target="_blank">📍</a><br>
+          鸟瞰伦敦天际线，晴天可见 The Shard。
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">📚</div>
+        <div class="light-item-text">
+          <strong>D · Keats House</strong>
+          <a style="display:inline-flex;width:20px;height:20px;font-size:0.7rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Keats+House+Hampstead+London" target="_blank">📍</a><br>
+          浪漫主义诗人济慈故居，现为博物馆，体力充裕时顺路进去看看。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">18:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Chengdu Chengdu 🌶️</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Chengdu+Chengdu+4+Leicester+Street+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">川菜，唐人街附近。适合喜欢吃辣的中国胃。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 18:00 · Annie · 3人（含幼儿）</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/691cbebe000000001e016ada" target="_blank">📖 伦敦吃川菜 · Chengdu Chengdu ↗</a>
+      <div class="light-item">
+        <div class="light-item-icon">🏨</div>
+        <div class="light-item-text">
+          <strong>19:00 前结束回酒店</strong>，唐人街打车回 Green Park 约15分钟。
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    ⛰️ <strong>今天的消耗主要来自 Heath 的坡道和步行时间。</strong>下午 2.5 小时在户外，体力比看起来花得更快，尤其是孩子。<br><br>
+    😴 <strong>13:00–14:30 是今天唯一的留白，不回酒店。</strong>Heath 能不能走完全，取决于这段有没有休息到。Ginger & White 就在附近，定好地方坐下来。
+  </div>
+</div></div>
+<div class="tab-section" id="tab-d6"><!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 6 · 4月29日 周三</div>
+  <div class="day-title">海岸线 & 小镇</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">🚂 Victoria → Lewes</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🍱 午饭 + 😴 午休</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🚕 出租车直达 Birling Gap</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🚂 Eastbourne 返伦敦</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ Birling Gap <strong>stroller 进不了步道</strong>，抱着或让他自己走</div>
+    <div class="glance-note">🌬️ 如果风太大、下雨或糯糯状态一般，<strong>只在观景点和庭院附近短停，不硬走步道</strong></div>
+    <div class="glance-note">⚠️ Birling Gap <strong>不要依赖现场打车</strong>，去程和回程都提前电话预订</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 时间表 -->
+  <div class="timeline-card">
+    <div class="timeline-card-header">🚂 今日时间表</div>
+    <div class="timeline-rows">
+      <div class="timeline-row">
+        <div class="timeline-time">08:15</div>
+        <div class="timeline-desc">打车去 <strong>Victoria 站</strong>（约8分钟）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">08:45</div>
+        <div class="timeline-desc">Southern 火车出发 → <strong>Lewes</strong>（约1小时）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">09:45</div>
+        <div class="timeline-desc">抵达 Lewes，步行逛镇</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">12:00</div>
+        <div class="timeline-desc">🍱 <strong>Haru Izakaya 午饭</strong>（已预定）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">13:00–14:30</div>
+        <div class="timeline-desc">😴 糯糯午休 · 就地找咖啡馆</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">14:30</div>
+        <div class="timeline-desc">预订出租车 <strong>Lewes → Birling Gap</strong>（约40分钟，£40，须电话预订）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">15:15–16:15</div>
+        <div class="timeline-desc">🌊 <strong>Birling Gap 海岸</strong>（约1小时）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">16:15</div>
+        <div class="timeline-desc">预订出租车 <strong>Birling Gap → Eastbourne 站</strong>（约£15，打表）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">约16:45</div>
+        <div class="timeline-desc">火车返程 → Victoria（约1小时）→ 打车回酒店</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">18:30–19:00</div>
+        <div class="timeline-desc">回到酒店 ✅</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lewes 小镇 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">上午</div>
+      <div class="block-time-value">09:45 – 12:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Lewes 小镇</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Lewes+East+Sussex" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">英国最有个性的小镇之一，独立书店、城堡遗址、老建筑。上午时间充裕，随意逛，不安排具体参观，以糯糯节奏为主。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">🚂 Victoria 出发约1小时</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/69d3e5620000000023017206" target="_blank">📖 伦敦周边轻徒步 · 超美风车复古小镇 ↗</a>
+    </div>
+  </div>
+
+  <!-- 午餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">午餐</div>
+      <div class="block-time-value">12:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Haru Izakaya</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Haru+Izakaya+Lewes" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">日式居酒屋，Lewes 本地口碑不错。午饭后需要在这附近休息到 14:30，不必急着走。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 12:00 · Zoe Liu</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.6</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午休 -->
+  <div class="nap-card">
+    <div class="nap-icon">😴</div>
+    <div class="nap-text">
+      <strong>13:00–14:30 · 糯糯午休（就地）</strong><br>
+      全天在外，不回酒店。Haru 吃完，在 Lewes 找安静咖啡馆坐到 14:30。<br>
+      推荐：<strong>Carafe Coffee Roasters</strong>（High St，宽敞安静）。<br>
+      14:30 预订出租车直达 Birling Gap，约40分钟。
+    </div>
+  </div>
+
+  <!-- Birling Gap -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">下午</div>
+      <div class="block-time-value">15:15 – 16:15</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Birling Gap 海岸步道 🌊</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Birling+Gap+East+Sussex" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          白色悬崖步道，英国最美海岸线之一。白垩悬崖、蓝色大海、草地，走走拍拍。stroller 进不了步道，抱着糯糯或让他自己走。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-warn">⚠️ 不要依赖现场打车，提前电话预订</span>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        🚕 <strong>交通关键点：Birling Gap 不要依赖现场打车</strong><br>
+        建议提前联系本地出租车公司：<br>
+        · Lewes → Birling Gap：£40（需电话预订并预付）<br>
+        · Birling Gap → Eastbourne：约 £15（打表）<br>
+        · 电话：<strong>01323 726726</strong>
+      </div>
+
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/685495b90000000012033a70" target="_blank">📖 白崖打车攻略 · 省钱省力不折腾 ↗</a>
+    </div>
+  </div>
+
+  <!-- 晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">视体力决定</div>
+    </div>
+    <div class="block-body">
+      <div class="light-item">
+        <div class="light-item-icon">🍽️</div>
+        <div class="light-item-text">
+          未预定。到酒店约 18:30–19:00，Green Park 附近步行可到的选择多，或者酒店 room service。
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    🌬️ <strong>今天最难的是车程长 + 海边风大，上午不要把体力提前用完。</strong>Lewes 慢慢逛就好，体力留给下午。<br><br>
+    😴 <strong>13:00–14:30 午休决定下午怎么走。</strong>睡够了正常走步道；如果午休不顺或风太大，Birling Gap 只短停，不硬走。
+  </div>
+</div></div>
+<div class="tab-section" id="tab-d7"><!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 7 · 4月30日 周四</div>
+  <div class="day-title">约朋友 & 返程</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">🚗 包车全天随行</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🫶 上午约森森小姐</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">✈️ 14:00 出发盖特维克</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🛫 18:00 MU214</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ <strong>14:00 必须出发</strong>，盖特维克国际安检排队长，留足3小时</div>
+    <div class="glance-note">💡 行李全天在包车上，上午轻装活动</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 时间表 -->
+  <div class="timeline-card">
+    <div class="timeline-card-header">📅 今日时间表</div>
+    <div class="timeline-rows">
+      <div class="timeline-row">
+        <div class="timeline-time">上午</div>
+        <div class="timeline-desc">包车酒店接，行李上车 → 约<strong>森森小姐</strong>见面</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">14:00</div>
+        <div class="timeline-desc">包车出发 → <strong>盖特维克机场</strong>（约1小时）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">约15:00</div>
+        <div class="timeline-desc">抵达盖特维克 → 办理值机 + 安检</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">18:00</div>
+        <div class="timeline-desc">✈️ <strong>MU214 起飞</strong> · 伦敦盖特维克 → 上海浦东</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">+1 12:00</div>
+        <div class="timeline-desc">上海浦东 T1 落地</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 上午：约朋友 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">上午</div>
+      <div class="block-time-value">自由活动</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">约森森小姐 🫶</div>
+        </div>
+        <div class="item-desc">行李在包车上，轻装出行。地点跟森森约好即可，不受行李约束。</div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">⚠️</div>
+        <div class="light-item-text">
+          <strong>上午结束时间倒推：14:00 出发机场。</strong>预留时间结束活动 + 取行李上车。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 航班主卡 -->
+  <div class="flight-card">
+    <div class="flight-header">
+      <div class="flight-label">✈️ 返程航班</div>
+      <div class="flight-time">18:00</div>
+    </div>
+    <div class="flight-body">
+      <div class="flight-title">MU214 · 伦敦盖特维克 → 上海浦东</div>
+      <div class="flight-detail">
+        <strong>出发：</strong>4月30日 18:00 · 盖特维克（LGW）<br>
+        <strong>抵达：</strong>5月1日 12:00 · 上海浦东 T1<br>
+        <strong>座位：</strong>柯南靠窗 · 糯糯居中 · 付阿姨靠走道
+      </div>
+    </div>
+  </div>
+
+  <!-- 机场提示 -->
+  <div class="tip-card">
+    💡 <strong>盖特维克国际安检排队长。</strong>14:00 出发，约15:00 到机场，留足3小时办值机 + 过安检 + 带糯糯候机。
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    ✈️ <strong>今天最难的点是候机和长途飞行，体力要留到下午。</strong>上午约朋友节奏轻松，不要安排太多移动。<br><br>
+    ⏰ <strong>14:00 是硬截止。</strong>上午活动不要拖，盖特维克安检带着孩子时间不够用。
+  </div>
+</div></div>
+
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  var section = document.getElementById('tab-' + id);
+  var btn = document.getElementById('btn-' + id);
+  if (section) { section.classList.add('active'); window.scrollTo(0,0); }
+  if (btn) { btn.classList.add('active'); btn.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'}); }
+}
+</script>
+
+</body>
+</html>
