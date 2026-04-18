@@ -193,6 +193,19 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .kids-strip-title { font-size:0.75rem; font-weight:700; color:#880E4F; margin-bottom:6px; }
 .kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
 .kids-strip-text strong { font-weight:700; }
+
+/* D1 plan switcher */
+.plan-tabs { display:flex; gap:0; border-radius:8px; overflow:hidden; border:1.5px solid var(--border); }
+.plan-tab { flex:1; padding:9px 8px; font-family:'Fraunces',serif; font-size:0.82rem; font-weight:700; border:none; cursor:pointer; transition:all 0.18s; background:var(--paper); color:var(--muted); -webkit-tap-highlight-color:transparent; }
+.plan-tab.active { background:var(--rust); color:#fff; }
+.plan-tab:first-child { border-right:1px solid var(--border); }
+.plan-body { display:none; background:var(--cream); border:1.5px solid var(--border); border-top:none; border-radius:0 0 8px 8px; padding:12px 14px; }
+.plan-body.active { display:block; }
+.plan-body.plan-a { border-color:var(--rust); }
+.plan-content { font-size:0.75rem; color:var(--muted); line-height:1.8; }
+.plan-content strong { color:var(--ink); }
+.tip-card { background:var(--paper); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
+.tip-card strong { color:var(--ink); }
 </style>
 </head>
 <body>
