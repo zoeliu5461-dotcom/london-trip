@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>D7 · 约朋友 & 返程</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Noto+Sans+SC:wght@300;400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F5F0E8; --paper: #EDE8DC; --brown: #6B4226;
+  --rust: #B85C38; --gold: #C9872A; --ink: #1A1A1A;
+  --muted: #6B6B5A; --border: rgba(107,66,38,0.15);
+  --green: #2E7D32; --green-bg: #E8F5E9;
+}
+body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; max-width:480px; margin:0 auto; padding-bottom:60px; }
+
+.day-header { background:var(--paper); padding:32px 24px 24px; border-bottom:2px solid var(--rust); position:relative; overflow:hidden; }
+.day-header::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--gold); }
+.day-label { font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
+.day-title { font-family:'Fraunces',serif; font-size:clamp(2rem,8vw,3rem); font-weight:900; font-style:italic; color:var(--ink); line-height:1; text-wrap:balance; }
+
+.glance-card { margin:16px 16px 0; background:var(--paper); border-left:3px solid var(--rust); border-radius:0 12px 12px 0; padding:14px 16px; }
+.glance-label { font-size:0.58rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
+.glance-flow { display:flex; align-items:center; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+.glance-step { background:rgba(107,66,38,0.08); border-radius:6px; padding:5px 10px; font-size:0.72rem; color:var(--ink); font-weight:500; white-space:nowrap; }
+.glance-step.key { background:var(--rust); color:#fff; }
+.glance-arrow { color:var(--muted); font-size:0.7rem; }
+.glance-notes { display:flex; flex-direction:column; gap:4px; border-top:1px solid var(--border); padding-top:10px; }
+.glance-note { font-size:0.72rem; color:var(--muted); line-height:1.45; }
+.glance-note strong { color:var(--ink); }
+
+.day-body { padding:12px 16px 0; display:flex; flex-direction:column; gap:10px; }
+
+.block-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.block-header { background:var(--paper); padding:9px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); }
+.block-time-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.block-time-value { font-size:0.72rem; font-weight:700; color:var(--rust); margin-left:auto; }
+.block-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+
+.item-main { display:flex; flex-direction:column; gap:5px; }
+.item-title { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:700; color:var(--ink); display:flex; align-items:flex-start; justify-content:space-between; gap:8px; line-height:1.2; }
+.item-title-text { flex:1; }
+.item-desc { font-size:0.78rem; color:var(--muted); line-height:1.6; }
+.item-desc strong { color:var(--ink); font-weight:600; }
+
+.endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; font-size:0.62rem; }
+.endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; }
+.endorse-booked { background:var(--green-bg); color:var(--green); }
+.endorse-dist { background:var(--cream); color:var(--muted); }
+.endorse-warn { background:#FFF8E1; color:#B45309; }
+
+.light-item { display:flex; align-items:flex-start; gap:10px; padding:10px 12px; background:var(--cream); border-radius:10px; }
+.light-item-icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
+.light-item-text { font-size:0.75rem; color:var(--muted); line-height:1.5; }
+.light-item-text strong { color:var(--ink); font-weight:600; }
+
+.tip-card { background:var(--paper); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
+.tip-card strong { color:var(--ink); }
+
+/* 航班主卡 */
+.flight-card {
+  background: linear-gradient(155deg, #0F0F0F 0%, #0A1A2E 55%, #0D2040 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+  position: relative;
+}
+.flight-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, #E8A83A 50%, var(--gold) 100%);
+}
+.flight-header {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flight-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); font-weight:700; }
+.flight-time { font-family:'Fraunces',serif; font-size:1.7rem; font-weight:900; color:#fff; letter-spacing:-0.02em; }
+.flight-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:12px; }
+.flight-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:900; color:#fff; line-height:1.1; }
+.flight-detail { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.75; }
+.flight-detail strong { color:#fff; font-weight:700; }
+
+.timeline-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.timeline-card-header { background:var(--paper); padding:9px 16px; border-bottom:1px solid var(--border); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.timeline-rows { padding:12px 16px 14px; display:flex; flex-direction:column; }
+.timeline-row { display:flex; gap:14px; align-items:flex-start; padding:7px 0; border-bottom:1px solid var(--border); }
+.timeline-row:last-child { border-bottom:none; }
+.timeline-time { font-size:0.7rem; font-weight:700; color:var(--rust); min-width:48px; padding-top:1px; }
+.timeline-desc { font-size:0.75rem; color:var(--muted); line-height:1.5; }
+.timeline-desc strong { color:var(--ink); }
+
+.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
+.kids-strip-icon { font-size:1.3rem; flex-shrink:0; }
+.kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
+.kids-strip-text strong { font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 7 · 4月30日 周四</div>
+  <div class="day-title">约朋友 & 返程</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">🚗 包车全天随行</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🫶 上午约森森小姐</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">✈️ 14:00 出发盖特维克</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🛫 18:00 MU214</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ <strong>14:00 必须出发</strong>，盖特维克国际安检排队长，留足3小时</div>
+    <div class="glance-note">💡 行李全天在包车上，上午轻装活动</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 时间表 -->
+  <div class="timeline-card">
+    <div class="timeline-card-header">📅 今日时间表</div>
+    <div class="timeline-rows">
+      <div class="timeline-row">
+        <div class="timeline-time">上午</div>
+        <div class="timeline-desc">包车酒店接，行李上车 → 约<strong>森森小姐</strong>见面</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">14:00</div>
+        <div class="timeline-desc">包车出发 → <strong>盖特维克机场</strong>（约1小时）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">约15:00</div>
+        <div class="timeline-desc">抵达盖特维克 → 办理值机 + 安检</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">18:00</div>
+        <div class="timeline-desc">✈️ <strong>MU214 起飞</strong> · 伦敦盖特维克 → 上海浦东</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">+1 12:00</div>
+        <div class="timeline-desc">上海浦东 T1 落地</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 上午：约朋友 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">上午</div>
+      <div class="block-time-value">自由活动</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">约森森小姐 🫶</div>
+        </div>
+        <div class="item-desc">行李在包车上，轻装出行。地点跟森森约好即可，不受行李约束。</div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">⚠️</div>
+        <div class="light-item-text">
+          <strong>上午结束时间倒推：14:00 出发机场。</strong>预留时间结束活动 + 取行李上车。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 航班主卡 -->
+  <div class="flight-card">
+    <div class="flight-header">
+      <div class="flight-label">✈️ 返程航班</div>
+      <div class="flight-time">18:00</div>
+    </div>
+    <div class="flight-body">
+      <div class="flight-title">MU214 · 伦敦盖特维克 → 上海浦东</div>
+      <div class="flight-detail">
+        <strong>出发：</strong>4月30日 18:00 · 盖特维克（LGW）<br>
+        <strong>抵达：</strong>5月1日 12:00 · 上海浦东 T1<br>
+        <strong>座位：</strong>柯南靠窗 · 糯糯居中 · 付阿姨靠走道
+      </div>
+    </div>
+  </div>
+
+  <!-- 机场提示 -->
+  <div class="tip-card">
+    💡 <strong>盖特维克国际安检排队长。</strong>14:00 出发，约15:00 到机场，留足3小时办值机 + 过安检 + 带糯糯候机。
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    ✈️ <strong>今天最难的点是候机和长途飞行，体力要留到下午。</strong>上午约朋友节奏轻松，不要安排太多移动。<br><br>
+    ⏰ <strong>14:00 是硬截止。</strong>上午活动不要拖，盖特维克安检带着孩子时间不够用。
+  </div>
+</div>
+
+</body>
+</html>
