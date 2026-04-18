@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>D5 · Hampstead 漫步</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Noto+Sans+SC:wght@300;400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F5F0E8; --paper: #EDE8DC; --brown: #6B4226;
+  --rust: #B85C38; --gold: #C9872A; --ink: #1A1A1A;
+  --muted: #6B6B5A; --border: rgba(107,66,38,0.15);
+  --green: #2E7D32; --green-bg: #E8F5E9;
+}
+body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; max-width:480px; margin:0 auto; padding-bottom:60px; }
+
+.day-header { background:var(--paper); padding:32px 24px 24px; border-bottom:2px solid var(--rust); position:relative; overflow:hidden; }
+.day-header::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--gold); }
+.day-label { font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
+.day-title { font-family:'Fraunces',serif; font-size:clamp(2rem,8vw,3rem); font-weight:900; font-style:italic; color:var(--ink); line-height:1; text-wrap:balance; }
+
+.glance-card { margin:16px 16px 0; background:var(--paper); border-left:3px solid var(--rust); border-radius:0 12px 12px 0; padding:14px 16px; }
+.glance-label { font-size:0.58rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
+.glance-flow { display:flex; align-items:center; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+.glance-step { background:rgba(107,66,38,0.08); border-radius:6px; padding:5px 10px; font-size:0.72rem; color:var(--ink); font-weight:500; white-space:nowrap; }
+.glance-step.key { background:var(--rust); color:#fff; }
+.glance-step.rest { background:rgba(201,135,42,0.15); color:var(--brown); border:1px solid rgba(201,135,42,0.3); }
+.glance-arrow { color:var(--muted); font-size:0.7rem; }
+.glance-notes { display:flex; flex-direction:column; gap:4px; border-top:1px solid var(--border); padding-top:10px; }
+.glance-note { font-size:0.72rem; color:var(--muted); line-height:1.45; }
+.glance-note strong { color:var(--ink); }
+
+.day-body { padding:12px 16px 0; display:flex; flex-direction:column; gap:10px; }
+
+.block-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.block-header { background:var(--paper); padding:9px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); }
+.block-time-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.block-time-value { font-size:0.72rem; font-weight:700; color:var(--rust); margin-left:auto; }
+.block-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+
+.item-main { display:flex; flex-direction:column; gap:5px; }
+.item-title { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:700; color:var(--ink); display:flex; align-items:flex-start; justify-content:space-between; gap:8px; line-height:1.2; }
+.item-title-text { flex:1; }
+.map-btn { flex-shrink:0; width:28px; height:28px; background:var(--cream); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; text-decoration:none; margin-top:-2px; }
+.item-desc { font-size:0.78rem; color:var(--muted); line-height:1.6; }
+.item-desc strong { color:var(--ink); font-weight:600; }
+
+.endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; font-size:0.62rem; }
+.endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; }
+.endorse-booked { background:var(--green-bg); color:var(--green); }
+.endorse-rating { background:rgba(201,135,42,0.12); color:var(--brown); }
+.endorse-dist { background:var(--cream); color:var(--muted); }
+.endorse-warn { background:#FFF8E1; color:#B45309; }
+
+.light-item { display:flex; align-items:flex-start; gap:10px; padding:10px 12px; background:var(--cream); border-radius:10px; }
+.light-item-icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
+.light-item-text { font-size:0.75rem; color:var(--muted); line-height:1.5; }
+.light-item-text strong { color:var(--ink); font-weight:600; }
+
+.tip-card { background:var(--paper); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
+.tip-card strong { color:var(--ink); }
+
+.nap-card { background:rgba(201,135,42,0.08); border:1px solid rgba(201,135,42,0.25); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
+.nap-icon { font-size:1.3rem; flex-shrink:0; }
+.nap-text { font-size:0.75rem; color:var(--brown); line-height:1.55; }
+.nap-text strong { font-weight:700; color:var(--ink); }
+
+.xhs-link { display:inline-block; font-size:0.75rem; color:var(--rust); text-decoration:none; line-height:1.5; }
+.xhs-link:hover { text-decoration:underline; }
+
+.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
+.kids-strip-icon { font-size:1.3rem; flex-shrink:0; }
+.kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
+.kids-strip-text strong { font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 5 · 4月28日 周二</div>
+  <div class="day-title">Hampstead 漫步</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">🌿 上午 Flask Walk</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🍳 11:30 Oak & Poppy 午饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step rest">😴 13:00–14:30 咖啡馆午休</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">⛰️ 14:30 Hampstead Heath</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🌶️ 18:00 晚饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🏨 19:00前回</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ Heath 坡道多，<strong>推车控制好下坡速度</strong>，部分路段有台阶</div>
+    <div class="glance-note">⚠️ Parliament Hill 登顶后风大，<strong>给糯糯加一件</strong></div>
+    <div class="glance-note">⚠️ 天气变化快，<strong>带雨衣/备外套</strong></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 交通 -->
+  <div class="light-item">
+    <div class="light-item-icon">🚇</div>
+    <div class="light-item-text">
+      <strong>酒店 → Hampstead High Street：地铁约30分钟</strong><br>
+      Northern Line 直达，步行到各景点。
+    </div>
+  </div>
+
+  <!-- 上午：Flask Walk -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">上午</div>
+      <div class="block-time-value">到了就开始</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Flask Walk 漫步</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Flask+Walk+Hampstead+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          CNN 评选的<strong>世界最美步行巷道</strong>，就在 Hampstead High Street 旁边。地铁站出来步行直达，独立书店、咖啡馆、小杂货，慢慢逛。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">🚇 地铁站步行即到</span>
+          <span class="endorse-tag endorse-dist">🆓 免费闲逛</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/66390509000000001e039c8e" target="_blank">📖 探店 Hampstead · 住北伦敦的幸福 ↗</a>
+    </div>
+  </div>
+
+  <!-- 午餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">午餐</div>
+      <div class="block-time-value">11:30</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Oak & Poppy</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Oak+and+Poppy+Hampstead+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">英式早午餐，Hampstead 本地人气小馆，11:30 准时去避开排队高峰。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 11:30</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午休 -->
+  <div class="nap-card">
+    <div class="nap-icon">😴</div>
+    <div class="nap-text">
+      <strong>13:00–14:30 · 糯糯午休（就地）</strong><br>
+      全天在外，不回酒店。Oak & Poppy 吃完，步行去 <strong>Ginger & White</strong>（Flask Walk 旁，宽敞有椅子），买杯咖啡坐到 14:30。<br>
+      糯糯睡够了，<strong>14:30 出发 Heath</strong>，坡道多体力消耗大，饱睡再走更稳。
+    </div>
+  </div>
+
+  <!-- 下午：Heath -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">下午</div>
+      <div class="block-time-value">14:30 – 约17:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Hampstead Heath 漫步 ⛰️</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Hampstead+Heath+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          以下为<strong>可选散步点位</strong>，按体力和天气择其一二即可，不必全走。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-warn">⚠️ 坡道多，推车小心下坡</span>
+          <span class="endorse-tag endorse-warn">⚠️ 山顶风大，给糯糯加衣</span>
+          <span class="endorse-tag endorse-warn">☔ 备雨衣，天气多变</span>
+        </div>
+      </div>
+
+      <div class="light-item">
+        <div class="light-item-icon">🏛️</div>
+        <div class="light-item-text">
+          <strong>A · Kenwood House</strong>
+          <a style="display:inline-flex;width:20px;height:20px;font-size:0.7rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Kenwood+House+London" target="_blank">📍</a><br>
+          诺丁山取景地，大庄园+博物馆，藏有大量名画，草地宽阔可以跑。
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">🏊</div>
+        <div class="light-item-text">
+          <strong>B · Highgate Men's Bathing Pond</strong>
+          <a style="display:inline-flex;width:20px;height:20px;font-size:0.7rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Highgate+Men%27s+Bathing+Pond+London" target="_blank">📍</a><br>
+          Heath 里的天然游泳塘，伦敦独特的野趣，不游泳也值得看看。
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">🌆</div>
+        <div class="light-item-text">
+          <strong>C · Parliament Hill Viewpoint</strong>
+          <a style="display:inline-flex;width:20px;height:20px;font-size:0.7rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Parliament+Hill+Viewpoint+Hampstead+Heath" target="_blank">📍</a><br>
+          鸟瞰伦敦天际线，晴天可见 The Shard。<strong>山顶风大，给糯糯加衣。</strong>
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">📚</div>
+        <div class="light-item-text">
+          <strong>D · Keats House</strong>
+          <a style="display:inline-flex;width:20px;height:20px;font-size:0.7rem;background:var(--paper);border-radius:50%;align-items:center;justify-content:center;text-decoration:none;vertical-align:middle;margin-left:4px;" href="https://maps.google.com/?q=Keats+House+Hampstead+London" target="_blank">📍</a><br>
+          浪漫主义诗人济慈故居，现为博物馆，体力充裕时顺路进去看看。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">18:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Chengdu Chengdu 🌶️</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Chengdu+Chengdu+4+Leicester+Street+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">川菜，4 Leicester Street WC2H 7BL，唐人街附近。麻辣味正宗，出行在外吃一顿家乡味。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 18:00 · Annie · 3人（含幼儿）</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/691cbebe000000001e016ada" target="_blank">📖 伦敦吃川菜 · Chengdu Chengdu ↗</a>
+      <div class="light-item">
+        <div class="light-item-icon">🏨</div>
+        <div class="light-item-text">
+          <strong>19:00 前结束回酒店</strong>，今天走路多，糯糯和大人都累了，早点回来。
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    🌿 <strong>Flask Walk 轻松逛，不赶时间。</strong>早上节奏慢，让他自己走、自己看，不用推推车全程走，保留体力给下午 Heath。<br><br>
+    🍳 <strong>11:30 午饭准时吃。</strong>下午还有 Heath 的体力消耗，午饭不能拖，吃饱才有力气走坡路。<br><br>
+    😴 <strong>午休必须保住。</strong>Heath 草地宽、坡道多，没睡够容易中途崩。Ginger & White 安静，给他一个角落让他睡着。<br><br>
+    ⛰️ <strong>Heath 按状态走，不强行全走。</strong>A/B/C/D 选一两个就好，糯糯体力到了就找草地让他跑跑，不要硬撑到最后一个点。Parliament Hill 风大，<strong>上山前加衣服</strong>。<br><br>
+    🌶️ <strong>18:00 晚饭，19:00 前回酒店哄睡。</strong>今天走路多，他撑到这里已经很棒了。
+  </div>
+</div>
+
+</body>
+</html>
