@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>D0 · 抵达 & 领物</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Noto+Sans+SC:wght@300;400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F5F0E8; --paper: #EDE8DC; --brown: #6B4226;
+  --rust: #B85C38; --gold: #C9872A; --ink: #1A1A1A;
+  --muted: #6B6B5A; --border: rgba(107,66,38,0.15);
+  --green: #2E7D32; --green-bg: #E8F5E9;
+}
+body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; max-width:480px; margin:0 auto; padding-bottom:60px; }
+
+.day-header { background:var(--paper); padding:32px 24px 24px; border-bottom:2px solid var(--rust); position:relative; overflow:hidden; }
+.day-header::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--gold); }
+.day-label { font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
+.day-title { font-family:'Fraunces',serif; font-size:clamp(2rem,8vw,3rem); font-weight:900; font-style:italic; color:var(--ink); line-height:1; text-wrap:balance; }
+
+.glance-card { margin:16px 16px 0; background:var(--paper); border-left:3px solid var(--rust); border-radius:0 12px 12px 0; padding:14px 16px; }
+.glance-label { font-size:0.58rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
+.glance-flow { display:flex; align-items:center; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+.glance-step { background:rgba(107,66,38,0.08); border-radius:6px; padding:5px 10px; font-size:0.72rem; color:var(--ink); font-weight:500; white-space:nowrap; }
+.glance-step.key { background:var(--rust); color:#fff; }
+.glance-arrow { color:var(--muted); font-size:0.7rem; }
+.glance-notes { display:flex; flex-direction:column; gap:4px; border-top:1px solid var(--border); padding-top:10px; }
+.glance-note { font-size:0.72rem; color:var(--muted); line-height:1.45; }
+.glance-note strong { color:var(--ink); }
+
+.day-body { padding:12px 16px 0; display:flex; flex-direction:column; gap:10px; }
+
+.block-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.block-header { background:var(--paper); padding:9px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); }
+.block-time-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.block-time-value { font-size:0.72rem; font-weight:700; color:var(--rust); margin-left:auto; }
+.block-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+
+.item-main { display:flex; flex-direction:column; gap:5px; }
+.item-title { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:700; color:var(--ink); display:flex; align-items:flex-start; justify-content:space-between; gap:8px; line-height:1.2; }
+.item-title-text { flex:1; }
+.map-btn { flex-shrink:0; width:28px; height:28px; background:var(--cream); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; text-decoration:none; margin-top:-2px; }
+.item-desc { font-size:0.78rem; color:var(--muted); line-height:1.6; }
+.item-desc strong { color:var(--ink); font-weight:600; }
+
+.endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; font-size:0.62rem; }
+.endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; letter-spacing:0.01em; }
+.endorse-booked { background:var(--green-bg); color:var(--green); }
+.endorse-rating { background:rgba(201,135,42,0.12); color:var(--brown); }
+.endorse-dist { background:var(--cream); color:var(--muted); }
+.endorse-warn { background:#FFF8E1; color:#B45309; }
+.endorse-xhs { background:#FFF0F0; color:var(--rust); }
+
+.light-item { display:flex; align-items:flex-start; gap:10px; padding:10px 12px; background:var(--cream); border-radius:10px; }
+.light-item-icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
+.light-item-text { font-size:0.75rem; color:var(--muted); line-height:1.5; }
+.light-item-text strong { color:var(--ink); font-weight:600; }
+
+.divider { display:flex; align-items:center; gap:8px; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+.divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
+
+.alt-toggle { display:flex; align-items:center; justify-content:space-between; padding:9px 12px; background:var(--cream); border-radius:8px; cursor:pointer; border:none; width:100%; text-align:left; font-family:inherit; font-size:0.75rem; color:var(--muted); font-weight:500; -webkit-tap-highlight-color:transparent; }
+.alt-toggle-label { display:flex; align-items:center; gap:6px; }
+.alt-toggle-arrow { font-size:0.65rem; color:var(--muted); transition:transform 0.28s cubic-bezier(0.4,0,0.2,1); display:inline-block; }
+.alt-toggle.open .alt-toggle-arrow { transform:rotate(180deg); }
+.alt-content { max-height:0; overflow:hidden; transition:max-height 0.32s cubic-bezier(0.4,0,0.2,1),opacity 0.28s ease,padding 0.28s ease; opacity:0; padding:0 12px; background:var(--cream); border-radius:0 0 8px 8px; margin-top:-4px; border-top:0px solid var(--border); }
+.alt-content.open { max-height:400px; opacity:1; padding:10px 12px 12px; border-top-width:1px; }
+.alt-name { font-family:'Fraunces',serif; font-size:0.95rem; font-weight:700; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; }
+.alt-desc { font-size:0.72rem; color:var(--muted); line-height:1.5; }
+
+.tip-card { background:var(--paper); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
+.tip-card strong { color:var(--ink); }
+
+.xhs-link { display:inline-block; font-size:0.75rem; color:var(--rust); text-decoration:none; line-height:1.5; }
+.xhs-link:hover { text-decoration:underline; }
+
+.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
+.kids-strip-icon { font-size:1.3rem; flex-shrink:0; }
+.kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
+.kids-strip-text strong { font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 0 · 4月23日 周四</div>
+  <div class="day-title">抵达 & 领物</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">✈️ 15:00 落地</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🚗 司机接机</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">📦 17:00 领物 ExCeL</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🏨 check-in</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🍽️ 19:00 步行去吃饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🏨 回酒店</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ 领物必带：<strong>护照 + 手机（App QR code）</strong></div>
+    <div class="glance-note">⚠️ 司机从盖特维克直送 ExCeL，行李打包好放车上，领完物再 check-in</div>
+    <div class="glance-note">⚠️ El Pirata 已预定 19:00，酒店步行1分钟，吃完直接回</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 时段：落地 & 接机 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">下午</div>
+      <div class="block-time-value">15:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">MU213 落地 · 伦敦盖特维克</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Gatwick+Airport+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          09:40 上海浦东出发，<strong>15:00 抵达盖特维克</strong>。司机在出口等候，直接上车。<br>
+          行李全程由司机处理，三人不用自己搬。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">✈️ MU213</span>
+          <span class="endorse-tag endorse-dist">🚗 司机接机</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 时段：领物 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">领物</div>
+      <div class="block-time-value">17:00 – 17:45</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">ExCeL London 领物</div>
+          <a class="map-btn" href="https://maps.google.com/?q=ExCeL+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          司机直接送到 <strong>ExCeL London West Entrance</strong>，门口下车无需停车。进 West Entrance 后按指引找领物区。<br>
+          顺便逛马博会，可以买点补给品。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-warn">⚠️ 护照缺一不可</span>
+          <span class="endorse-tag endorse-warn">⚠️ 截止 4/25，今天是第一天</span>
+          <span class="endorse-tag endorse-dist">🚌 Stroller 可进，展馆大</span>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        💡 <strong>领物后司机送去酒店 check-in</strong>，行李放好房间，再步行去 El Pirata 吃晚饭，步行1分钟，吃完走回来休息。
+      </div>
+    </div>
+  </div>
+
+  <!-- 时段：晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">19:00</div>
+    </div>
+    <div class="block-body">
+
+      <!-- 主方案：El Pirata -->
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">El Pirata</div>
+          <a class="map-btn" href="https://maps.google.com/?q=El+Pirata+Mayfair+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">西班牙 Tapas，酒店步行1分钟。飞了一天，轻松吃点小菜，不必隆重。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 19:00 · Zoe Liu</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.3</span>
+          <span class="endorse-tag endorse-dist">🚶 步行1分钟</span>
+          <span class="endorse-tag endorse-dist">人均 £25</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/680aa31b000000001200e9b4" target="_blank">📖 不用营销 · 伦敦真正好吃的西班牙 Tapas ↗</a>
+
+      <!-- 备选：Kitty Fisher's -->
+      <button class="alt-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        <span class="alt-toggle-label">🍖 备选 · Kitty Fisher's · 19:00（D4 已有预订）</span>
+        <span class="alt-toggle-arrow">▾</span>
+      </button>
+      <div class="alt-content">
+        <div class="alt-name">
+          Kitty Fisher's Mayfair
+          <a class="map-btn" style="width:24px;height:24px;font-size:0.75rem;background:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;" href="https://maps.google.com/?q=Kitty+Fisher%27s+Mayfair+London" target="_blank">📍</a>
+        </div>
+        <div class="alt-desc">英式烤肉 · 酒店步行3分钟 · 人均 £65 · ⭐ Google 4.6<br>
+        D4 已预定 18:15（Annie Ding），如D0改来此须重新预约。</div>
+      </div>
+
+      <div class="light-item">
+        <div class="light-item-icon">🏨</div>
+        <div class="light-item-text">
+          <strong>吃完步行回酒店</strong>，第一天不强制时间，以糯糯状态为准。长途飞行后不用硬撑，困了就回房休息。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    ✈️ <strong>长途飞行后最容易崩。</strong>飞了约12小时，落地时间接近傍晚，时差 + 疲惫 + 陌生环境——最容易哭闹的一天。不要对他今天表现有任何期待。<br><br>
+    📦 <strong>ExCeL 领物时间不要拖。</strong>17:00 进去，17:45 出来，能快就快。展馆大、人多、推车容易堵，给他带好零食垫着，饿了就更容易闹。<br><br>
+    🏨 <strong>check-in 先安顿好他。</strong>进房间让他先熟悉环境，放下行李，不要急着出门吃饭。等他稳了再步行去 El Pirata，步行1分钟，吃完原路走回来。<br><br>
+    🌙 <strong>今晚不强制时间。</strong>第一天以不闹情绪为准，困了就回去哄睡，明天才是正式开始。
+  </div>
+</div>
+
+</body>
+</html>
