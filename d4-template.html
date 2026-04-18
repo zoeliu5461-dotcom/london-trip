@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>D4 · 牛津一日游</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Noto+Sans+SC:wght@300;400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F5F0E8; --paper: #EDE8DC; --brown: #6B4226;
+  --rust: #B85C38; --gold: #C9872A; --ink: #1A1A1A;
+  --muted: #6B6B5A; --border: rgba(107,66,38,0.15);
+  --green: #2E7D32; --green-bg: #E8F5E9;
+}
+body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; max-width:480px; margin:0 auto; padding-bottom:60px; }
+
+.day-header { background:var(--paper); padding:32px 24px 24px; border-bottom:2px solid var(--rust); position:relative; overflow:hidden; }
+.day-header::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--gold); }
+.day-label { font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
+.day-title { font-family:'Fraunces',serif; font-size:clamp(2rem,8vw,3rem); font-weight:900; font-style:italic; color:var(--ink); line-height:1; text-wrap:balance; }
+
+.glance-card { margin:16px 16px 0; background:var(--paper); border-left:3px solid var(--rust); border-radius:0 12px 12px 0; padding:14px 16px; }
+.glance-label { font-size:0.58rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
+.glance-flow { display:flex; align-items:center; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+.glance-step { background:rgba(107,66,38,0.08); border-radius:6px; padding:5px 10px; font-size:0.72rem; color:var(--ink); font-weight:500; white-space:nowrap; }
+.glance-step.key { background:var(--rust); color:#fff; }
+.glance-step.rest { background:rgba(201,135,42,0.15); color:var(--brown); border:1px solid rgba(201,135,42,0.3); }
+.glance-arrow { color:var(--muted); font-size:0.7rem; }
+.glance-notes { display:flex; flex-direction:column; gap:4px; border-top:1px solid var(--border); padding-top:10px; }
+.glance-note { font-size:0.72rem; color:var(--muted); line-height:1.45; }
+.glance-note strong { color:var(--ink); }
+
+.day-body { padding:12px 16px 0; display:flex; flex-direction:column; gap:10px; }
+
+.block-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.block-header { background:var(--paper); padding:9px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); }
+.block-time-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.block-time-value { font-size:0.72rem; font-weight:700; color:var(--rust); margin-left:auto; }
+.block-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+
+.item-main { display:flex; flex-direction:column; gap:5px; }
+.item-title { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:700; color:var(--ink); display:flex; align-items:flex-start; justify-content:space-between; gap:8px; line-height:1.2; }
+.item-title-text { flex:1; }
+.map-btn { flex-shrink:0; width:28px; height:28px; background:var(--cream); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; text-decoration:none; margin-top:-2px; }
+.item-desc { font-size:0.78rem; color:var(--muted); line-height:1.6; }
+.item-desc strong { color:var(--ink); font-weight:600; }
+
+.endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; font-size:0.62rem; }
+.endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; }
+.endorse-booked { background:var(--green-bg); color:var(--green); }
+.endorse-rating { background:rgba(201,135,42,0.12); color:var(--brown); }
+.endorse-dist { background:var(--cream); color:var(--muted); }
+.endorse-warn { background:#FFF8E1; color:#B45309; }
+
+.light-item { display:flex; align-items:flex-start; gap:10px; padding:10px 12px; background:var(--cream); border-radius:10px; }
+.light-item-icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
+.light-item-text { font-size:0.75rem; color:var(--muted); line-height:1.5; }
+.light-item-text strong { color:var(--ink); font-weight:600; }
+
+.divider { display:flex; align-items:center; gap:8px; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+.divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
+
+.tip-card { background:var(--paper); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
+.tip-card strong { color:var(--ink); }
+
+.nap-card { background:rgba(201,135,42,0.08); border:1px solid rgba(201,135,42,0.25); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
+.nap-icon { font-size:1.3rem; flex-shrink:0; }
+.nap-text { font-size:0.75rem; color:var(--brown); line-height:1.55; }
+.nap-text strong { font-weight:700; color:var(--ink); }
+
+.xhs-link { display:inline-block; font-size:0.75rem; color:var(--rust); text-decoration:none; line-height:1.5; }
+.xhs-link:hover { text-decoration:underline; }
+
+/* 时间线 */
+.timeline-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.timeline-card-header { background:var(--paper); padding:9px 16px; border-bottom:1px solid var(--border); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.timeline-rows { padding:12px 16px 14px; display:flex; flex-direction:column; }
+.timeline-row { display:flex; gap:14px; align-items:flex-start; padding:7px 0; border-bottom:1px solid var(--border); }
+.timeline-row:last-child { border-bottom:none; }
+.timeline-time { font-size:0.7rem; font-weight:700; color:var(--rust); min-width:52px; padding-top:1px; }
+.timeline-desc { font-size:0.75rem; color:var(--muted); line-height:1.5; }
+.timeline-desc strong { color:var(--ink); }
+
+.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
+.kids-strip-icon { font-size:1.3rem; flex-shrink:0; }
+.kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
+.kids-strip-text strong { font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- DAY HEADER -->
+<div class="day-header">
+  <div class="day-label">Day 4 · 4月27日 周一</div>
+  <div class="day-title">牛津一日游</div>
+</div>
+
+<!-- 扫一眼 -->
+<div class="glance-card">
+  <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
+  <div class="glance-flow">
+    <div class="glance-step">🚂 09:04 Paddington 出发</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🏛️ 11:00 讲解团</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🍺 12:00 Turf Tavern 午饭</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step rest">😴 13:00–14:30 咖啡馆午休</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step key">🚣 15:00 撑船</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🚂 16:30 返程</div>
+    <div class="glance-arrow">→</div>
+    <div class="glance-step">🍽️ 18:15 Kitty Fisher's</div>
+  </div>
+  <div class="glance-notes">
+    <div class="glance-note">⚠️ 撑船无需预约，<strong>周一人少</strong>，9:30开门，直接去即可</div>
+    <div class="glance-note">⚠️ 糯糯上船<strong>必须穿救生衣</strong>，现场提供，提前跟他说好</div>
+    <div class="glance-note">⚠️ 晚餐 Kitty Fisher's <strong>18:15 · Annie Ding</strong>，回来不要拖</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="day-body">
+
+  <!-- 交通 -->
+  <div class="timeline-card">
+    <div class="timeline-card-header">🚂 今日时间表</div>
+    <div class="timeline-rows">
+      <div class="timeline-row">
+        <div class="timeline-time">08:45</div>
+        <div class="timeline-desc">打车去 <strong>Paddington 站</strong>（约15分钟）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">09:04</div>
+        <div class="timeline-desc">火车出发 → Oxford（约1小时）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">10:00</div>
+        <div class="timeline-desc">抵达牛津，步行至 16 Broad Street（约14分钟）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">11:00</div>
+        <div class="timeline-desc"><strong>Footprints Tours 讲解团</strong>（英文，免费）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">12:00</div>
+        <div class="timeline-desc">午餐 · <strong>Turf Tavern</strong>（已预定）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">13:00–14:30</div>
+        <div class="timeline-desc">☕ 糯糯午休 · 附近咖啡馆就地休息</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">15:00</div>
+        <div class="timeline-desc">🚣 <strong>Cherwell River 撑船</strong>（约1小时）<br><span style="font-size:0.7rem;color:var(--muted);">Magdalen Bridge Boathouse · £35/h · 无需预约</span></div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">16:00</div>
+        <div class="timeline-desc">撑船结束 → 打车去火车站（约10分钟）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">16:30</div>
+        <div class="timeline-desc">火车返程 → Paddington（约1小时）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">17:30</div>
+        <div class="timeline-desc">抵达 Paddington → 打车回酒店（约15分钟）</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">18:15</div>
+        <div class="timeline-desc">🍖 <strong>Kitty Fisher's 晚餐</strong>（步行3分钟）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 讲解团 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">上午</div>
+      <div class="block-time-value">11:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Footprints Tours 讲解团</div>
+          <a class="map-btn" href="https://maps.google.com/?q=16+Broad+Street+Oxford" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          英文免费讲解团，集合点 16 Broad Street。带你走最经典的学院和街道，90分钟左右。<br>
+          也可以预约<strong>中文讲解</strong>（牛津在读学生接单），约 £60/h。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">🆓 免费（英文）</span>
+          <span class="endorse-tag endorse-dist">📍 16 Broad Street</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">午餐</div>
+      <div class="block-time-value">12:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Turf Tavern</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Turf+Tavern+Oxford" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">英式传统酒馆，藏在叹息桥附近小巷里。克林顿和霍金都是常客，石头地窖氛围好，必点炸鱼薯条。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 12:00 · Annie Ding</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.4</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6952aad2000000002202cb8b" target="_blank">📖 牛津必去 · Turf Tavern 隐藏小酒馆 ↗</a>
+    </div>
+  </div>
+
+  <!-- 午休 -->
+  <div class="nap-card">
+    <div class="nap-icon">😴</div>
+    <div class="nap-text">
+      <strong>13:00–14:30 · 糯糯午休（就地）</strong><br>
+      全天在外，不回酒店。Turf Tavern 吃完，找附近安静咖啡馆坐到 14:30。<br>
+      推荐：<strong>The Grand Café</strong>（High St，宽敞有沙发）或 Covered Market 内找角落坐下。<br>
+      糯糯睡够了，<strong>15:00 出发撑船</strong>，玩得更好。
+    </div>
+  </div>
+
+  <!-- 撑船 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">下午</div>
+      <div class="block-time-value">15:00 – 16:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Cherwell River 撑船 🚣</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Magdalen+Bridge+Boathouse+Oxford" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">
+          站在平底船尾用长杆撑河，穿过柳荫和石桥，是牛津最经典的体验。<br>
+          小朋友坐船很安全，可以喂河边的鸭子。<strong>糯糯须穿救生衣</strong>（现场提供），提前跟他说好不要抗拒。
+        </div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-dist">💷 £35/小时·最多5人</span>
+          <span class="endorse-tag endorse-dist">📍 Magdalen Bridge Boathouse</span>
+          <span class="endorse-tag endorse-warn">⚠️ 救生衣必穿</span>
+        </div>
+      </div>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/685d6edb000000000d01ae9f" target="_blank">📖 英国牛津 · 撑篙船 Punting ↗</a>
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6848a006000000002100e786" target="_blank">📖 只有剑桥能撑船？牛津表示不服！↗</a>
+    </div>
+  </div>
+
+  <!-- 晚餐 -->
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">晚餐</div>
+      <div class="block-time-value">18:15</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">Kitty Fisher's Mayfair</div>
+          <a class="map-btn" href="https://maps.google.com/?q=Kitty+Fisher%27s+Mayfair+London" target="_blank">📍</a>
+        </div>
+        <div class="item-desc">英式烤肉，酒店步行3分钟。牛排和薯饼是招牌，提前一个月才能预订的小馆子。</div>
+        <div class="endorsement">
+          <span class="endorse-tag endorse-booked">✅ 已预定 18:15 · Annie Ding · 3位</span>
+          <span class="endorse-tag endorse-rating">⭐ Google 4.6</span>
+          <span class="endorse-tag endorse-dist">🚶 步行3分钟</span>
+          <span class="endorse-tag endorse-dist">人均 £65</span>
+        </div>
+      </div>
+      <div class="light-item">
+        <div class="light-item-icon">🏨</div>
+        <div class="light-item-text">
+          <strong>约 19:30 回酒店</strong>，糯糯按时哄睡。今天行程满，早点回来休息。
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 糯糯今天 -->
+<div class="kids-strip">
+  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-text">
+    <strong>糯糯今天</strong><br><br>
+    🚂 <strong>坐火车对小朋友是新奇体验。</strong>去程1小时，让他看窗外，给他备好零食和小玩具。<br><br>
+    🏛️ <strong>讲解团时间段注意不要太累。</strong>走路 + 听讲解约1.5小时，12:00 前必须吃午饭，不要拖到他叫饿才去找餐厅。<br><br>
+    😴 <strong>13:00–14:30 午休必须保住。</strong>全天在外，没有午睡就撑不到晚上。找咖啡馆坐下，给他一个安静角落睡着，不要催他。<br><br>
+    🚣 <strong>撑船前告诉他要穿救生衣。</strong>提前说好"坐船要穿一件特别的衣服，这样不会掉进水里"，避免现场抗拒穿衣大哭。<br><br>
+    🍖 <strong>晚餐糯糯节奏：</strong>18:15 Kitty Fisher's，约 19:30 回酒店哄睡。今天行程长，他撑到这里已经很不错了。
+  </div>
+</div>
+
+</body>
+</html>
