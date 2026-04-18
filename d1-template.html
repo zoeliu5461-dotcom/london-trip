@@ -153,29 +153,31 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
       </div>
 
       <!-- 方案切换 -->
-      <div class="plan-tabs">
-        <button class="plan-tab active" id="tab-a" onclick="switchPlan('a')">方案 A · 讲解团<br><span style="font-size:0.62rem;font-weight:400;opacity:0.85;">🕐 拼团中，待确认</span></button>
-        <button class="plan-tab" id="tab-b" onclick="switchPlan('b')">方案 B · 自行游览<br><span style="font-size:0.62rem;font-weight:400;">拼团不成时备用</span></button>
-      </div>
-      <div class="plan-body plan-a active" id="plan-a">
-        <div style="font-size:0.72rem;background:#fff8e1;border-left:3px solid #e8a000;padding:7px 10px;border-radius:0 4px 4px 0;margin-bottom:10px;color:#7a5a00;line-height:1.6;">
-          🕐 <strong>拼团进行中</strong>，人数凑满后确认。若拼团不成功，切换方案 B 自行游览，行程不受影响。
+      <div class="plan-switcher">
+        <div class="plan-tabs">
+          <button class="plan-tab active" onclick="d1SwitchPlan(this,0)">方案 A · 讲解团<br><span style="font-size:0.62rem;font-weight:400;opacity:0.85;">🕐 拼团中，待确认</span></button>
+          <button class="plan-tab" onclick="d1SwitchPlan(this,1)">方案 B · 自行游览<br><span style="font-size:0.62rem;font-weight:400;">拼团不成时备用</span></button>
         </div>
-        <div class="plan-content">
-          🎫 <strong>10:15</strong> 侧门入场 · <strong>10:30 讲解开始</strong> · 中文 · 带娃互动友好<br>
-          💡 讲生物进化历史，有小朋友互动，边走边听，带娃刚好
+        <div class="plan-body plan-a active">
+          <div style="font-size:0.72rem;background:#fff8e1;border-left:3px solid #e8a000;padding:7px 10px;border-radius:0 4px 4px 0;margin-bottom:10px;color:#7a5a00;line-height:1.6;">
+            🕐 <strong>拼团进行中</strong>，人数凑满后确认。若拼团不成功，切换方案 B 自行游览，行程不受影响。
+          </div>
+          <div class="plan-content">
+            🎫 <strong>10:15</strong> 侧门入场 · <strong>10:30 讲解开始</strong> · 中文 · 带娃互动友好<br>
+            💡 讲生物进化历史，有小朋友互动，边走边听，带娃刚好
+          </div>
         </div>
-      </div>
-      <div class="plan-body" id="plan-b">
-        <div class="plan-content">
-          <strong>推荐动线（约1.5小时，只走蓝区）：</strong><br>
-          ① 侧门进 → Hintze Hall 仰头看蓝鲸骨架（必拍）<br>
-          ② 左转进蓝区 → 恐龙馆<br>
-          ③ 恐龙馆旁哺乳动物厅（大象、长颈鹿骨架）<br>
-          ④ coin press 压硬币机（恐龙主题，几便士一个，小纪念品）<br>
-          ⑤ 从正门出，门口拍照留念<br>
-          <em>跳过：绿区、红区、达尔文中心——对小朋友意义不大</em><br><br>
-          <a class="xhs-link" href="https://www.xiaohongshu.com/explore/686a6a8300000000230043b6" target="_blank">📖 中文讲解「遇见英国带你看世界」↗</a>
+        <div class="plan-body">
+          <div class="plan-content">
+            <strong>推荐动线（约1.5小时，只走蓝区）：</strong><br>
+            ① 侧门进 → Hintze Hall 仰头看蓝鲸骨架（必拍）<br>
+            ② 左转进蓝区 → 恐龙馆<br>
+            ③ 恐龙馆旁哺乳动物厅（大象、长颈鹿骨架）<br>
+            ④ coin press 压硬币机（恐龙主题，几便士一个，小纪念品）<br>
+            ⑤ 从正门出，门口拍照留念<br>
+            <em>跳过：绿区、红区、达尔文中心——对小朋友意义不大</em><br><br>
+            <a class="xhs-link" href="https://www.xiaohongshu.com/explore/686a6a8300000000230043b6" target="_blank">📖 中文讲解「遇见英国带你看世界」↗</a>
+          </div>
         </div>
       </div>
 
@@ -294,11 +296,10 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 </div>
 
 <script>
-function switchPlan(p) {
-  document.getElementById('plan-a').classList.toggle('active', p==='a');
-  document.getElementById('plan-b').classList.toggle('active', p==='b');
-  document.getElementById('tab-a').classList.toggle('active', p==='a');
-  document.getElementById('tab-b').classList.toggle('active', p==='b');
+function d1SwitchPlan(btn, idx) {
+  var switcher = btn.closest('.plan-switcher');
+  switcher.querySelectorAll('.plan-tab').forEach(function(t,i){ t.classList.toggle('active', i===idx); });
+  switcher.querySelectorAll('.plan-body').forEach(function(b,i){ b.classList.toggle('active', i===idx); });
 }
 </script>
 
