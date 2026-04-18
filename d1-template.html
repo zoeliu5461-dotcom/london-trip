@@ -82,11 +82,6 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .plan-content { font-size:0.75rem; color:var(--muted); line-height:1.8; }
 .plan-content strong { color:var(--ink); }
 
-/* 午休卡 */
-.nap-card { background:rgba(201,135,42,0.08); border:1px solid rgba(201,135,42,0.25); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
-.nap-icon { font-size:1.3rem; flex-shrink:0; }
-.nap-text { font-size:0.75rem; color:var(--brown); line-height:1.55; }
-.nap-text strong { font-weight:700; color:var(--ink); }
 
 /* 提示卡 */
 .tip-card { background:var(--paper); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
@@ -213,12 +208,18 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
   </div>
 
   <!-- 午休 -->
-  <div class="nap-card">
-    <div class="nap-icon">😴</div>
-    <div class="nap-text">
-      <strong>13:00–15:00 · 回酒店午休</strong><br>
-      博物馆打车约15分钟回酒店。糯糯睡觉，大家休息。<br>
-      15:00 从酒店出发，预留路程 + 醒盹 + 小零食时间；到早了就在剧场附近轻松待一会儿，不再安排正式活动。
+  <div class="block-card">
+    <div class="block-header">
+      <div class="block-time-label">午休</div>
+      <div class="block-time-value">13:00 – 15:00</div>
+    </div>
+    <div class="block-body">
+      <div class="item-main">
+        <div class="item-title">
+          <div class="item-title-text">😴 回酒店午休</div>
+        </div>
+        <div class="item-desc">博物馆打车约15分钟回酒店。15:00 出发，预留醒盹时间，到早了在剧场附近待一会儿。</div>
+      </div>
     </div>
   </div>
 
