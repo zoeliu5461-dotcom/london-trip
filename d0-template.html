@@ -22,13 +22,10 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 
 .glance-card { margin:16px 16px 0; background:var(--paper); border-left:3px solid var(--rust); border-radius:0 12px 12px 0; padding:14px 16px; }
 .glance-label { font-size:0.58rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
-.glance-flow { display:flex; align-items:center; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+.glance-flow { display:flex; align-items:center; flex-wrap:wrap; gap:5px; }
 .glance-step { background:rgba(107,66,38,0.08); border-radius:6px; padding:5px 10px; font-size:0.72rem; color:var(--ink); font-weight:500; white-space:nowrap; }
 .glance-step.key { background:var(--rust); color:#fff; }
 .glance-arrow { color:var(--muted); font-size:0.7rem; }
-.glance-notes { display:flex; flex-direction:column; gap:4px; border-top:1px solid var(--border); padding-top:10px; }
-.glance-note { font-size:0.72rem; color:var(--muted); line-height:1.45; }
-.glance-note strong { color:var(--ink); }
 
 .day-body { padding:12px 16px 0; display:flex; flex-direction:column; gap:10px; }
 
@@ -45,33 +42,10 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .item-desc { font-size:0.78rem; color:var(--muted); line-height:1.6; }
 .item-desc strong { color:var(--ink); font-weight:600; }
 
-.endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; font-size:0.62rem; }
-.endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; letter-spacing:0.01em; }
+.endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; }
+.endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; }
 .endorse-booked { background:var(--green-bg); color:var(--green); }
 .endorse-rating { background:rgba(201,135,42,0.12); color:var(--brown); }
-.endorse-dist { background:var(--cream); color:var(--muted); }
-.endorse-warn { background:#FFF8E1; color:#B45309; }
-.endorse-xhs { background:#FFF0F0; color:var(--rust); }
-
-.light-item { display:flex; align-items:flex-start; gap:10px; padding:10px 12px; background:var(--cream); border-radius:10px; }
-.light-item-icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
-.light-item-text { font-size:0.75rem; color:var(--muted); line-height:1.5; }
-.light-item-text strong { color:var(--ink); font-weight:600; }
-
-.divider { display:flex; align-items:center; gap:8px; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-weight:600; }
-.divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
-
-.alt-toggle { display:flex; align-items:center; justify-content:space-between; padding:9px 12px; background:var(--cream); border-radius:8px; cursor:pointer; border:none; width:100%; text-align:left; font-family:inherit; font-size:0.75rem; color:var(--muted); font-weight:500; -webkit-tap-highlight-color:transparent; }
-.alt-toggle-label { display:flex; align-items:center; gap:6px; }
-.alt-toggle-arrow { font-size:0.65rem; color:var(--muted); transition:transform 0.28s cubic-bezier(0.4,0,0.2,1); display:inline-block; }
-.alt-toggle.open .alt-toggle-arrow { transform:rotate(180deg); }
-.alt-content { max-height:0; overflow:hidden; transition:max-height 0.32s cubic-bezier(0.4,0,0.2,1),opacity 0.28s ease,padding 0.28s ease; opacity:0; padding:0 12px; background:var(--cream); border-radius:0 0 8px 8px; margin-top:-4px; border-top:0px solid var(--border); }
-.alt-content.open { max-height:400px; opacity:1; padding:10px 12px 12px; border-top-width:1px; }
-.alt-name { font-family:'Fraunces',serif; font-size:0.95rem; font-weight:700; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; }
-.alt-desc { font-size:0.72rem; color:var(--muted); line-height:1.5; }
-
-.tip-card { background:var(--paper); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
-.tip-card strong { color:var(--ink); }
 
 .xhs-link { display:inline-block; font-size:0.75rem; color:var(--rust); text-decoration:none; line-height:1.5; }
 .xhs-link:hover { text-decoration:underline; }
@@ -94,53 +68,26 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 <div class="glance-card">
   <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
   <div class="glance-flow">
-    <div class="glance-step">✈️ 15:00 落地</div>
+    <div class="glance-step">✈️ 落地</div>
     <div class="glance-arrow">→</div>
-    <div class="glance-step">🚗 司机接机</div>
+    <div class="glance-step key">📦 ExCeL 领物</div>
     <div class="glance-arrow">→</div>
-    <div class="glance-step key">📦 17:00 领物 ExCeL</div>
+    <div class="glance-step">🏨 check-in</div>
     <div class="glance-arrow">→</div>
-    <div class="glance-step key">🏨 check-in</div>
-    <div class="glance-arrow">→</div>
-    <div class="glance-step">🍽️ 19:00 步行去吃饭</div>
+    <div class="glance-step key">🍽️ 19:00 晚饭</div>
     <div class="glance-arrow">→</div>
     <div class="glance-step">🏨 回酒店</div>
-  </div>
-  <div class="glance-notes">
-    <div class="glance-note">⚠️ 领物必带：<strong>护照 + 手机（App QR code）</strong></div>
-    <div class="glance-note">⚠️ 司机从 Gatwick 直送 ExCeL，领完物后再去酒店 check-in</div>
-    <div class="glance-note">⚠️ El Pirata 已预定 19:00，酒店步行1分钟，吃完直接回</div>
   </div>
 </div>
 
 <!-- BODY -->
 <div class="day-body">
 
-  <!-- 时段：落地 & 接机 -->
-  <div class="block-card">
-    <div class="block-header">
-      <div class="block-time-label">下午</div>
-      <div class="block-time-value">15:00</div>
-    </div>
-    <div class="block-body">
-      <div class="item-main">
-        <div class="item-title">
-          <div class="item-title-text">MU213 落地 · 伦敦盖特维克</div>
-          <a class="map-btn" href="https://maps.google.com/?q=Gatwick+Airport+London" target="_blank">📍</a>
-        </div>
-        <div class="item-desc">
-          09:40 上海浦东出发，<strong>15:00 抵达盖特维克</strong>。司机在出口举牌"Annie 女士"等候。
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- 时段：领物 -->
+  <!-- 领物 -->
   <div class="block-card">
     <div class="block-header">
       <div class="block-time-label">领物</div>
-      <div class="block-time-value">17:00 – 17:45</div>
+      <div class="block-time-value">约 17:00</div>
     </div>
     <div class="block-body">
       <div class="item-main">
@@ -149,50 +96,32 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
           <a class="map-btn" href="https://maps.google.com/?q=ExCeL+London" target="_blank">📍</a>
         </div>
         <div class="item-desc">
-          司机直接送到 <strong>ExCeL London West Entrance</strong>，门口下车无需停车。进 West Entrance 后按指引找领物区。
+          司机从 Gatwick 直送 ExCeL West Entrance，领完物后再去酒店 check-in。今天是领物第一天，不用排长队。<br><br>
+          司机在出口举牌 <strong>「Annie 女士」</strong>等候。
         </div>
-
-      </div>
-
-      <div class="tip-card" style="font-size:0.7rem;">
-        💡 领物后司机送去酒店 check-in，行李放好房间，步行去 El Pirata 吃晚饭，吃完走回来休息。
       </div>
     </div>
   </div>
 
-  <!-- 时段：晚餐 -->
+  <!-- 晚餐 -->
   <div class="block-card">
     <div class="block-header">
       <div class="block-time-label">晚餐</div>
       <div class="block-time-value">19:00</div>
     </div>
     <div class="block-body">
-
       <div class="item-main">
         <div class="item-title">
           <div class="item-title-text">El Pirata</div>
           <a class="map-btn" href="https://maps.google.com/?q=El+Pirata+Mayfair+London" target="_blank">📍</a>
         </div>
-        <div class="item-desc">
-          西班牙 Tapas。主食类选面包、米饭类，配蔬菜小菜，<strong>好消化、易入睡</strong>——赛前3天的第一顿，不需要大鱼大肉，稳住肠胃比什么都重要。
-        </div>
+        <div class="item-desc">西班牙 Tapas，酒店步行即到。赛前第一顿，主食类选面包、米饭，好消化、不踩胃。</div>
         <div class="endorsement">
           <span class="endorse-tag endorse-booked">✅ 已预定 19:00 · Zoe Liu</span>
           <span class="endorse-tag endorse-rating">⭐ Google 4.3</span>
-
-          <span class="endorse-tag endorse-dist">人均 £25</span>
-          <span class="endorse-tag" style="background:#e8f5e9;color:#2e7d32;">🏃 赛前补碳 · 轻口好消化</span>
         </div>
       </div>
       <a class="xhs-link" href="https://www.xiaohongshu.com/explore/680aa31b000000001200e9b4" target="_blank">📖 不用营销 · 伦敦真正好吃的西班牙 Tapas ↗</a>
-
-      <div class="light-item">
-        <div class="light-item-icon">🏨</div>
-        <div class="light-item-text">
-          <strong>吃完直接步行回酒店</strong>，今晚早点休息。时差调整从今晚开始，早睡比什么都值。
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -203,9 +132,7 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
   <div class="kids-strip-icon">🧒</div>
   <div class="kids-strip-text">
     <strong>糯糯今天</strong><br><br>
-    😵 <strong>今天是时差和飞行疲劳最明显的一天。</strong>飞了约12小时，落地时北京时间已经接近深夜，容易累、饿、情绪不稳。行程尽量从简，先以顺利落地、吃上饭、早点休息为目标就好。<br><br>
-    🍪 <strong>建议随身备一点小零食，避免下飞机后太饿。</strong>ExCeL 展馆大，找到餐厅需要时间，落地到晚饭之间有一段空档。<br><br>
-    🌙 <strong>今晚的目标只有一个：让他尽快睡着。</strong>进房间、洗漱、吃饭、哄睡，流程越短越好。不要试图"让他适应时差"或者"多玩一会儿"——越累越亢奋，越亢奋越难睡。困了就放下所有事情，先哄睡。
+    今天是时差和飞行疲劳最明显的一天，行程从简。以顺利吃上饭、早点回酒店休息为目标就好。
   </div>
 </div>
 
