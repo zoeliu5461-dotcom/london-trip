@@ -46,13 +46,12 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .item-desc { font-size:0.78rem; color:var(--muted); line-height:1.6; }
 .item-desc strong { color:var(--ink); font-weight:600; }
 
-.endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; font-size:0.62rem; }
-.endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; letter-spacing:0.01em; }
+.endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; }
+.endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; }
 .endorse-booked { background:var(--green-bg); color:var(--green); }
 .endorse-rating { background:rgba(201,135,42,0.12); color:var(--brown); }
 .endorse-dist { background:var(--cream); color:var(--muted); }
 .endorse-warn { background:#FFF8E1; color:#B45309; }
-.endorse-xhs { background:#FFF0F0; color:var(--rust); }
 
 .light-item { display:flex; align-items:flex-start; gap:10px; padding:10px 12px; background:var(--cream); border-radius:10px; }
 .light-item-icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
@@ -62,16 +61,7 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .divider { display:flex; align-items:center; gap:8px; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-weight:600; }
 .divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
 
-.alt-toggle { display:flex; align-items:center; justify-content:space-between; padding:9px 12px; background:var(--cream); border-radius:8px; cursor:pointer; border:none; width:100%; text-align:left; font-family:inherit; font-size:0.75rem; color:var(--muted); font-weight:500; -webkit-tap-highlight-color:transparent; }
-.alt-toggle-label { display:flex; align-items:center; gap:6px; }
-.alt-toggle-arrow { font-size:0.65rem; color:var(--muted); transition:transform 0.28s cubic-bezier(0.4,0,0.2,1); display:inline-block; }
-.alt-toggle.open .alt-toggle-arrow { transform:rotate(180deg); }
-.alt-content { max-height:0; overflow:hidden; transition:max-height 0.32s cubic-bezier(0.4,0,0.2,1),opacity 0.28s ease,padding 0.28s ease; opacity:0; padding:0 12px; background:var(--cream); border-radius:0 0 8px 8px; margin-top:-4px; border-top:0px solid var(--border); }
-.alt-content.open { max-height:400px; opacity:1; padding:10px 12px 12px; border-top-width:1px; }
-.alt-name { font-family:'Fraunces',serif; font-size:0.95rem; font-weight:700; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; }
-.alt-desc { font-size:0.72rem; color:var(--muted); line-height:1.5; }
-
-/* 方案切换（博物馆专用） */
+/* 方案切换 */
 .plan-tabs { display:flex; gap:0; border-radius:8px; overflow:hidden; border:1.5px solid var(--border); }
 .plan-tab { flex:1; padding:9px 8px; font-family:'Fraunces',serif; font-size:0.82rem; font-weight:700; border:none; cursor:pointer; transition:all 0.18s; background:var(--paper); color:var(--muted); -webkit-tap-highlight-color:transparent; }
 .plan-tab.active { background:var(--rust); color:#fff; }
@@ -82,14 +72,11 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .plan-content { font-size:0.75rem; color:var(--muted); line-height:1.8; }
 .plan-content strong { color:var(--ink); }
 
-
-/* 提示卡 */
-.tip-card { background:var(--paper); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
+.tip-card { background:var(--paper); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.7rem; color:var(--muted); line-height:1.55; }
 .tip-card strong { color:var(--ink); }
 
 .xhs-link { display:inline-block; font-size:0.75rem; color:var(--rust); text-decoration:none; line-height:1.5; }
 
-/* 糯糯今天 */
 .kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; }
 .kids-strip-title { font-size:0.75rem; font-weight:700; color:#880E4F; margin-bottom:6px; }
 .kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
@@ -98,101 +85,84 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 </head>
 <body>
 
-<!-- DAY HEADER -->
 <div class="day-header">
   <div class="day-label">Day 1 · 4月24日 周五</div>
   <div class="day-title">博物馆与儿童剧</div>
 </div>
 
-<!-- 扫一眼 -->
 <div class="glance-card">
   <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
   <div class="glance-flow">
-    <div class="glance-step key">🦕 10:30 讲解开始</div>
+    <div class="glance-step key">🦕 10:30 博物馆讲解</div>
     <div class="glance-arrow">→</div>
-    <div class="glance-step key">🍽️ 12:00 馆内午饭</div>
+    <div class="glance-step">🍽️ 12:00 馆内午饭</div>
     <div class="glance-arrow">→</div>
     <div class="glance-step rest">😴 13:00–15:00 回酒店午休</div>
     <div class="glance-arrow">→</div>
     <div class="glance-step key">🎭 17:00 儿童剧</div>
     <div class="glance-arrow">→</div>
     <div class="glance-step">🍝 18:00 晚饭</div>
-    <div class="glance-arrow">→</div>
-    <div class="glance-step">🏨 约19:30回</div>
   </div>
   <div class="glance-notes">
-    <div class="glance-note">⚠️ 讲解团 <strong>10:30 准时开始</strong>，10:15 前到侧门入场</div>
-    <div class="glance-note">⚠️ 恐龙馆 T-Rex 会突然动，<strong>提前告诉糯糯</strong></div>
-    <div class="glance-note">⚠️ Saponara 在 Islington，<strong>回酒店约 19:30</strong></div>
+    <div class="glance-note">⚠️ <strong>10:15 前到侧门</strong>，讲解团准时开始</div>
+    <div class="glance-note">⚠️ T-Rex 会动，<strong>提前告诉糯糯</strong></div>
   </div>
 </div>
 
-<!-- BODY -->
 <div class="day-body">
 
-  <!-- 时段：上午 · 博物馆 -->
+  <!-- 上午：博物馆 -->
   <div class="block-card">
     <div class="block-header">
       <div class="block-time-label">上午</div>
       <div class="block-time-value">10:15 – 12:00</div>
     </div>
     <div class="block-body">
-
       <div class="item-main">
         <div class="item-title">
           <div class="item-title-text">自然历史博物馆</div>
           <a class="map-btn" href="https://maps.google.com/?q=Natural+History+Museum+London" target="_blank">📍</a>
         </div>
-        <div class="item-desc">
-          入口走 <strong>Exhibition Road 侧门</strong>（非正门），队伍少、推车友好、有电梯。进来后可以先去蓝鲸大厅再折回。
-        </div>
+        <div class="item-desc"><strong>Exhibition Road 侧门</strong>入场，队伍少、推车友好。</div>
         <div class="endorsement">
-          <span class="endorse-tag endorse-dist">🚇 打车约15分钟</span>
           <span class="endorse-tag endorse-dist">🆓 免费入场</span>
         </div>
       </div>
 
-      <!-- 方案切换 -->
       <div class="plan-switcher">
         <div class="plan-tabs">
           <button class="plan-tab active" onclick="d1SwitchPlan(this,0)">方案 A · 讲解团<br><span style="font-size:0.62rem;font-weight:400;opacity:0.85;">🕐 拼团中，待确认</span></button>
           <button class="plan-tab" onclick="d1SwitchPlan(this,1)">方案 B · 自行游览<br><span style="font-size:0.62rem;font-weight:400;">拼团不成时备用</span></button>
         </div>
         <div class="plan-body plan-a active">
-          <div style="font-size:0.72rem;background:#fff8e1;border-left:3px solid #e8a000;padding:7px 10px;border-radius:0 4px 4px 0;margin-bottom:10px;color:#7a5a00;line-height:1.6;">
-            🕐 <strong>拼团进行中</strong>，人数凑满后确认。若拼团不成功，切换方案 B 自行游览，行程不受影响。
+          <div style="font-size:0.7rem;background:#fff8e1;border-left:3px solid #e8a000;padding:7px 10px;border-radius:0 4px 4px 0;margin-bottom:10px;color:#7a5a00;line-height:1.6;">
+            🕐 <strong>拼团进行中</strong>，人数凑满后确认。不成则切方案 B，行程不受影响。
           </div>
           <div class="plan-content">
-            🎫 <strong>10:15</strong> 侧门入场 · <strong>10:30 讲解开始</strong> · 中文 · 带娃互动友好<br>
-            💡 讲生物进化历史，有小朋友互动，边走边听，带娃刚好
+            🎫 <strong>10:15</strong> 侧门入场 · <strong>10:30 讲解开始</strong> · 中文 · 带娃互动友好
           </div>
           <a class="xhs-link" href="https://www.xiaohongshu.com/explore/686a6a8300000000230043b6" target="_blank">📖 中文讲解「遇见英国带你看世界」↗</a>
         </div>
         <div class="plan-body">
           <div class="plan-content">
-            <strong>推荐动线（约1.5小时，只走蓝区）：</strong><br>
-            ① 侧门进 → Hintze Hall 仰头看蓝鲸骨架（必拍）<br>
-            ② 左转进蓝区 → 恐龙馆<br>
-            ③ 恐龙馆旁哺乳动物厅（大象、长颈鹿骨架）<br>
-            ④ coin press 压硬币机（恐龙主题，几便士一个，小纪念品）<br>
-            ⑤ 从正门出，门口拍照留念<br>
-            <em>跳过：绿区、红区、达尔文中心——对小朋友意义不大</em>
+            <strong>只走蓝区（约1.5小时）：</strong><br>
+            侧门进 → Hintze Hall 蓝鲸 → 恐龙馆 → 哺乳动物厅 → 正门出<br>
+            <em>跳过绿区、红区、达尔文中心</em>
           </div>
         </div>
       </div>
 
       <div class="tip-card">
-        💡 <strong>恐龙馆的 T-Rex 会突然动！</strong>进去前告诉糯糯"里面有个大恐龙会动，但不是真的"，预警一下。另外，恐龙主题 coin press 压硬币机，几便士一个，小纪念品。
+        💡 恐龙馆 T-Rex 会突然动，进去前告诉糯糯"有个大恐龙会动，但不是真的"。
       </div>
-
     </div>
   </div>
 
-  <!-- 时段：午餐 -->
+  <!-- 中段：午饭 + 午休 -->
   <div class="block-card">
     <div class="block-header">
-      <div class="block-time-label">午餐</div>
-      <div class="block-time-value">12:00</div>
+      <div class="block-time-label">午饭 + 午休</div>
+      <div class="block-time-value">12:00 – 15:00</div>
     </div>
     <div class="block-body">
       <div class="item-main">
@@ -200,32 +170,21 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
           <div class="item-title-text">T. rex Restaurant</div>
           <a class="map-btn" href="https://maps.google.com/?q=T.rex+Restaurant+Natural+History+Museum+London" target="_blank">📍</a>
         </div>
-        <div class="item-desc">博物馆内，恐龙厅附近，看完恐龙顺路吃，方便为主。<strong>12:00 前去</strong>，周五人多排队快。</div>
+        <div class="item-desc">馆内，不出馆，省折返。<strong>12:00 前去</strong>，避开排队高峰。</div>
         <div class="endorsement">
           <span class="endorse-tag endorse-dist">馆内 · 无需预约</span>
-          <span class="endorse-tag endorse-warn">⚠️ 12:00前去，避开排队高峰</span>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- 午休 -->
-  <div class="block-card">
-    <div class="block-header">
-      <div class="block-time-label">午休</div>
-      <div class="block-time-value">13:00 – 15:00</div>
-    </div>
-    <div class="block-body">
       <div class="item-main">
         <div class="item-title">
           <div class="item-title-text">😴 回酒店午休</div>
         </div>
-        <div class="item-desc">博物馆打车约15分钟回酒店。15:00 出发，预留醒盹时间，到早了在剧场附近待一会儿。</div>
+        <div class="item-desc">吃完打车约15分钟回酒店，睡到 15:00 出发。</div>
       </div>
     </div>
   </div>
 
-  <!-- 时段：儿童剧 -->
+  <!-- 下午：儿童剧 -->
   <div class="block-card">
     <div class="block-header">
       <div class="block-time-label">下午</div>
@@ -237,10 +196,7 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
           <div class="item-title-text">I Want My Hat Back Trilogy 🎭</div>
           <a class="map-btn" href="https://maps.google.com/?q=Little+Angel+Studio+London" target="_blank">📍</a>
         </div>
-        <div class="item-desc">
-          改编自绘本的儿童音乐剧，全场互动。Little Angel Studio · Islington<br>
-          <span style="font-size:0.72rem;color:var(--muted);">演完出来约 17:45，步行或打车去晚饭正好</span>
-        </div>
+        <div class="item-desc">改编自绘本的儿童音乐剧，全场互动。Little Angel Studio · Islington</div>
         <div class="endorsement">
           <span class="endorse-tag endorse-booked">✅ 已预定 · £30</span>
           <span class="endorse-tag endorse-dist">🚕 打车约30分钟</span>
@@ -250,7 +206,7 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
     </div>
   </div>
 
-  <!-- 时段：晚餐 -->
+  <!-- 晚餐 -->
   <div class="block-card">
     <div class="block-header">
       <div class="block-time-label">晚餐</div>
@@ -262,36 +218,28 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
           <div class="item-title-text">Saponara</div>
           <a class="map-btn" href="https://maps.google.com/?q=Saponara+London+Islington" target="_blank">📍</a>
         </div>
-        <div class="item-desc">意大利 Pizza，赛前两天碳水补给的好选择，Pizza 管饱不踩胃。就在 Islington，剧场附近。</div>
+        <div class="item-desc">意大利 Pizza，Islington，剧场附近。赛前碳水补给稳妥。</div>
         <div class="endorsement">
-          <span class="endorse-tag endorse-booked">✅ 已预定 18:00｜到店报：Annie Ding（电话预订）</span>
+          <span class="endorse-tag endorse-booked">✅ 已预定 18:00 · Annie Ding</span>
           <span class="endorse-tag endorse-rating">⭐ Google 4.7</span>
-          <span class="endorse-tag" style="background:#e8f5e9;color:#2e7d32;">🏃 赛前碳水补给</span>
+          <span class="endorse-tag" style="background:#e8f5e9;color:#2e7d32;">🏃 赛前碳水</span>
         </div>
       </div>
-      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6649d8890000000014018d6e" target="_blank">📖 伦敦美食 · Saponara · 藏在 Islington 的意大利小馆 ↗</a>
-
+      <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6649d8890000000014018d6e" target="_blank">📖 Saponara · 藏在 Islington 的意大利小馆 ↗</a>
       <div class="light-item">
         <div class="light-item-icon">🚕</div>
-        <div class="light-item-text">
-          <strong>回酒店约 19:30</strong> · 打车约25分钟 / 地铁约35分钟<br>
-          今天回酒店相对较晚，提前叫好车。
-        </div>
+        <div class="light-item-text"><strong>19:30 前回酒店</strong>，打车约25分钟，提前叫车。</div>
       </div>
     </div>
   </div>
 
 </div>
 
-<!-- 糯糯今天 -->
 <div class="kids-strip">
   <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    🦕 <strong>博物馆是高刺激环境。</strong>蓝鲸、恐龙、人多声音嘈杂。<strong>12:00 前必须去吃午饭</strong>，不要等他叫饿——博物馆人一多，找位子排队都会很急。<br><br>
-    ⚠️ <strong>恐龙馆的 T-Rex 会突然动。</strong>进去前告诉他"里面有个大恐龙会动，但不是真的"，提前说好，免得当场吓哭。<br><br>
-    😴 <strong>午睡必须保住。</strong>下午还有儿童剧，没睡够进了剧场很容易闹。13:00 吃完直接回酒店，给他睡够再出发。<br><br>
-    🎭 <strong>15:00 出发不要急。</strong>路上给他一点小零食缓一缓，到了 Little Angel Studio 慢慢进去就好。<br><br>
-    🍝 <strong>儿童剧结束约 17:45</strong>，出来去 Saponara 吃饭，<strong>18:00 准时开吃，约 19:30 回酒店</strong>哄睡。付阿姨全程陪同，三人同进同出。
+    今天难点是博物馆高刺激（人多、嘈杂、T-Rex）+ 下午还有儿童剧，两段高密度连着来。<br><br>
+    13:00 吃完直接回酒店午睡保住，下午才有力气进剧场。
   </div>
 </div>
 
