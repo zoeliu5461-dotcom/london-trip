@@ -159,12 +159,15 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 
       <!-- 方案切换 -->
       <div class="plan-tabs">
-        <button class="plan-tab active" id="tab-a" onclick="switchPlan('a')">方案 A · 讲解团</button>
-        <button class="plan-tab" id="tab-b" onclick="switchPlan('b')">方案 B · 自行游览</button>
+        <button class="plan-tab active" id="tab-a" onclick="switchPlan('a')">方案 A · 讲解团<br><span style="font-size:0.62rem;font-weight:400;opacity:0.85;">🕐 拼团中，待确认</span></button>
+        <button class="plan-tab" id="tab-b" onclick="switchPlan('b')">方案 B · 自行游览<br><span style="font-size:0.62rem;font-weight:400;">拼团不成时备用</span></button>
       </div>
       <div class="plan-body plan-a active" id="plan-a">
+        <div style="font-size:0.72rem;background:#fff8e1;border-left:3px solid #e8a000;padding:7px 10px;border-radius:0 4px 4px 0;margin-bottom:10px;color:#7a5a00;line-height:1.6;">
+          🕐 <strong>拼团进行中</strong>，人数凑满后确认。若拼团不成功，切换方案 B 自行游览，行程不受影响。
+        </div>
         <div class="plan-content">
-          🎫 <strong>10:15</strong> 侧门入场 · <strong>10:30 讲解开始</strong> · 中文 · 已报名 ✅<br>
+          🎫 <strong>10:15</strong> 侧门入场 · <strong>10:30 讲解开始</strong> · 中文 · 带娃互动友好<br>
           💡 讲生物进化历史，有小朋友互动，边走边听，带娃刚好
         </div>
       </div>
