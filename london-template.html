@@ -94,8 +94,8 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .xhs-link { display:inline-block; font-size:0.75rem; color:var(--rust); text-decoration:none; line-height:1.5; }
 .xhs-link:hover { text-decoration:underline; }
 
-.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
-.kids-strip-icon { font-size:1.3rem; flex-shrink:0; }
+.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; }
+.kids-strip-title { font-size:0.75rem; font-weight:700; color:#880E4F; margin-bottom:6px; }
 .kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
 .kids-strip-text strong { font-weight:700; }
 
@@ -146,8 +146,8 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .xhs-link { display:inline-block; font-size:0.75rem; color:var(--rust); text-decoration:none; line-height:1.5; }
 .xhs-link:hover { text-decoration:underline; }
 
-.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
-.kids-strip-icon { font-size:1.3rem; flex-shrink:0; }
+.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; }
+.kids-strip-title { font-size:0.75rem; font-weight:700; color:#880E4F; margin-bottom:6px; }
 .kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
 .kids-strip-text strong { font-weight:700; }
 
@@ -189,8 +189,8 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .timeline-desc { font-size:0.75rem; color:var(--muted); line-height:1.5; }
 .timeline-desc strong { color:var(--ink); }
 
-.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; display:flex; gap:12px; align-items:flex-start; }
-.kids-strip-icon { font-size:1.3rem; flex-shrink:0; }
+.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; }
+.kids-strip-title { font-size:0.75rem; font-weight:700; color:#880E4F; margin-bottom:6px; }
 .kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
 .kids-strip-text strong { font-weight:700; }
 </style>
@@ -279,9 +279,8 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 
 <!-- 糯糯今天 -->
 <div class="kids-strip">
-  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    <strong>糯糯今天</strong><br><br>
     今天是时差和飞行疲劳最明显的一天，行程从简。以顺利吃上饭、早点回酒店休息为目标就好。
   </div>
 </div></div>
@@ -464,9 +463,8 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 
 <!-- 糯糯今天 -->
 <div class="kids-strip">
-  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    <strong>糯糯今天</strong><br><br>
     🦕 <strong>博物馆是高刺激环境。</strong>蓝鲸、恐龙、人多声音嘈杂。<strong>12:00 前必须去吃午饭</strong>，不要等他叫饿——博物馆人一多，找位子排队都会很急。<br><br>
     ⚠️ <strong>恐龙馆的 T-Rex 会突然动。</strong>进去前告诉他"里面有个大恐龙会动，但不是真的"，提前说好，免得当场吓哭。<br><br>
     😴 <strong>午睡必须保住。</strong>下午还有儿童剧，没睡够进了剧场很容易闹。13:00 吃完直接回酒店，给他睡够再出发。<br><br>
@@ -606,9 +604,8 @@ function switchPlan(p) {
 </div>
 
 <div class="kids-strip">
-  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    <strong>糯糯今天</strong><br><br>
     今天的 trade-off 是午睡大概率被牺牲，赛后直接回酒店补休是第一优先。<br><br>
     上午在 Fulham Palace 把电放够，进球场后状态会稳一些。
   </div>
@@ -782,9 +779,8 @@ function switchPlan(p) {
 
 <!-- 糯糯今天 -->
 <div class="kids-strip">
-  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    <strong>糯糯今天</strong><br><br>
     🌅 <strong>今天付阿姨和糯糯单独行动，唯一的任务是上午把体力用掉。</strong>St James's Park 步行5分钟，鸭子、草地，不用赶任何事。<br><br>
     😴 <strong>午饭后就地午睡是今天的留白。</strong>下午在酒店等柯南回来，不需要再出门，这段保住了晚饭才有力气。<br><br>
     🚫 <strong>不要带糯糯去 The Mall 接柯南。</strong>Westminster 站当天只出不进，赛道沿线人流极大，带孩子等候风险高。柯南冲线后步行回酒店。
@@ -993,9 +989,8 @@ function switchPlan(p) {
 
 <!-- 糯糯今天 -->
 <div class="kids-strip">
-  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    <strong>糯糯今天</strong><br><br>
     🕐 <strong>今天节点多、时间卡。</strong>讲解团走完是12:00，午饭之后紧接着午休，16:30 必须在火车站——中间没有松弛的余地，任何一段拖延都会压到下一段。<br><br>
     😴 <strong>13:00–14:30 是唯一的留白。</strong>这段不回酒店，就地找咖啡馆坐够。午休保不住，撑船那一小时就很难过。<br><br>
     🚣 <strong>撑船是今天最值得期待的体验。</strong>他在水上，鸭子就在旁边，只要睡够了基本不会出问题。
@@ -1189,9 +1184,8 @@ function switchPlan(p) {
 
 <!-- 糯糯今天 -->
 <div class="kids-strip">
-  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    <strong>糯糯今天</strong><br><br>
     ⛰️ <strong>今天的消耗主要来自 Heath 的坡道和步行时间。</strong>下午 2.5 小时在户外，体力比看起来花得更快，尤其是孩子。<br><br>
     😴 <strong>13:00–14:30 是今天唯一的留白，不回酒店。</strong>Heath 能不能走完全，取决于这段有没有休息到。Ginger & White 就在附近，定好地方坐下来。
   </div>
@@ -1381,9 +1375,8 @@ function switchPlan(p) {
 
 <!-- 糯糯今天 -->
 <div class="kids-strip">
-  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    <strong>糯糯今天</strong><br><br>
     🌬️ <strong>今天最难的是车程长 + 海边风大，上午不要把体力提前用完。</strong>Lewes 慢慢逛就好，体力留给下午。<br><br>
     😴 <strong>13:00–14:30 午休决定下午怎么走。</strong>睡够了正常走步道；如果午休不顺或风太大，Birling Gap 只短停，不硬走。
   </div>
@@ -1478,9 +1471,8 @@ function switchPlan(p) {
 
 <!-- 糯糯今天 -->
 <div class="kids-strip">
-  <div class="kids-strip-icon">🧒</div>
+  <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    <strong>糯糯今天</strong><br><br>
     今天的体力消耗集中在下午候机和飞行，上午节奏轻松即可。<br><br>
     <strong>16:00 到机场是硬截止</strong>，上午活动安排好收尾时间。
   </div>
