@@ -6,30 +6,30 @@
 <title>伦敦行程 · 柯南 2026</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-.tabs-bar { position:fixed;top:0;left:0;right:0;z-index:1000;background:#1A1A1A;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;height:48px;border-bottom:2px solid #2563EB;max-width:480px;margin:0 auto; }
+.tabs-bar { position:fixed;top:0;left:0;right:0;z-index:1000;background:#1A1A1A;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;height:48px;border-bottom:2px solid #7C5339;max-width:480px;margin:0 auto; }
 .tabs-bar::-webkit-scrollbar { display:none; }
 .tab-btn { flex:0 0 auto;padding:0 16px;background:none;border:none;color:rgba(255,255,255,0.5);font-size:0.7rem;font-weight:600;letter-spacing:0.05em;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color 0.15s,border-color 0.15s; }
-.tab-btn.active,.tab-btn:hover { color:#fff;border-bottom-color:#2563EB; }
+.tab-btn.active,.tab-btn:hover { color:#fff;border-bottom-color:#7C5339; }
 .tab-section { display:none; }
 .tab-section.active { display:block; }
 body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#F5F5F3;color:#1A1A1A;min-height:100vh;max-width:480px;margin:0 auto;padding-top:48px;padding-bottom:60px; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  /* Backgrounds */
-  --cream: #F5F5F3; --paper: #EDEDEB;
+  /* Backgrounds — warm off-white */
+  --cream: #F8F5F0; --paper: #EFE9E1;
   /* Text */
-  --ink: #1A1A1A; --muted: #6B7280;
+  --ink: #1C1917; --muted: #78716C;
   /* Borders */
-  --border: #E2E2DF;
-  /* Accent (single blue) */
-  --accent: #2563EB; --accent-light: #EFF4FF;
-  /* Booked / confirmed (green, toned down) */
-  --green: #15803D; --green-bg: #F0FDF4;
-  /* Warning only */
-  --warn: #B45309; --warn-bg: #FFFBEB;
-  /* Legacy aliases — kept for backward compat */
-  --rust: #2563EB; --gold: #2563EB; --brown: #6B7280;
+  --border: #E7E0D8;
+  /* Single warm accent (low-sat cognac/brown) */
+  --accent: #7C5339; --accent-light: #FDF6F1;
+  /* Booked / confirmed */
+  --green: #276749; --green-bg: #F0F7F4;
+  /* Warning */
+  --warn: #92400E; --warn-bg: #FFF8ED;
+  /* Legacy aliases */
+  --rust: #7C5339; --gold: #7C5339; --brown: #78716C;
 }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; max-width:480px; margin:0 auto; padding-bottom:60px; }
 
@@ -66,8 +66,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; }
 .endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; }
 .endorse-booked { background:var(--green-bg); color:var(--green); }
-.endorse-rating { background:#F3F4F6; color:var(--muted); }
-.endorse-xhs { background:#F3F4F6; color:var(--muted); }
+.endorse-rating { background:rgba(124,83,57,0.07); color:var(--muted); }
+.endorse-xhs { background:rgba(124,83,57,0.07); color:var(--muted); }
 .endorse-warn { background:var(--warn-bg); color:var(--warn); }
 
 .light-item { display:inline-flex; align-items:flex-start; gap:7px; padding:5px 10px 5px 8px; background:var(--cream); border-radius:8px; max-width:100%; align-self:flex-start; }
@@ -85,15 +85,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .alt-desc { font-size:0.72rem; color:var(--muted); line-height:1.5; }
 
 /* 比赛主卡 */
-.hero-card { background:linear-gradient(155deg,#111111 0%,#1A1A2E 55%,#16213E 100%); border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.32); position:relative; }
-.hero-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,#60A5FA 0%,#93C5FD 50%,#60A5FA 100%); }
+.hero-card { background:linear-gradient(155deg,#1A1009 0%,#2D1A0E 55%,#1A1009 100%); border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.32); position:relative; }
+.hero-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,#C49A74 0%,#D4A882 50%,#C49A74 100%); }
 .hero-header { padding:16px 18px 12px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:space-between; }
-.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#93C5FD; font-weight:600; }
+.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#D4A882; font-weight:600; }
 .hero-time { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.03em; }
 .hero-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:14px; }
 .hero-title { font-size:1.5rem; font-weight:800; color:#fff; line-height:1.08; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; letter-spacing:-0.02em; }
 .hero-title .map-btn { background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.15); }
-.hero-vs { display:block; font-style:italic; color:#93C5FD; font-size:1rem; opacity:0.9; margin:2px 0; }
+.hero-vs { display:block; font-style:italic; color:#D4A882; font-size:1rem; opacity:0.9; margin:2px 0; }
 .hero-venue { font-size:0.72rem; color:rgba(255,255,255,0.45); }
 .hero-seat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.65; }
 .hero-seat strong { color:#fff; font-weight:700; }
@@ -103,15 +103,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .xhs-link { display:inline-block; font-size:0.75rem; color:var(--accent); text-decoration:none; line-height:1.5; }
 .xhs-link:hover { text-decoration:underline; color:var(--accent); }
 
-.kids-strip { margin:10px 16px 0; background:#EFF4FF; border-radius:12px; padding:13px 16px; }
-.kids-strip-title { font-size:0.75rem; font-weight:700; color:#1E3A6E; margin-bottom:6px; }
-.kids-strip-text { font-size:0.75rem; color:#374151; line-height:1.55; }
+.kids-strip { margin:10px 16px 0; background:#FDF6F1; border-radius:12px; padding:13px 16px; }
+.kids-strip-title { font-size:0.75rem; font-weight:700; color:#3D2B1F; margin-bottom:6px; }
+.kids-strip-text { font-size:0.75rem; color:#44403C; line-height:1.55; }
 .kids-strip-text strong { font-weight:600; }
 
 
 /* 跑者主卡 */
 .hero-card {
-  background: linear-gradient(155deg, #111111 0%, #1A1A2E 55%, #16213E 100%);
+  background: linear-gradient(155deg, #1A1009 0%, #2D1A0E 55%, #1A1009 100%);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0,0,0,0.32), 0 2px 8px rgba(0,0,0,0.2);
@@ -122,7 +122,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #60A5FA 0%, #93C5FD 50%, #60A5FA 100%);
+  background: linear-gradient(90deg, #C49A74 0%, #D4A882 50%, #C49A74 100%);
 }
 .hero-header {
   padding: 16px 18px 12px;
@@ -131,11 +131,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
   align-items: center;
   justify-content: space-between;
 }
-.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#93C5FD; font-weight:600; }
+.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#D4A882; font-weight:600; }
 .hero-time { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.03em; }
 .hero-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:14px; }
 .hero-title { font-size:1.4rem; font-weight:800; color:#fff; line-height:1.1; letter-spacing:-0.02em; }
-.hero-subtitle { font-style:italic; color:#93C5FD; font-size:0.9rem; opacity:0.9; display:block; margin-top:2px; }
+.hero-subtitle { font-style:italic; color:#D4A882; font-size:0.9rem; opacity:0.9; display:block; margin-top:2px; }
 .hero-seat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.65; }
 .hero-seat strong { color:#fff; font-weight:700; }
 .hero-alerts { display:flex; flex-direction:column; gap:5px; }
@@ -155,9 +155,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .xhs-link { display:inline-block; font-size:0.75rem; color:var(--accent); text-decoration:none; line-height:1.5; }
 .xhs-link:hover { text-decoration:underline; color:var(--accent); }
 
-.kids-strip { margin:10px 16px 0; background:#EFF4FF; border-radius:12px; padding:13px 16px; }
-.kids-strip-title { font-size:0.75rem; font-weight:700; color:#1E3A6E; margin-bottom:6px; }
-.kids-strip-text { font-size:0.75rem; color:#374151; line-height:1.55; }
+.kids-strip { margin:10px 16px 0; background:#FDF6F1; border-radius:12px; padding:13px 16px; }
+.kids-strip-title { font-size:0.75rem; font-weight:700; color:#3D2B1F; margin-bottom:6px; }
+.kids-strip-text { font-size:0.75rem; color:#44403C; line-height:1.55; }
 .kids-strip-text strong { font-weight:600; }
 
 /* 航班主卡 */
@@ -173,7 +173,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #60A5FA 0%, #93C5FD 50%, #60A5FA 100%);
+  background: linear-gradient(90deg, #C49A74 0%, #D4A882 50%, #C49A74 100%);
 }
 .flight-header {
   padding: 16px 18px 12px;
@@ -182,7 +182,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
   align-items: center;
   justify-content: space-between;
 }
-.flight-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#93C5FD; font-weight:600; }
+.flight-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#D4A882; font-weight:600; }
 .flight-time { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.03em; }
 .flight-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:12px; }
 .flight-title { font-size:1.25rem; font-weight:800; color:#fff; line-height:1.1; letter-spacing:-0.02em; }
@@ -198,9 +198,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .timeline-desc { font-size:0.75rem; color:var(--muted); line-height:1.5; }
 .timeline-desc strong { color:var(--ink); }
 
-.kids-strip { margin:10px 16px 0; background:#EFF4FF; border-radius:12px; padding:13px 16px; }
-.kids-strip-title { font-size:0.75rem; font-weight:700; color:#1E3A6E; margin-bottom:6px; }
-.kids-strip-text { font-size:0.75rem; color:#374151; line-height:1.55; }
+.kids-strip { margin:10px 16px 0; background:#FDF6F1; border-radius:12px; padding:13px 16px; }
+.kids-strip-title { font-size:0.75rem; font-weight:700; color:#3D2B1F; margin-bottom:6px; }
+.kids-strip-text { font-size:0.75rem; color:#44403C; line-height:1.55; }
 .kids-strip-text strong { font-weight:600; }
 
 /* D1 plan switcher */
@@ -229,7 +229,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 <button class="tab-btn" onclick="showTab('d6')" id="btn-d6">D6</button>
 <button class="tab-btn" onclick="showTab('d7')" id="btn-d7">D7</button>
 </div>
-<div class="tab-section active" id="tab-cover"><div style="padding:40px 24px 60px;max-width:480px;margin:0 auto;"><div style="font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:#6B7280;font-weight:600;margin-bottom:12px;">London · Apr 2026</div><div style="font-size:clamp(1.9rem,8vw,3rem);font-weight:800;color:#1A1A1A;line-height:1.05;letter-spacing:-0.03em;margin-bottom:8px;">柯南的<br>伦敦行程</div><div style="font-size:0.78rem;color:#6B7280;margin-bottom:32px;">2026 London Marathon · 4月23日–4月30日</div><div style="display:flex;flex-direction:column;gap:8px;"><div onclick="showTab('d0')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#2563EB;min-width:28px;">D0</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">到达 + 领物</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月23日 周四</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d1')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#2563EB;min-width:28px;">D1</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">自然历史博物馆 + 儿童剧</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月24日 周五</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d2')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#2563EB;min-width:28px;">D2</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">英超 Fulham vs Aston Villa</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月25日 周六</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d3')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#2563EB;min-width:28px;">D3</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">马拉松比赛日 🏃</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月26日 周日</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d4')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#2563EB;min-width:28px;">D4</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">牛津一日游</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月27日 周一</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d5')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#2563EB;min-width:28px;">D5</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">Hampstead 漫步</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月28日 周二</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d6')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#2563EB;min-width:28px;">D6</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">海岸线 & 小镇</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月29日 周三</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d7')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#2563EB;min-width:28px;">D7</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">约朋友 & 返程</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月30日 周四</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div></div></div></div>
+<div class="tab-section active" id="tab-cover"><div style="padding:40px 24px 60px;max-width:480px;margin:0 auto;"><div style="font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:#6B7280;font-weight:600;margin-bottom:12px;">London · Apr 2026</div><div style="font-size:clamp(1.9rem,8vw,3rem);font-weight:800;color:#1A1A1A;line-height:1.05;letter-spacing:-0.03em;margin-bottom:8px;">柯南的<br>伦敦行程</div><div style="font-size:0.78rem;color:#6B7280;margin-bottom:32px;">2026 London Marathon · 4月23日–4月30日</div><div style="display:flex;flex-direction:column;gap:8px;"><div onclick="showTab('d0')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#7C5339;min-width:28px;">D0</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">到达 + 领物</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月23日 周四</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d1')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#7C5339;min-width:28px;">D1</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">自然历史博物馆 + 儿童剧</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月24日 周五</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d2')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#7C5339;min-width:28px;">D2</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">英超 Fulham vs Aston Villa</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月25日 周六</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d3')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#7C5339;min-width:28px;">D3</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">马拉松比赛日 🏃</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月26日 周日</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d4')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#7C5339;min-width:28px;">D4</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">牛津一日游</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月27日 周一</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d5')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#7C5339;min-width:28px;">D5</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">Hampstead 漫步</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月28日 周二</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d6')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#7C5339;min-width:28px;">D6</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">海岸线 & 小镇</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月29日 周三</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div><div onclick="showTab('d7')" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-size:0.85rem;font-weight:700;color:#7C5339;min-width:28px;">D7</div><div style="flex:1;"><div style="font-size:0.8rem;font-weight:600;color:#1A1A1A;">约朋友 & 返程</div><div style="font-size:0.68rem;color:#6B7280;margin-top:1px;">4月30日 周四</div></div><div style="color:#9CA3AF;font-size:0.8rem;">›</div></div></div></div></div>
 <div class="tab-section" id="tab-d0"><!-- DAY HEADER -->
 <div class="day-header">
   <div class="day-label">Day 0 · 4月23日 周四</div>
@@ -356,7 +356,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
           <button class="plan-tab" onclick="d1SwitchPlan(this,1)">方案 B · 自行游览<br><span style="font-size:0.62rem;font-weight:400;">拼团不成时备用</span></button>
         </div>
         <div class="plan-body plan-a active">
-          <div style="font-size:0.7rem;background:#fff8e1;border-left:3px solid var(--warn);padding:7px 10px;border-radius:0 4px 4px 0;color:var(--warn);line-height:1.6;margin-bottom:10px;">
+          <div style="font-size:0.7rem;background:#fff8e1;border-left:3px solid var(--warn);padding:7px 10px;border-radius:0 4px 4px 0;color:#7C3D0E;line-height:1.6;margin-bottom:10px;">
             🕐 <strong>拼团进行中</strong>，人数凑满后确认。不成则切方案 B，行程不受影响。
           </div>
           <div class="plan-content">
@@ -443,7 +443,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
         <div class="endorsement">
           <span class="endorse-tag endorse-booked">✅ 已预定 18:00 · Annie Ding</span>
           <span class="endorse-tag endorse-rating">⭐ Google 4.7</span>
-          <span class="endorse-tag" style="background:#F0FDF4;color:#15803D;">🏃 赛前碳水</span>
+          <span class="endorse-tag" style="background:#F0F7F4;color:#276749;">🏃 赛前碳水</span>
         </div>
       </div>
       <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6649d8890000000014018d6e" target="_blank">📖 Saponara · 藏在 Islington 的意大利小馆 ↗</a>
@@ -571,7 +571,7 @@ function d1SwitchPlan(btn, idx) {
         <div class="endorsement">
           <span class="endorse-tag endorse-booked">✅ 已预订 17:45 · Annie Ding</span>
           <span class="endorse-tag endorse-rating">⭐ Google 4.7</span>
-          <span class="endorse-tag" style="background:#F0FDF4;color:#15803D;">🏃 赛前补碳</span>
+          <span class="endorse-tag" style="background:#F0F7F4;color:#276749;">🏃 赛前补碳</span>
         </div>
       </div>
       <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6424c3f4000000001203d2c1" target="_blank">📖 伦敦宝藏日料店 · Chisou ↗</a>
@@ -744,7 +744,7 @@ function d1SwitchPlan(btn, idx) {
         <div class="endorsement">
           <span class="endorse-tag endorse-booked">✅ 已预定 17:00 · Annie Ding</span>
           <span class="endorse-tag endorse-rating">⭐ Google 4.5</span>
-          <span class="endorse-tag" style="background:#FFFBEB;color:#B45309;">🏃 赛后犒劳首选</span>
+          <span class="endorse-tag" style="background:#FFF8ED;color:#92400E;">🏃 赛后犒劳首选</span>
         </div>
       </div>
       <div class="light-item">
