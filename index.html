@@ -199,16 +199,54 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .kids-strip-text { font-size:0.75rem; color:#44403C; line-height:1.55; }
 .kids-strip-text strong { font-weight:600; }
 
-/* D1 plan switcher */
-.plan-tabs { display:flex; gap:0; border-radius:8px; overflow:hidden; border:1.5px solid var(--border); }
-.plan-tab { flex:1; padding:9px 8px; font-size:0.78rem; font-weight:600; border:none; cursor:pointer; transition:all 0.18s; background:var(--paper); color:var(--muted); -webkit-tap-highlight-color:transparent; }
-.plan-tab.active { background:var(--accent); color:#fff; }
-.plan-tab:first-child { border-right:1px solid var(--border); }
-.plan-body { display:none; background:var(--cream); border:1.5px solid var(--border); border-top:none; border-radius:0 0 8px 8px; padding:12px 14px; }
-.plan-body.active { display:block; }
-.plan-body.plan-a { border-color:var(--accent); }
-.plan-content { font-size:0.75rem; color:var(--muted); line-height:1.8; }
-.plan-content strong { color:var(--ink); }
+/* D1 plan switcher — segmented control style */
+.plan-switcher { display:flex; flex-direction:column; gap:0; }
+.plan-tabs {
+  display: flex;
+  gap: 0;
+  background: var(--paper);
+  border-radius: 8px 8px 0 0;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  overflow: hidden;
+}
+.plan-tab {
+  flex: 1;
+  padding: 9px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  background: transparent;
+  color: var(--muted);
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.4;
+  text-align: center;
+}
+.plan-tab.active { background: var(--accent); color: #fff; }
+.plan-tab:first-child { border-right: 1px solid var(--border); }
+.plan-body {
+  display: none;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 0 0 8px 8px;
+  padding: 12px 14px;
+  border-top: none;
+}
+.plan-body.active { display: block; }
+.plan-notice {
+  font-size: 0.72rem;
+  color: var(--warn);
+  line-height: 1.55;
+  margin-bottom: 8px;
+  padding-left: 2px;
+  border-left: 2px solid var(--warn);
+  padding-left: 8px;
+}
+.plan-notice strong { color: var(--warn); }
+.plan-content { font-size: 0.75rem; color: var(--muted); line-height: 1.8; }
+.plan-content strong { color: var(--ink); }
 .tip-card { background:var(--paper); border-left:3px solid #D1D5DB; border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.7rem; color:var(--muted); line-height:1.55; }
 .tip-card strong { color:var(--ink); }
 </style>
@@ -351,10 +389,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
           <button class="plan-tab active" onclick="d1SwitchPlan(this,0)">方案 A · 讲解团<br><span style="font-size:0.62rem;font-weight:400;opacity:0.85;">🕐 拼团中，待确认</span></button>
           <button class="plan-tab" onclick="d1SwitchPlan(this,1)">方案 B · 自行游览<br><span style="font-size:0.62rem;font-weight:400;">拼团不成时备用</span></button>
         </div>
-        <div class="plan-body plan-a active">
-          <div style="font-size:0.7rem;background:#fff8e1;border-left:3px solid var(--warn);padding:7px 10px;border-radius:0 4px 4px 0;color:#7C3D0E;line-height:1.6;margin-bottom:10px;">
-            🕐 <strong>拼团进行中</strong>，人数凑满后确认。不成则切方案 B，行程不受影响。
-          </div>
+        <div class="plan-body active">
+          <div class="plan-notice">🕐 <strong>拼团进行中</strong>，人数凑满后确认。不成则切方案 B，行程不受影响。</div>
           <div class="plan-content">
             🎫 <strong>10:15</strong> 侧门入场 · <strong>10:30 讲解开始</strong> · 中文 · 带娃互动友好
           </div>
