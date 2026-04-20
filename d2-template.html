@@ -4,27 +4,36 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>D2 · 英超比赛日</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Noto+Sans+SC:wght@300;400;500;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --cream: #F5F0E8; --paper: #EDE8DC; --brown: #6B4226;
-  --rust: #B85C38; --gold: #C9872A; --ink: #1A1A1A;
-  --muted: #6B6B5A; --border: rgba(107,66,38,0.15);
-  --green: #2E7D32; --green-bg: #E8F5E9;
+  /* Backgrounds */
+  --cream: #F5F5F3; --paper: #EDEDEB;
+  /* Text */
+  --ink: #1A1A1A; --muted: #6B7280;
+  /* Borders */
+  --border: #E2E2DF;
+  /* Accent (single blue) */
+  --accent: #2563EB; --accent-light: #EFF4FF;
+  /* Booked / confirmed (green, toned down) */
+  --green: #15803D; --green-bg: #F0FDF4;
+  /* Warning only */
+  --warn: #B45309; --warn-bg: #FFFBEB;
+  /* Legacy aliases — kept for backward compat */
+  --rust: #2563EB; --gold: #2563EB; --brown: #6B7280;
 }
-body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; max-width:480px; margin:0 auto; padding-bottom:60px; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; max-width:480px; margin:0 auto; padding-bottom:60px; }
 
-.day-header { background:var(--paper); padding:32px 24px 24px; border-bottom:2px solid var(--rust); position:relative; overflow:hidden; }
-.day-header::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--gold); }
-.day-label { font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
-.day-title { font-family:'Fraunces',serif; font-size:clamp(2rem,8vw,3rem); font-weight:900; font-style:italic; color:var(--ink); line-height:1; text-wrap:balance; }
+.day-header { background:var(--paper); padding:32px 24px 24px; border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
+.day-header::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--accent); }
+.day-label { font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:10px; }
+.day-title { font-size:clamp(1.75rem,7vw,2.6rem); font-weight:800; color:var(--ink); line-height:1.08; letter-spacing:-0.02em; text-wrap:balance; }
 
-.glance-card { margin:16px 16px 0; background:var(--paper); border-left:3px solid var(--rust); border-radius:0 12px 12px 0; padding:14px 16px; }
-.glance-label { font-size:0.58rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px; }
+.glance-card { margin:16px 16px 0; background:var(--paper); border-left:3px solid var(--accent); border-radius:0 12px 12px 0; padding:14px 16px; }
+.glance-label { font-size:0.58rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:10px; }
 .glance-flow { display:flex; align-items:center; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
 .glance-step { background:rgba(107,66,38,0.08); border-radius:6px; padding:5px 10px; font-size:0.72rem; color:var(--ink); font-weight:500; white-space:nowrap; }
-.glance-step.key { background:var(--rust); color:#fff; }
+.glance-step.key { background:var(--accent); color:#fff; }
 .glance-arrow { color:var(--muted); font-size:0.7rem; }
 .glance-notes { display:flex; flex-direction:column; gap:4px; border-top:1px solid var(--border); padding-top:10px; }
 .glance-note { font-size:0.72rem; color:var(--muted); line-height:1.45; }
@@ -35,11 +44,11 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .block-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
 .block-header { background:var(--paper); padding:9px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); }
 .block-time-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
-.block-time-value { font-size:0.72rem; font-weight:700; color:var(--rust); margin-left:auto; }
+.block-time-value { font-size:0.72rem; font-weight:600; color:var(--muted); margin-left:auto; }
 .block-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
 
 .item-main { display:flex; flex-direction:column; gap:5px; }
-.item-title { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:700; color:var(--ink); display:flex; align-items:flex-start; justify-content:space-between; gap:8px; line-height:1.2; }
+.item-title { font-size:1.05rem; font-weight:700; color:var(--ink); letter-spacing:-0.01em; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; line-height:1.2; }
 .item-title-text { flex:1; }
 .map-btn { flex-shrink:0; width:28px; height:28px; background:var(--cream); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; text-decoration:none; margin-top:-2px; }
 .item-desc { font-size:0.78rem; color:var(--muted); line-height:1.6; }
@@ -48,9 +57,9 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; }
 .endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; }
 .endorse-booked { background:var(--green-bg); color:var(--green); }
-.endorse-rating { background:rgba(201,135,42,0.12); color:var(--brown); }
-.endorse-xhs { background:#FFF0F0; color:var(--rust); }
-.endorse-warn { background:#FFF8E1; color:#B45309; }
+.endorse-rating { background:#F3F4F6; color:var(--muted); }
+.endorse-xhs { background:#F3F4F6; color:var(--muted); }
+.endorse-warn { background:var(--warn-bg); color:var(--warn); }
 
 .light-item { display:inline-flex; align-items:flex-start; gap:7px; padding:5px 10px 5px 8px; background:var(--cream); border-radius:8px; max-width:100%; align-self:flex-start; }
 .light-item-icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
@@ -63,32 +72,32 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
 .alt-toggle.open .alt-toggle-arrow { transform:rotate(180deg); }
 .alt-content { max-height:0; overflow:hidden; transition:max-height 0.32s cubic-bezier(0.4,0,0.2,1),opacity 0.28s ease,padding 0.28s ease; opacity:0; padding:0 12px; background:var(--cream); border-radius:0 0 8px 8px; margin-top:-4px; border-top:0px solid var(--border); }
 .alt-content.open { max-height:300px; opacity:1; padding:10px 12px 12px; border-top-width:1px; }
-.alt-name { font-family:'Fraunces',serif; font-size:0.95rem; font-weight:700; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; }
+.alt-name { font-size:0.92rem; font-weight:700; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; }
 .alt-desc { font-size:0.72rem; color:var(--muted); line-height:1.5; }
 
 /* 比赛主卡 */
-.hero-card { background:linear-gradient(155deg,#0F0F0F 0%,#1C0A00 55%,#2D1208 100%); border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.32); position:relative; }
-.hero-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,var(--gold) 0%,#E8A83A 50%,var(--gold) 100%); }
+.hero-card { background:linear-gradient(155deg,#111111 0%,#1A1A2E 55%,#16213E 100%); border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.32); position:relative; }
+.hero-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,#60A5FA 0%,#93C5FD 50%,#60A5FA 100%); }
 .hero-header { padding:16px 18px 12px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:space-between; }
-.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); font-weight:700; }
-.hero-time { font-family:'Fraunces',serif; font-size:1.7rem; font-weight:900; color:#fff; letter-spacing:-0.02em; }
+.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#93C5FD; font-weight:600; }
+.hero-time { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.03em; }
 .hero-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:14px; }
-.hero-title { font-family:'Fraunces',serif; font-size:1.65rem; font-weight:900; color:#fff; line-height:1.05; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+.hero-title { font-size:1.5rem; font-weight:800; color:#fff; line-height:1.08; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; letter-spacing:-0.02em; }
 .hero-title .map-btn { background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.15); }
-.hero-vs { display:block; font-style:italic; color:var(--gold); font-size:1rem; opacity:0.85; margin:2px 0; }
+.hero-vs { display:block; font-style:italic; color:#93C5FD; font-size:1rem; opacity:0.9; margin:2px 0; }
 .hero-venue { font-size:0.72rem; color:rgba(255,255,255,0.45); }
 .hero-seat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.65; }
 .hero-seat strong { color:#fff; font-weight:700; }
 .hero-alert { display:flex; align-items:flex-start; gap:7px; font-size:0.72rem; color:rgba(255,255,255,0.55); line-height:1.45; margin-top:5px; }
 .hero-alert strong { color:#fff; }
 
-.xhs-link { display:inline-block; font-size:0.75rem; color:var(--rust); text-decoration:none; line-height:1.5; }
-.xhs-link:hover { text-decoration:underline; }
+.xhs-link { display:inline-block; font-size:0.75rem; color:var(--accent); text-decoration:none; line-height:1.5; }
+.xhs-link:hover { text-decoration:underline; color:var(--accent); }
 
-.kids-strip { margin:10px 16px 0; background:linear-gradient(135deg,#FCE4EC,#F8BBD0); border-radius:12px; padding:13px 16px; }
-.kids-strip-title { font-size:0.75rem; font-weight:700; color:#880E4F; margin-bottom:6px; }
-.kids-strip-text { font-size:0.75rem; color:#880E4F; line-height:1.55; }
-.kids-strip-text strong { font-weight:700; }
+.kids-strip { margin:10px 16px 0; background:#EFF4FF; border-radius:12px; padding:13px 16px; }
+.kids-strip-title { font-size:0.75rem; font-weight:700; color:#1E3A6E; margin-bottom:6px; }
+.kids-strip-text { font-size:0.75rem; color:#374151; line-height:1.55; }
+.kids-strip-text strong { font-weight:600; }
 </style>
 </head>
 <body>
@@ -193,7 +202,7 @@ body { font-family: 'Work Sans','Noto Sans SC',sans-serif; background:var(--crea
         <div class="endorsement">
           <span class="endorse-tag endorse-booked">✅ 已预订 17:45 · Annie Ding</span>
           <span class="endorse-tag endorse-rating">⭐ Google 4.7</span>
-          <span class="endorse-tag" style="background:#e8f5e9;color:#2e7d32;">🏃 赛前补碳</span>
+          <span class="endorse-tag" style="background:#F0FDF4;color:#15803D;">🏃 赛前补碳</span>
         </div>
       </div>
       <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6424c3f4000000001203d2c1" target="_blank">📖 伦敦宝藏日料店 · Chisou ↗</a>
