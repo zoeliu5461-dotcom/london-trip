@@ -84,21 +84,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .alt-name { font-size:0.92rem; font-weight:700; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; }
 .alt-desc { font-size:0.72rem; color:var(--muted); line-height:1.5; }
 
-/* 比赛主卡 */
-.hero-card { background:linear-gradient(155deg,#1A1009 0%,#2D1A0E 55%,#1A1009 100%); border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.32); position:relative; }
-.hero-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,#C49A74 0%,#D4A882 50%,#C49A74 100%); }
-.hero-header { padding:16px 18px 12px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:space-between; }
-.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#D4A882; font-weight:600; }
-.hero-time { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.03em; }
-.hero-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:14px; }
-.hero-title { font-size:1.5rem; font-weight:800; color:#fff; line-height:1.08; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; letter-spacing:-0.02em; }
-.hero-title .map-btn { background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.15); }
-.hero-vs { display:block; font-style:italic; color:#D4A882; font-size:1rem; opacity:0.9; margin:2px 0; }
-.hero-venue { font-size:0.72rem; color:rgba(255,255,255,0.45); }
-.hero-seat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.65; }
-.hero-seat strong { color:#fff; font-weight:700; }
-.hero-alert { display:flex; align-items:flex-start; gap:7px; font-size:0.72rem; color:rgba(255,255,255,0.55); line-height:1.45; margin-top:5px; }
-.hero-alert strong { color:#fff; }
+/* 比赛主卡 — secondary emphasis, warm light */
+.hero-card { background:#EFE4D8; border-radius:14px; overflow:hidden; box-shadow:0 2px 14px rgba(0,0,0,0.08); position:relative; border:1px solid #DDD0C2; }
+.hero-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--accent); }
+.hero-header { padding:12px 16px 10px; border-bottom:1px solid #DDD0C2; display:flex; align-items:center; justify-content:space-between; }
+.hero-label { font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); font-weight:700; }
+.hero-time { font-size:0.8rem; font-weight:700; color:var(--accent); background:rgba(124,83,57,0.12); padding:3px 10px; border-radius:100px; letter-spacing:0.02em; }
+.hero-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+.hero-title { font-size:1.25rem; font-weight:800; color:var(--ink); line-height:1.1; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; letter-spacing:-0.02em; }
+.hero-title .map-btn { background:rgba(124,83,57,0.1); border:1px solid #DDD0C2; }
+.hero-vs { display:block; font-style:italic; color:var(--accent); font-size:0.88rem; opacity:0.85; margin:2px 0; }
+.hero-venue { font-size:0.72rem; color:var(--muted); }
+.hero-seat { background:rgba(255,255,255,0.6); border:1px solid #DDD0C2; border-radius:10px; padding:10px 14px; font-size:0.75rem; color:var(--ink); line-height:1.65; }
+.hero-seat strong { color:var(--ink); font-weight:700; }
+.hero-alert { display:flex; align-items:flex-start; gap:7px; font-size:0.72rem; color:var(--muted); line-height:1.45; margin-top:2px; }
+.hero-alert strong { color:var(--ink); }
 
 .xhs-link { display:inline-block; font-size:0.75rem; color:var(--accent); text-decoration:none; line-height:1.5; }
 .xhs-link:hover { text-decoration:underline; color:var(--accent); }
@@ -109,12 +109,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .kids-strip-text strong { font-weight:600; }
 
 
-/* 跑者主卡 */
+/* 跑者主卡 — strongest emphasis, warm dark but not poster */
 .hero-card {
-  background: linear-gradient(155deg, #1A1009 0%, #2D1A0E 55%, #1A1009 100%);
-  border-radius: 16px;
+  background: #3B2212;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.32), 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
   position: relative;
 }
 .hero-card::before {
@@ -122,25 +122,25 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #C49A74 0%, #D4A882 50%, #C49A74 100%);
+  background: #C49A74;
 }
 .hero-header {
-  padding: 16px 18px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#D4A882; font-weight:600; }
-.hero-time { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.03em; }
-.hero-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:14px; }
-.hero-title { font-size:1.4rem; font-weight:800; color:#fff; line-height:1.1; letter-spacing:-0.02em; }
-.hero-subtitle { font-style:italic; color:#D4A882; font-size:0.9rem; opacity:0.9; display:block; margin-top:2px; }
-.hero-seat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.65; }
-.hero-seat strong { color:#fff; font-weight:700; }
+.hero-label { font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:#C49A74; font-weight:600; }
+.hero-time { font-size:0.8rem; font-weight:700; color:#C49A74; background:rgba(196,154,116,0.15); padding:3px 10px; border-radius:100px; }
+.hero-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+.hero-title { font-size:1.25rem; font-weight:800; color:#F5EDE4; line-height:1.1; letter-spacing:-0.02em; }
+.hero-subtitle { font-style:italic; color:#C49A74; font-size:0.85rem; opacity:0.9; display:block; margin-top:3px; }
+.hero-seat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.78); line-height:1.65; }
+.hero-seat strong { color:#F5EDE4; font-weight:700; }
 .hero-alerts { display:flex; flex-direction:column; gap:5px; }
-.hero-alert { display:flex; align-items:flex-start; gap:7px; font-size:0.72rem; color:rgba(255,255,255,0.55); line-height:1.45; }
-.hero-alert strong { color:#fff; }
+.hero-alert { display:flex; align-items:flex-start; gap:7px; font-size:0.72rem; color:rgba(245,237,228,0.55); line-height:1.45; }
+.hero-alert strong { color:#F5EDE4; }
 
 /* 时间线 */
 .timeline-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
@@ -160,34 +160,30 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .kids-strip-text { font-size:0.75rem; color:#44403C; line-height:1.55; }
 .kids-strip-text strong { font-weight:600; }
 
-/* 航班主卡 */
+/* 航班主卡 — tertiary emphasis, warm near-white */
 .flight-card {
-  background: linear-gradient(155deg, #0F0F0F 0%, #0A1A2E 55%, #0D2040 100%);
-  border-radius: 16px;
+  background: #fff;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   position: relative;
-}
-.flight-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #C49A74 0%, #D4A882 50%, #C49A74 100%);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
 }
 .flight-header {
-  padding: 16px 18px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: var(--paper);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.flight-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#D4A882; font-weight:600; }
-.flight-time { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.03em; }
-.flight-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:12px; }
-.flight-title { font-size:1.25rem; font-weight:800; color:#fff; line-height:1.1; letter-spacing:-0.02em; }
-.flight-detail { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.75; }
-.flight-detail strong { color:#fff; font-weight:700; }
+.flight-label { font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); font-weight:700; }
+.flight-time { font-size:0.78rem; font-weight:700; color:var(--muted); }
+.flight-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:10px; }
+.flight-title { font-size:1.05rem; font-weight:700; color:var(--ink); line-height:1.2; letter-spacing:-0.01em; }
+.flight-detail { background:var(--cream); border:1px solid var(--border); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:var(--muted); line-height:1.75; }
+.flight-detail strong { color:var(--ink); font-weight:700; }
 
 .timeline-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
 .timeline-card-header { background:var(--paper); padding:9px 16px; border-bottom:1px solid var(--border); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
