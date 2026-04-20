@@ -7,20 +7,20 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  /* Backgrounds */
-  --cream: #F5F5F3; --paper: #EDEDEB;
+  /* Backgrounds — warm off-white */
+  --cream: #F8F5F0; --paper: #EFE9E1;
   /* Text */
-  --ink: #1A1A1A; --muted: #6B7280;
+  --ink: #1C1917; --muted: #78716C;
   /* Borders */
-  --border: #E2E2DF;
-  /* Accent (single blue) */
-  --accent: #2563EB; --accent-light: #EFF4FF;
-  /* Booked / confirmed (green, toned down) */
-  --green: #15803D; --green-bg: #F0FDF4;
-  /* Warning only */
-  --warn: #B45309; --warn-bg: #FFFBEB;
-  /* Legacy aliases — kept for backward compat */
-  --rust: #2563EB; --gold: #2563EB; --brown: #6B7280;
+  --border: #E7E0D8;
+  /* Single warm accent (low-sat cognac/brown) */
+  --accent: #7C5339; --accent-light: #FDF6F1;
+  /* Booked / confirmed */
+  --green: #276749; --green-bg: #F0F7F4;
+  /* Warning */
+  --warn: #92400E; --warn-bg: #FFF8ED;
+  /* Legacy aliases */
+  --rust: #7C5339; --gold: #7C5339; --brown: #78716C;
 }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; max-width:480px; margin:0 auto; padding-bottom:60px; }
 
@@ -34,7 +34,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .glance-flow { display:flex; align-items:center; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
 .glance-step { background:rgba(107,66,38,0.08); border-radius:6px; padding:5px 10px; font-size:0.72rem; color:var(--ink); font-weight:500; white-space:nowrap; }
 .glance-step.key { background:var(--accent); color:#fff; }
-.glance-step.rest { background:#F3F4F6; color:var(--muted); border:1px solid var(--border); }
+.glance-step.rest { background:rgba(124,83,57,0.07); color:var(--muted); border:1px solid var(--border); }
 .glance-arrow { color:var(--muted); font-size:0.7rem; }
 .glance-notes { display:flex; flex-direction:column; gap:4px; border-top:1px solid var(--border); padding-top:10px; }
 .glance-note { font-size:0.72rem; color:var(--muted); line-height:1.45; }
@@ -58,8 +58,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .endorsement { display:flex; flex-wrap:wrap; align-items:center; gap:5px; }
 .endorse-tag { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:100px; font-weight:600; font-size:0.6rem; }
 .endorse-booked { background:var(--green-bg); color:var(--green); }
-.endorse-rating { background:#F3F4F6; color:var(--muted); }
-.endorse-dist { background:#F3F4F6; color:var(--muted); }
+.endorse-rating { background:rgba(124,83,57,0.07); color:var(--muted); }
+.endorse-dist { background:rgba(124,83,57,0.07); color:var(--muted); }
 .endorse-warn { background:var(--warn-bg); color:var(--warn); }
 
 .light-item { display:inline-flex; align-items:flex-start; gap:7px; padding:5px 10px 5px 8px; background:var(--cream); border-radius:8px; max-width:100%; align-self:flex-start; }
@@ -86,9 +86,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 
 .xhs-link { display:inline-block; font-size:0.75rem; color:var(--accent); text-decoration:none; line-height:1.5; }
 
-.kids-strip { margin:10px 16px 0; background:#EFF4FF; border-radius:12px; padding:13px 16px; }
-.kids-strip-title { font-size:0.75rem; font-weight:700; color:#1E3A6E; margin-bottom:6px; }
-.kids-strip-text { font-size:0.75rem; color:#374151; line-height:1.55; }
+.kids-strip { margin:10px 16px 0; background:#FDF6F1; border-radius:12px; padding:13px 16px; }
+.kids-strip-title { font-size:0.75rem; font-weight:700; color:#3D2B1F; margin-bottom:6px; }
+.kids-strip-text { font-size:0.75rem; color:#44403C; line-height:1.55; }
 .kids-strip-text strong { font-weight:600; }
 </style>
 </head>
@@ -144,7 +144,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
           <button class="plan-tab" onclick="d1SwitchPlan(this,1)">方案 B · 自行游览<br><span style="font-size:0.62rem;font-weight:400;">拼团不成时备用</span></button>
         </div>
         <div class="plan-body plan-a active">
-          <div style="font-size:0.7rem;background:#fff8e1;border-left:3px solid var(--warn);padding:7px 10px;border-radius:0 4px 4px 0;color:var(--warn);line-height:1.6;margin-bottom:10px;">
+          <div style="font-size:0.7rem;background:#fff8e1;border-left:3px solid var(--warn);padding:7px 10px;border-radius:0 4px 4px 0;color:#7C3D0E;line-height:1.6;margin-bottom:10px;">
             🕐 <strong>拼团进行中</strong>，人数凑满后确认。不成则切方案 B，行程不受影响。
           </div>
           <div class="plan-content">
@@ -231,7 +231,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
         <div class="endorsement">
           <span class="endorse-tag endorse-booked">✅ 已预定 18:00 · Annie Ding</span>
           <span class="endorse-tag endorse-rating">⭐ Google 4.7</span>
-          <span class="endorse-tag" style="background:#F0FDF4;color:#15803D;">🏃 赛前碳水</span>
+          <span class="endorse-tag" style="background:#F0F7F4;color:#276749;">🏃 赛前碳水</span>
         </div>
       </div>
       <a class="xhs-link" href="https://www.xiaohongshu.com/explore/6649d8890000000014018d6e" target="_blank">📖 Saponara · 藏在 Islington 的意大利小馆 ↗</a>
