@@ -67,34 +67,30 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .tip-card { background:var(--paper); border-left:3px solid #D1D5DB; border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
 .tip-card strong { color:var(--ink); }
 
-/* 航班主卡 */
+/* 航班主卡 — tertiary emphasis, warm near-white */
 .flight-card {
-  background: linear-gradient(155deg, #0F0F0F 0%, #0A1A2E 55%, #0D2040 100%);
-  border-radius: 16px;
+  background: #fff;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   position: relative;
-}
-.flight-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #C49A74 0%, #D4A882 50%, #C49A74 100%);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
 }
 .flight-header {
-  padding: 16px 18px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: var(--paper);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.flight-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#D4A882; font-weight:600; }
-.flight-time { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.03em; }
-.flight-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:12px; }
-.flight-title { font-size:1.25rem; font-weight:800; color:#fff; line-height:1.1; letter-spacing:-0.02em; }
-.flight-detail { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.75; }
-.flight-detail strong { color:#fff; font-weight:700; }
+.flight-label { font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); font-weight:700; }
+.flight-time { font-size:0.78rem; font-weight:700; color:var(--muted); }
+.flight-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:10px; }
+.flight-title { font-size:1.05rem; font-weight:700; color:var(--ink); line-height:1.2; letter-spacing:-0.01em; }
+.flight-detail { background:var(--cream); border:1px solid var(--border); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:var(--muted); line-height:1.75; }
+.flight-detail strong { color:var(--ink); font-weight:700; }
 
 .timeline-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
 .timeline-card-header { background:var(--paper); padding:9px 16px; border-bottom:1px solid var(--border); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:700; }
