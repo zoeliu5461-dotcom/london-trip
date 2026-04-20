@@ -73,12 +73,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .tip-card { background:var(--paper); border-left:3px solid #D1D5DB; border-radius:0 10px 10px 0; padding:11px 14px; font-size:0.75rem; color:var(--muted); line-height:1.55; }
 .tip-card strong { color:var(--ink); }
 
-/* 跑者主卡 */
+/* 跑者主卡 — strongest emphasis, warm dark but not poster */
 .hero-card {
-  background: linear-gradient(155deg, #1A1009 0%, #2D1A0E 55%, #1A1009 100%);
-  border-radius: 16px;
+  background: #3B2212;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.32), 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
   position: relative;
 }
 .hero-card::before {
@@ -86,25 +86,25 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #C49A74 0%, #D4A882 50%, #C49A74 100%);
+  background: #C49A74;
 }
 .hero-header {
-  padding: 16px 18px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.hero-label { font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:#D4A882; font-weight:600; }
-.hero-time { font-size:1.6rem; font-weight:800; color:#fff; letter-spacing:-0.03em; }
-.hero-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:14px; }
-.hero-title { font-size:1.4rem; font-weight:800; color:#fff; line-height:1.1; letter-spacing:-0.02em; }
-.hero-subtitle { font-style:italic; color:#D4A882; font-size:0.9rem; opacity:0.9; display:block; margin-top:2px; }
-.hero-seat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.82); line-height:1.65; }
-.hero-seat strong { color:#fff; font-weight:700; }
+.hero-label { font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:#C49A74; font-weight:600; }
+.hero-time { font-size:0.8rem; font-weight:700; color:#C49A74; background:rgba(196,154,116,0.15); padding:3px 10px; border-radius:100px; }
+.hero-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+.hero-title { font-size:1.25rem; font-weight:800; color:#F5EDE4; line-height:1.1; letter-spacing:-0.02em; }
+.hero-subtitle { font-style:italic; color:#C49A74; font-size:0.85rem; opacity:0.9; display:block; margin-top:3px; }
+.hero-seat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:10px 14px; font-size:0.75rem; color:rgba(255,255,255,0.78); line-height:1.65; }
+.hero-seat strong { color:#F5EDE4; font-weight:700; }
 .hero-alerts { display:flex; flex-direction:column; gap:5px; }
-.hero-alert { display:flex; align-items:flex-start; gap:7px; font-size:0.72rem; color:rgba(255,255,255,0.55); line-height:1.45; }
-.hero-alert strong { color:#fff; }
+.hero-alert { display:flex; align-items:flex-start; gap:7px; font-size:0.72rem; color:rgba(245,237,228,0.55); line-height:1.45; }
+.hero-alert strong { color:#F5EDE4; }
 
 /* 时间线 */
 .timeline-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
@@ -202,10 +202,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
         <strong>完赛T：</strong>XS 已选好<br>
         <strong>完赛路线：</strong>冲线 → 跟人流领物资/取包，不着急 → 出终点核心区朝 Green Park → 步行回酒店（约10–15分钟）
       </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.75rem;color:rgba(255,255,255,0.82);line-height:1.75;">
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.11);border-radius:10px;padding:10px 14px;font-size:0.75rem;color:rgba(245,237,228,0.75);line-height:1.75;">
         跑完之后不用找人，也不用去 Whitehall 会合。冲线后先跟着人流把终点流程走完——拿水、补给、取包，不用着急。<br>
-        走出终点核心区后，主方向就是 <strong style="color:#fff;">Green Park</strong>。到了 Green Park 一带人会松很多，从这里再慢慢走回 Sheraton，约 <strong style="color:#fff;">10–15 分钟</strong>。<br>
-        累了就在公园里缓一缓，不用赶。<strong style="color:#fff;">打车只在状态明显不好时作为备选。</strong>
+        走出终点核心区后，主方向就是 <strong style="color:#F5EDE4;">Green Park</strong>。到了 Green Park 一带人会松很多，从这里再慢慢走回 Sheraton，约 <strong style="color:#F5EDE4;">10–15 分钟</strong>。<br>
+        累了就在公园里缓一缓，不用赶。<strong style="color:#F5EDE4;">打车只在状态明显不好时作为备选。</strong>
       </div>
       <div class="hero-alerts">
         <div class="hero-alert">📍 <span><strong>不要</strong>去 The Mall 让家人接——Westminster 站当天只出不进，带糯糯去风险高</span></div>
