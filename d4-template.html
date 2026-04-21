@@ -39,6 +39,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 .glance-notes { display:flex; flex-direction:column; gap:4px; border-top:1px solid var(--border); padding-top:10px; }
 .glance-note { font-size:0.72rem; color:var(--muted); line-height:1.45; }
 .glance-note strong { color:var(--ink); }
+.glance-sub { font-size:0.68rem; color:var(--muted); line-height:1.5; margin-top:6px; padding-top:6px; border-top:1px solid var(--border); }
 
 .day-body { padding:12px 16px 0; display:flex; flex-direction:column; gap:10px; }
 
@@ -105,7 +106,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 <div class="glance-card">
   <div class="glance-label">👉 今天怎么走 · 扫一眼</div>
   <div class="glance-flow">
-    <div class="glance-step">🚂 09:04 Paddington 出发</div>
+    <div class="glance-step">🚂 09:23 Paddington 出发</div>
     <div class="glance-arrow">→</div>
     <div class="glance-step key">🏛️ 11:00 讲解团</div>
     <div class="glance-arrow">→</div>
@@ -115,19 +116,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
     <div class="glance-arrow">→</div>
     <div class="glance-step key">🚣 15:00 撑船</div>
     <div class="glance-arrow">→</div>
-    <div class="glance-step">🚂 16:30 返程</div>
+    <div class="glance-step">🚂 16:04 返程</div>
     <div class="glance-arrow">→</div>
     <div class="glance-step">🍽️ 18:00 Kitty Fisher's</div>
   </div>
   <div class="glance-notes">
-    <div class="glance-note">⚠️ 13:00–14:30 午休就地，<strong>不回酒店</strong>——16:30 必须在车站</div>
+    <div class="glance-note">⚠️ 13:00–14:30 午休就地，<strong>不回酒店</strong>——15:00 后节奏紧，<strong>16:04 必须上车</strong></div>
   </div>
+  <div class="glance-sub">TrainPal 买票参考：2 位大人 open return 共 £72.4，儿童免费；返程当天可按 off-peak 规则灵活乘坐。</div>
 </div>
 
 <!-- BODY -->
 <div class="day-body">
 
-  <!-- 交通 -->
+  <!-- 时间表 -->
   <div class="timeline-card">
     <div class="timeline-card-header">🚂 今日时间表</div>
     <div class="timeline-rows">
@@ -136,16 +138,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
         <div class="timeline-desc">打车去 <strong>Paddington 站</strong>（约15分钟）</div>
       </div>
       <div class="timeline-row">
-        <div class="timeline-time">09:04</div>
-        <div class="timeline-desc">火车出发 → Oxford（约1小时）</div>
+        <div class="timeline-time">09:23</div>
+        <div class="timeline-desc">火车出发 → Oxford（约54分钟）</div>
       </div>
       <div class="timeline-row">
-        <div class="timeline-time">10:00</div>
-        <div class="timeline-desc">抵达牛津，步行至 16 Broad Street（约14分钟）</div>
+        <div class="timeline-time">10:17</div>
+        <div class="timeline-desc">抵达 Oxford，步行至 16 Broad Street（约14分钟）</div>
       </div>
       <div class="timeline-row">
         <div class="timeline-time">11:00</div>
-        <div class="timeline-desc"><strong>Footprints Tours 讲解团</strong>（英文，免费）</div>
+        <div class="timeline-desc"><strong>Footprints Tours 讲解团</strong>（官方全程约2小时，免费）<br><span style="font-size:0.68rem;color:#9CA3AF;">11:00 到后可先跟着听，现场根据状态随时 skip，不必全程走完</span></div>
       </div>
       <div class="timeline-row">
         <div class="timeline-time">12:00</div>
@@ -157,18 +159,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
       </div>
       <div class="timeline-row">
         <div class="timeline-time">15:00</div>
-        <div class="timeline-desc">🚣 <strong>Cherwell River 撑船</strong>（约1小时）<br><span style="font-size:0.68rem;color:#9CA3AF;">Magdalen Bridge Boathouse · £35/h · 无需预约</span></div>
+        <div class="timeline-desc">🚣 <strong>Cherwell River 撑船</strong>（约30分钟）<br><span style="font-size:0.68rem;color:#9CA3AF;">Magdalen Bridge Boathouse · 40–50磅/船 · 无需预约</span></div>
       </div>
       <div class="timeline-row">
-        <div class="timeline-time">16:00</div>
-        <div class="timeline-desc">撑船结束 → 打车去火车站（约10分钟）</div>
+        <div class="timeline-time">15:35</div>
+        <div class="timeline-desc">撑船结束 → 去火车站（约10分钟）</div>
       </div>
       <div class="timeline-row">
-        <div class="timeline-time">16:30</div>
-        <div class="timeline-desc">火车返程 → Paddington（约1小时）</div>
+        <div class="timeline-time">16:04</div>
+        <div class="timeline-desc">火车返程 → Paddington</div>
       </div>
       <div class="timeline-row">
-        <div class="timeline-time">17:30</div>
+        <div class="timeline-time">17:05</div>
         <div class="timeline-desc">抵达 Paddington → 打车回酒店（约15分钟）</div>
       </div>
       <div class="timeline-row">
@@ -191,12 +193,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
           <a class="map-btn" href="https://maps.google.com/?q=16+Broad+Street+Oxford" target="_blank">📍</a>
         </div>
         <div class="item-desc">
-          英文免费讲解团，集合点 16 Broad Street。带你走最经典的学院和街道，90分钟左右。<br>
-          也可以预约<strong>中文讲解</strong>（牛津在读学生接单），约 £60/h。
+          英文免费讲解团，集合点 16 Broad Street。官方全程约2小时，带你走最经典的学院和街道。<br><br>
+          <strong>11:00 到后可以先跟着听一会儿，现场根据状态随时 skip</strong>——这不是必须从头跟到尾的固定行程，灵活来就好。<br><br>
+          也可预约<strong>中文讲解</strong>（牛津在读学生接单），约 £60/h。
         </div>
         <div class="endorsement">
           <span class="endorse-tag endorse-dist">🆓 免费（英文）</span>
           <span class="endorse-tag endorse-dist">📍 16 Broad Street</span>
+          <span class="endorse-tag endorse-dist">⏱ 官方全程约2小时</span>
         </div>
       </div>
     </div>
@@ -244,7 +248,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
   <div class="block-card">
     <div class="block-header">
       <div class="block-time-label">下午</div>
-      <div class="block-time-value">15:00 – 16:00</div>
+      <div class="block-time-value">15:00 – 15:30</div>
     </div>
     <div class="block-body">
       <div class="item-main">
@@ -256,7 +260,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
           站在平底船尾用长杆撑河，穿过柳荫和石桥，是牛津最经典的体验。可以喂河边的鸭子。<strong>糯糯须穿救生衣</strong>（现场提供），出发前提前跟他说好。
         </div>
         <div class="endorsement">
-          <span class="endorse-tag endorse-dist">💷 £35/小时·最多5人</span>
+          <span class="endorse-tag endorse-dist">💷 40–50磅 / 船 · 最多5人</span>
           <span class="endorse-tag endorse-dist">📍 Magdalen Bridge Boathouse</span>
         </div>
       </div>
@@ -269,7 +273,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
   <div class="block-card">
     <div class="block-header">
       <div class="block-time-label">晚餐</div>
-      <div class="block-time-value">18:15</div>
+      <div class="block-time-value">18:00</div>
     </div>
     <div class="block-body">
       <div class="item-main">
@@ -294,8 +298,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC'
 <div class="kids-strip">
   <div class="kids-strip-title">🧒 糯糯今天</div>
   <div class="kids-strip-text">
-    🕐 <strong>今天节点多、时间卡。</strong>讲解团走完是12:00，午饭之后紧接着午休，16:30 必须在火车站——中间没有松弛的余地，任何一段拖延都会压到下一段。<br><br>
-    😴 <strong>13:00–14:30 是唯一的留白。</strong>这段不回酒店，就地找咖啡馆坐够。午休保不住，撑船那一小时就很难过。<br><br>
+    🕐 <strong>今天节点多、时间卡。</strong>讲解团官方全程约2小时，但 11:00 到后可以先跟着听一会儿，现场随时 skip；午饭之后紧接着午休，15:00 撑船、16:04 返程——15:00 后基本没有松弛余地，任何一段拖延都会压到下一段。<br><br>
+    😴 <strong>13:00–14:30 是唯一的留白。</strong>这段不回酒店，就地找咖啡馆坐够。午休保不住，撑船那半小时就很难过。<br><br>
     🚣 <strong>撑船是今天最值得期待的体验。</strong>他在水上，鸭子就在旁边，只要睡够了基本不会出问题。
   </div>
 </div>
